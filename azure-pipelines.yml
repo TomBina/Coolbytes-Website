@@ -20,10 +20,9 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)'
     Contents: |
-      **\*.js
-      package.json
+      **/dist/**
+      !**/node_modules/**
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'copy all to staging'
 
