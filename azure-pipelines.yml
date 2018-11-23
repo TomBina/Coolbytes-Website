@@ -21,9 +21,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
-    Contents: |
-      **\*.js
-      package.json
+    Contents: '**\dist\**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'copy all to staging'
 
