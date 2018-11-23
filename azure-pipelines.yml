@@ -10,10 +10,22 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '8.x'
-  displayName: 'Install Node.js'
+  displayName: 'install Node.js'
 
 - script: |
     npm install -g @angular/cli
     npm install
     ng build --prod
-  displayName: 'npm install and build'
+  displayName: 'npm install and ng build'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: |
+      **\*.js
+      package.json
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'copy all to staging'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'publish artifacts'
