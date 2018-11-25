@@ -26,5 +26,11 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'copy all to staging'
 
+- task: CopyFiles@2
+  inputs:
+    Contents: web.config
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/dist'
+  displayName: 'copy web.config to staging'
+
 - task: PublishBuildArtifacts@1
   displayName: 'publish artifacts'
