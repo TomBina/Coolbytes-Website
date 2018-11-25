@@ -114,7 +114,7 @@ export class AuthorComponent implements OnInit {
     let command: any = {};
 
     for (let controlName in controls) {
-      if (controls[controlName].value && controls[controlName].value.length > 0)
+      if (controls[controlName].value && controls[controlName].value.toString().length > 0)
         command[controlName] = controls[controlName].value;
     }
 
