@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
+import { HttpClientModule } from "@angular/common/http";
 import { AdminAuthorGuardService } from '../../services/admin-author-guard.service';
 import { AdminGuardService } from '../../services/admin-guard.service';
 import { AuthService } from '../../services/auth.service';
@@ -26,6 +26,7 @@ import { ResumeManagerComponent } from './resume/resume-manager.component';
 @NgModule({
     imports: [
         BrowserModule,
+        HttpClientModule,
         RouterModule.forChild([
             {
                 path: "processauth",

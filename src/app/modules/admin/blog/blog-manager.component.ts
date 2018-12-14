@@ -26,10 +26,7 @@ export class BlogManagerComponent implements OnInit {
     delete(blogPostId: number): void {
         if (!confirm("Are you sure?"))
             return;
-            
-        this._blogPostsService.delete(blogPostId).subscribe(response => {
-            if (response.ok)
-                this.getBlogs();
-        });
+
+        this._blogPostsService.delete(blogPostId).subscribe(_ => this.getBlogs());
     }
 }

@@ -27,8 +27,7 @@ export class ResumeManagerComponent implements OnInit {
             return;
 
         this._resumeEventsService.delete(resumeEventId).subscribe(response => {
-            if (response.ok)
-                this.getResumeEvents();
+            this.getResumeEvents();
         });
     }
 }

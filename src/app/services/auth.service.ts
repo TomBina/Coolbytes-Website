@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Headers } from "@angular/http";
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -56,9 +57,7 @@ export class AuthService {
         return new Date().getTime() < expiresAt;
     }
 
-    public addAuthorizationHeader(headers: Headers): Headers {
-        headers.append("Authorization", "Bearer " + localStorage.getItem("access_token"));
-
-        return headers;
+    public addAuthorizationHeader(headers: HttpHeaders): HttpHeaders {
+        return headers.set("Authorization", "Bearer " + localStorage.getItem("access_token"));
     }
 }
