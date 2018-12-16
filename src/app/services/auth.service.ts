@@ -1,10 +1,9 @@
-import { environment } from '../../environments/environment';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Headers } from "@angular/http";
-import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
-import { HttpHeaders } from '@angular/common/http';
+import 'rxjs/add/operator/filter';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +15,7 @@ export class AuthService {
             domain: "coolbytes.auth0.com",
             responseType: "token id_token",
             audience: environment.apiUri + "api/",
-            redirectUri: environment.appUri + "processauth",
+            redirectUri: environment.appUri + "admin/processauth",
             scope: "openid email admin"
         });
     }

@@ -1,24 +1,23 @@
-import { ContactService } from '../../services/contactservice/contact.service';
-import { ContactComponent } from './contact/contact.component';
-import { AuthorComponent } from './about/author/author.component';
-import { ResumeEventComponent } from './about/resumeevent/resume-event.component';
-import { ResumeService } from '../../services/resumeservice/resume.service';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 import { BlogPostsService } from '../../services/blogpostservice/blog-posts.service';
+import { ContactService } from '../../services/contactservice/contact.service';
+import { ResumeService } from '../../services/resumeservice/resume.service';
 import { SharedModule } from '../shared/shared.module';
 import { AboutComponent } from './about/about.component';
+import { AuthorComponent } from './about/author/author.component';
+import { ResumeEventComponent } from './about/resumeevent/resume-event.component';
 import { BlogPostIntroComponent } from './blog-post-intro.component';
 import { BlogPostComponent } from './blog-post.component';
 import { BlogComponent } from './blog.component';
+import { ContactComponent } from './contact/contact.component';
+
 
 @NgModule({
     imports: [
-        BrowserModule,
+        CommonModule,
         RouterModule.forChild([
             {
                 path:"",
@@ -45,7 +44,6 @@ import { BlogComponent } from './blog.component';
                 component:ContactComponent
             }
         ]),
-        HttpModule,
         SharedModule,
         ReactiveFormsModule
     ],

@@ -1,7 +1,7 @@
-import { BlogPostsService } from '../../../services/blogpostservice/blog-posts.service';
-import { BlogPostSummary } from '../../../services/blogpostservice/blog-post-summary';
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
+import { BlogPostSummary } from '../../../services/blogpostservice/blog-post-summary';
+import { BlogPostsService } from '../../../services/blogpostservice/blog-posts.service';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
     styleUrls: ["./blog-manager.component.css"]
 })
 export class BlogManagerComponent implements OnInit {
-    blogPosts: BlogPostSummary[];
+    blogPosts$: Observable<BlogPostSummary[]>;
 
     constructor(private _blogPostsService: BlogPostsService) {
 
@@ -20,7 +20,7 @@ export class BlogManagerComponent implements OnInit {
     }
 
     getBlogs(): void {
-        this._blogPostsService.getAll().subscribe(blogPosts => this.blogPosts = blogPosts);
+        this.blogPosts$ = this._blogPostsService.getAll();
     }
 
     delete(blogPostId: number): void {
