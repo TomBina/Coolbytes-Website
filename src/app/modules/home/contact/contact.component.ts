@@ -54,6 +54,8 @@ export class ContactComponent implements OnInit {
                 command[controlName] = controls[controlName].value;
         }
 
-        this._contactService.Send(command).subscribe(response => this.messageSent = response.ok);
+        this._contactService.Send(command).subscribe(response => {
+            //this.messageSent = response.ok
+        });
     }
 }

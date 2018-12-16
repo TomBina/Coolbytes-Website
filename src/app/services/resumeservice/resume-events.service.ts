@@ -1,38 +1,33 @@
-import { UpdateResumeEventCommand } from './update-resume-event-command';
 import { Injectable } from '@angular/core';
-import { Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
 import { environment } from '../../../environments/environment';
-import { WebApiService } from '../web-api-service';
+import { ApiService } from '../api-service';
 import { AddResumeEventCommand } from './add-resume-event-command';
 import { ResumeEvent } from './resume-event';
+import { UpdateResumeEventCommand } from './update-resume-event-command';
+
 
 @Injectable()
-export class ResumeEventsService extends WebApiService {
+export class ResumeEventsService extends ApiService {
     private _url: string = environment.apiUri + "api/resumeevents";
-    
-    getAll(authorId: number) : Observable<ResumeEvent[]> {
-        let observable = this.http.get(`${this._url}/${authorId}/`, this.getAuthRequestOptions(new Headers()));
-        return observable.map((response: Response) => <ResumeEvent[]>response.json());
-    }
-    
-    get(resumeEventId: number) : Observable<ResumeEvent> {
-        let observable = this.http.get(`${this._url}/event/${resumeEventId}/`, this.getAuthRequestOptions(new Headers()));
-        return observable.map((response: Response) => <ResumeEvent>response.json());
-    }
-    
-    add(addResumeEventCommand : AddResumeEventCommand) : Observable<ResumeEvent> {
-        let observable = this.http.post(this._url, addResumeEventCommand, this.getAuthRequestOptions(new Headers()));
-        return observable.map((response: Response) => <ResumeEvent>response.json());
+
+    getAll(authorId: number): Observable<ResumeEvent[]> {
+        return this.http.get<ResumeEvent[]>(`${this._url}/${authorId}/`, this.createRequestOptions());
     }
 
-    update(updateResumeEventCommand : UpdateResumeEventCommand) : Observable<ResumeEvent> {
-        let observable = this.http.put(this._url, updateResumeEventCommand, this.getAuthRequestOptions(new Headers()));
-        return observable.map((response: Response) => <ResumeEvent>response.json());
+    get(resumeEventId: number): Observable<ResumeEvent> {
+        return this.http.get<ResumeEvent>(`${this._url}/event/${resumeEventId}/`, this.createRequestOptions());
     }
 
-    delete(resumeEventId: number) : Observable<Response> {
-        return this.http.delete(`${this._url}/${resumeEventId}/`, this.getAuthRequestOptions(new Headers()));
+    add(addResumeEventCommand: AddResumeEventCommand): Observable<ResumeEvent> {
+        return this.http.post<ResumeEvent>(this._url, addResumeEventCommand, this.createRequestOptions());
+    }
+
+    update(updateResumeEventCommand: UpdateResumeEventCommand): Observable<ResumeEvent> {
+        return this.http.put<ResumeEvent>(this._url, updateResumeEventCommand, this.createRequestOptions());
+    }
+
+    delete(resumeEventId: number): Observable<Object> {
+        return this.http.delete(`${this._url}/${resumeEventId}/`, this.createRequestOptions());
     }
 }

@@ -1,9 +1,9 @@
-import { BlogPostSummary } from '../../services/blogpostservice/blog-post-summary';
-import { BlogPost } from '../../services/blogpostservice/blog-post';
-import { BlogPostsService } from '../../services/blogpostservice/blog-posts.service';
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from "@angular/router";
+import { BlogPostSummary } from '../../services/blogpostservice/blog-post-summary';
+import { BlogPostsService } from '../../services/blogpostservice/blog-posts.service';
+import { map } from "rxjs/operators";
 
 @Component({
     templateUrl: "./blog.component.html",
@@ -19,17 +19,18 @@ export class BlogComponent implements OnInit {
 
     ngOnInit(): void {
         this._titleService.setTitle("Cool Bytes");
-        this._blogpostsService.getAll(this.tag).map(blogPosts => {
-            let blogPostsViewModel: BlogPostViewModel[] = [];
+        this._blogpostsService.getAll(this.tag).pipe(
+            map(blogPosts => {
+                let blogPostsViewModel: BlogPostViewModel[] = [];
 
-            blogPosts.forEach(blogPost => {
-                let blogPostViewModel = new BlogPostViewModel();
-                blogPostViewModel.blogPost = blogPost;
-                blogPostsViewModel.push(blogPostViewModel);
-            });
+                blogPosts.forEach(blogPost => {
+                    let blogPostViewModel = new BlogPostViewModel();
+                    blogPostViewModel.blogPost = blogPost;
+                    blogPostsViewModel.push(blogPostViewModel);
+                });
 
-            return blogPostsViewModel;
-        }).subscribe(blogPosts => { this.blogPosts = blogPosts; });
+                return blogPostsViewModel;
+            })).subscribe(blogPosts => { this.blogPosts = blogPosts; });
     }
 }
 

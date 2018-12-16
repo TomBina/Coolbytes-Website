@@ -1,52 +1,45 @@
-import { AddBlogPostCommand } from './add-blog-post-command';
-import 'rxjs/add/operator/map';
-
 import { Injectable } from '@angular/core';
-import { Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
 import { environment } from '../../../environments/environment';
+import { ApiService } from '../api-service';
+import { AddBlogPostCommand } from './add-blog-post-command';
 import { BlogPost } from './blog-post';
 import { BlogPostSummary } from './blog-post-summary';
 import { BlogPostUpdate } from './blog-post-update';
-import { WebApiService } from './../web-api-service';
-import { UpdateBlogPostCommand } from './update-blog-post-command';
+import { UpdateBlogPostCommand } from "./update-blog-post-command";
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class BlogPostsService extends WebApiService {
+export class BlogPostsService extends ApiService {
     private _url: string = environment.apiUri + "api/blogposts";
 
-    get(blogPostId: number): Observable<BlogPost> {
-        let observable = this.http.get(`${this._url}/${blogPostId}`);
-        return observable.map((response: Response) => <BlogPost>response.json());
+    get(id): Observable<BlogPost> {
+        let observable = this.http.get<BlogPost>(`${this._url}/${id}`);
+        return observable;
     }
 
-    getAll(tag?: string): Observable<BlogPostSummary[]> {
-        let observable = tag ? this.http.get(`${this._url}/?tag=${encodeURIComponent(tag)}`) : this.http.get(this._url);
-        return observable.map((response: Response) => <BlogPostSummary[]>response.json());
+    getAll(tag?): Observable<BlogPostSummary[]> {
+        let url = tag ? `${this._url}/?tag=${encodeURIComponent(tag)}` : this._url;
+        return this.http.get<BlogPostSummary[]>(url, this.createRequestOptions())
     }
 
     add(addBlogPostCommand: AddBlogPostCommand, files: FileList): Observable<BlogPostSummary> {
         let formData = this.createFormData(addBlogPostCommand, files);
-        let observable = this.http.post(this._url, formData, this.getAuthRequestOptions(new Headers()));
-        return observable.map((response: Response) => <BlogPostSummary>response.json());
+        return this.http.post<BlogPostSummary>(this._url, formData, this.createRequestOptions());
     }
 
-    getUpdate(blogPostId: number) {
-        let observable = this.http.get(`${this._url}/update/${blogPostId}`, this.getAuthRequestOptions(new Headers()));
-        return observable.map((response: Response) => <BlogPostUpdate>response.json());
+    getUpdate(id) {
+        return this.http.get<BlogPostUpdate>(`${this._url}/update/${id}`, this.createRequestOptions());
     }
 
     update(updateBlogPostCommand: UpdateBlogPostCommand, files: FileList): Observable<BlogPostSummary> {
         let formData = this.createFormData(updateBlogPostCommand, files);
         formData.append("id", updateBlogPostCommand.id.toString());
-
-        let observable = this.http.put(`${this._url}/update/`, formData, this.getAuthRequestOptions(new Headers()));
-        return observable.map((response: Response) => <BlogPostSummary>response.json());
+        return this.http.put<BlogPostSummary>(`${this._url}/update/`, formData, this.createRequestOptions());
     }
 
-    delete(blogPostId: number): Observable<Response> {
-        return this.http.delete(`${this._url}/${blogPostId}`, this.getAuthRequestOptions(new Headers()));
+    delete(id) {
+        return this.http.delete(`${this._url}/${id}`, this.createRequestOptions()).pipe(catchError(this.handleError));
     }
 
     private createFormData(model, files: FileList): FormData {
@@ -57,14 +50,17 @@ export class BlogPostsService extends WebApiService {
         formData.append("contentIntro", model.contentIntro);
         formData.append("content", model.content);
 
-        if (model.tags)
+        if (model.tags) {
             model.tags.forEach(t => formData.append("tags", t));
+        }
 
-        if (model.externalLinks)
+        if (model.externalLinks) {
             formData.append("externalLinks", JSON.stringify(model.externalLinks));
+        }
 
-        if (file)
+        if (file) {
             formData.append("file", file, file.name);
+        }
 
         return formData;
     }

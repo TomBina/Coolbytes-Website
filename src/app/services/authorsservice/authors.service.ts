@@ -1,39 +1,26 @@
-import { Enumerate } from '../../utils/enumerate';
-import 'rxjs/add/operator/map';
-
 import { Injectable } from '@angular/core';
-import { Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
 import { environment } from '../../../environments/environment';
+import { ApiService } from '../api-service';
 import { Author } from './author';
-import { WebApiService } from './../web-api-service';
 
 @Injectable()
-export class AuthorsService extends WebApiService {
+export class AuthorsService extends ApiService {
     private _url: string = environment.apiUri + "api/authors/";
 
     get(): Observable<Author> {
-        let observable = this.http.get(this._url, this.getRequestOptions(new Headers()));
-
-        return observable.map((response: Response) => <Author>response.json());
+        return this.http.get<Author>(this._url, this.createRequestOptions());
     }
 
     getWithProfile(): Observable<Author> {
-        let observable = this.http.get(`${this._url}?includeProfile=true`, this.getRequestOptions(new Headers()));
-
-        return observable.map((response: Response) => <Author>response.json());
+        return this.http.get<Author>(`${this._url}?includeProfile=true`, this.createRequestOptions());
     }
 
     add(command): Observable<Author> {
-        let observable = this.http.post(this._url, command, this.getRequestOptions(new Headers()));
-
-        return observable.map((response: Response) => <Author>response.json());
+        return this.http.post<Author>(this._url, command, this.createRequestOptions());
     }
 
     update(command): Observable<Author> {
-        let observable = this.http.put(this._url, command, this.getRequestOptions(new Headers()));
-
-        return observable.map((response: Response) => <Author>response.json());
+        return this.http.put<Author>(this._url, command, this.createRequestOptions());
     }
 }
