@@ -9,7 +9,9 @@ import { BlogPostUpdate } from './blog-post-update';
 import { UpdateBlogPostCommand } from "./update-blog-post-command";
 import { catchError } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ 
+    providedIn: "root" 
+})
 export class BlogPostsService extends ApiService {
     private _url: string = environment.apiUri + "api/blogposts";
 

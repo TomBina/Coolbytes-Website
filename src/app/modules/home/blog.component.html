@@ -9,7 +9,7 @@
         <p class="text">Read the latest blogs about cool technologies, patterns &amp; practices on CoolBytes.io.</p>
     </div>
     <div class="posts">
-        <home-blog-post-intro [blogPost]="blog.blogPost" *ngFor="let blog of blogPosts">
+        <home-blog-post-intro [blogPost]="blog.blogPost" *ngFor="let blog of (blogPosts$ | async)">
         </home-blog-post-intro>
     </div>
 </article>

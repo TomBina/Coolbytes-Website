@@ -2,6 +2,7 @@ import { ContactService } from '../../../services/contactservice/contact.service
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Title } from '@angular/platform-browser';
+import { AuthorsService } from '../../../services/authorsservice/authors.service';
 
 @Component({
     templateUrl: "./contact.component.html",
@@ -55,7 +56,7 @@ export class ContactComponent implements OnInit {
         }
 
         this._contactService.Send(command).subscribe(response => {
-            //this.messageSent = response.ok
+            
         });
     }
 }

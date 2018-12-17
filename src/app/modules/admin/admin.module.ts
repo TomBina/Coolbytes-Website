@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AdminAuthorGuardService } from '../../services/admin-author-guard.service';
 import { AdminGuardService } from '../../services/admin-guard.service';
-import { AuthService } from '../../services/auth.service';
 import { AuthorsService } from '../../services/authorsservice/authors.service';
 import { ResumeEventsService } from '../../services/resumeservice/resume-events.service';
 import { SharedModule } from '../shared/shared.module';

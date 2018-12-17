@@ -1,10 +1,8 @@
-import { Author } from '../../../services/authorsservice/author';
-import { ImagesService } from '../../../services/imagesservice/images.service';
-import { ResumeEvent } from '../../../services/resumeservice/resume-event';
-import { Resume } from '../../../services/resumeservice/resume';
-import { ResumeService } from '../../../services/resumeservice/resume.service';
 import { Component, OnInit } from "@angular/core";
 import { Title } from '@angular/platform-browser';
+import { Author } from '../../../services/authorsservice/author';
+import { Resume } from '../../../services/resumeservice/resume';
+import { ResumeService } from '../../../services/resumeservice/resume.service';
 
 @Component({ templateUrl: "./about.component.html", styleUrls: ["./about.component.css"] })
 export class AboutComponent implements OnInit {
@@ -12,7 +10,7 @@ export class AboutComponent implements OnInit {
     years: string[];
     author: Author;
     
-    constructor(private _resumeService: ResumeService, private _imagesService: ImagesService, private _titleService: Title) { }
+    constructor(private _resumeService: ResumeService, private _titleService: Title) { }
 
     ngOnInit() {
         this._titleService.setTitle("About Cool Bytes");

@@ -4,8 +4,9 @@ import { environment } from '../../../environments/environment';
 import { ApiService } from '../api-service';
 import { Image } from './image';
 
-
-@Injectable()
+@Injectable({ 
+    providedIn: "root" 
+})
 export class ImagesService extends ApiService {
     private _url: string = environment.apiUri + "api/images/";
 

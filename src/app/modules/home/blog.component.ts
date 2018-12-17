@@ -4,13 +4,14 @@ import { ActivatedRoute } from "@angular/router";
 import { BlogPostSummary } from '../../services/blogpostservice/blog-post-summary';
 import { BlogPostsService } from '../../services/blogpostservice/blog-posts.service';
 import { map } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Component({
     templateUrl: "./blog.component.html",
     styleUrls: ["./blog.component.css"]
 })
 export class BlogComponent implements OnInit {
-    blogPosts: BlogPostViewModel[];
+    blogPosts$: Observable<BlogPostViewModel[]>;
     tag: string;
 
     constructor(private _blogpostsService: BlogPostsService, private _route: ActivatedRoute, private _titleService: Title) {
@@ -19,7 +20,7 @@ export class BlogComponent implements OnInit {
 
     ngOnInit(): void {
         this._titleService.setTitle("Cool Bytes");
-        this._blogpostsService.getAll(this.tag).pipe(
+        this.blogPosts$ = this._blogpostsService.getAll(this.tag).pipe(
             map(blogPosts => {
                 let blogPostsViewModel: BlogPostViewModel[] = [];
 
@@ -30,7 +31,8 @@ export class BlogComponent implements OnInit {
                 });
 
                 return blogPostsViewModel;
-            })).subscribe(blogPosts => { this.blogPosts = blogPosts; });
+            })
+        );
     }
 }
 

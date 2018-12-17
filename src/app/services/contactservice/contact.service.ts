@@ -3,7 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api-service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ContactService extends ApiService {
     private _url: string = environment.apiUri + "api/contact";
     
