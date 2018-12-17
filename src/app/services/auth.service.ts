@@ -2,7 +2,6 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import * as auth0 from 'auth0-js';
-import 'rxjs/add/operator/filter';
 import { environment } from '../../environments/environment';
 
 @Injectable({ 

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { BlogPostsService } from '../../services/blogpostservice/blog-posts.service';
@@ -18,7 +18,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     private _blogPostSubscription: any;
     private _onRouteChanges: Subscription;
 
-    constructor(private _blogPostsService: BlogPostsService, private _route: ActivatedRoute, private _imagesService: ImagesService, private _router: Router, private _titleService: Title) { }
+    constructor(private _blogPostsService: BlogPostsService, private _route: ActivatedRoute, private _imagesService: ImagesService, private _titleService: Title) { }
 
     ngOnInit(): void {
         this._onRouteChanges = this._route.params.subscribe(changes => {

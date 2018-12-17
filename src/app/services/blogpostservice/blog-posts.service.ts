@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../api-service';
 import { AddBlogPostCommand } from './add-blog-post-command';
@@ -8,6 +7,7 @@ import { BlogPostSummary } from './blog-post-summary';
 import { BlogPostUpdate } from './blog-post-update';
 import { UpdateBlogPostCommand } from "./update-blog-post-command";
 import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({ 
     providedIn: "root" 
