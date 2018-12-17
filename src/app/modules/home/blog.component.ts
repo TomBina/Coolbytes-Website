@@ -38,5 +38,5 @@ export class BlogComponent implements OnInit {
 
 export class BlogPostViewModel {
     blogPost: BlogPostSummary;
-    cssClass: string = "post";
+    cssClass = "post";
 }

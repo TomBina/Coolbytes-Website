@@ -1,16 +1,16 @@
-import { ImagesService } from '../../../../services/imagesservice/images.service';
-import { Image } from '../../../../services/imagesservice/image';
-import { AddBlogPostCommand } from '../../../../services/blogpostservice/add-blog-post-command';
-import { ExternalLink } from '../../../../services/blogpostservice/external-link';
-import { BlogPostsService } from '../../../../services/blogpostservice/blog-posts.service';
-import { AuthorsService } from '../../../../services/authorsservice/authors.service';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ImagesService } from "../../../../services/imagesservice/images.service";
+import { Image } from "../../../../services/imagesservice/image";
+import { AddBlogPostCommand } from "../../../../services/blogpostservice/add-blog-post-command";
+import { ExternalLink } from "../../../../services/blogpostservice/external-link";
+import { BlogPostsService } from "../../../../services/blogpostservice/blog-posts.service";
+import { AuthorsService } from "../../../../services/authorsservice/authors.service";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
-import { BlogPostPreview } from '../previewblog/blog-post-preview';
-import { PreviewBlogComponent } from '../previewblog/preview-blog.component';
+import { BlogPostPreview } from "../previewblog/blog-post-preview";
+import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
 
 @Component({
     templateUrl: "./add-blog.component.html",
