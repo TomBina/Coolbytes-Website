@@ -1,12 +1,12 @@
-import { PreviewResumeEvent } from '../previewresumeevent/preview-resume-event';
-import { PreviewResumeEventComponent } from '../previewresumeevent/preview-resume-event.component';
-import { DateRange } from '../../../../services/resumeservice/date-range';
-import { AddResumeEventCommand } from '../../../../services/resumeservice/add-resume-event-command';
-import { ResumeEventsService } from '../../../../services/resumeservice/resume-events.service';
+import { PreviewResumeEvent } from "../previewresumeevent/preview-resume-event";
+import { PreviewResumeEventComponent } from "../previewresumeevent/preview-resume-event.component";
+import { DateRange } from "../../../../services/resumeservice/date-range";
+import { AddResumeEventCommand } from "../../../../services/resumeservice/add-resume-event-command";
+import { ResumeEventsService } from "../../../../services/resumeservice/resume-events.service";
 import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
 @Component({
     templateUrl: "./add-resume-event.component.html",
@@ -14,10 +14,10 @@ import { Subscription } from 'rxjs';
 })
 export class AddResumeEventComponent implements OnInit, OnDestroy {
     form: FormGroup;
-    
+
     @ViewChild(PreviewResumeEventComponent)
     private _previewResumeEvent: PreviewResumeEventComponent;
-    private _previewObserver: Subscription
+    private _previewObserver: Subscription;
 
     constructor(private _fb: FormBuilder, private _resumeService: ResumeEventsService, private _router: Router) {
 
@@ -31,7 +31,7 @@ export class AddResumeEventComponent implements OnInit, OnDestroy {
             message: ["", [Validators.required, Validators.maxLength(1000)]]
         });
 
-        this._previewObserver = this.form.valueChanges.subscribe(v => {          
+        this._previewObserver = this.form.valueChanges.subscribe(v => {
             let previewResumeEvent = new PreviewResumeEvent();
             previewResumeEvent.startDate = this.form.get("startDate").value;
             previewResumeEvent.endDate = this.form.get("endDate").value;
@@ -39,29 +39,30 @@ export class AddResumeEventComponent implements OnInit, OnDestroy {
             previewResumeEvent.message = this.form.get("message").value;
 
             this._previewResumeEvent.previewResumeEvent = previewResumeEvent;
-        })
+        });
     }
 
     ngOnDestroy(): void {
-        if (this._previewObserver)
+        if (this._previewObserver) {
             this._previewObserver.unsubscribe();
+        }
     }
 
     growTextarea(element: HTMLTextAreaElement) {
-        element.style.height = `${element.scrollHeight+2}px`;
+        element.style.height = `${element.scrollHeight + 2}px`;
     }
 
     onSubmit() {
         if (!this.form.valid) {
-            for (let controlName in this.form.controls) {
+            for (let controlName of Object.keys(this.form.controls)) {
                 this.form.get(controlName).markAsTouched();
             }
             return;
         }
 
-        var addResumeEventCommand = new AddResumeEventCommand();
-        var dateRange = new DateRange();
-        
+        let addResumeEventCommand = new AddResumeEventCommand();
+        let dateRange = new DateRange();
+
         dateRange.startDate = this.form.get("startDate").value;
         dateRange.endDate = this.form.get("endDate").value;
         addResumeEventCommand.dateRange = dateRange;

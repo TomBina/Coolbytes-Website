@@ -1,13 +1,13 @@
-import { ResumeEvent } from '../../../../services/resumeservice/resume-event';
-import { ResumeEventsService } from '../../../../services/resumeservice/resume-events.service';
-import { DateRange } from '../../../../services/resumeservice/date-range';
-import { UpdateResumeEventCommand } from '../../../../services/resumeservice/update-resume-event-command';
+import { ResumeEvent } from "../../../../services/resumeservice/resume-event";
+import { ResumeEventsService } from "../../../../services/resumeservice/resume-events.service";
+import { DateRange } from "../../../../services/resumeservice/date-range";
+import { UpdateResumeEventCommand } from "../../../../services/resumeservice/update-resume-event-command";
 import { Component, ViewChild } from "@angular/core";
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { PreviewResumeEvent } from '../previewresumeevent/preview-resume-event';
-import { PreviewResumeEventComponent } from '../previewresumeevent/preview-resume-event.component';
-import { Subscription } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { PreviewResumeEvent } from "../previewresumeevent/preview-resume-event";
+import { PreviewResumeEventComponent } from "../previewresumeevent/preview-resume-event.component";
+import { Subscription } from "rxjs";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
     templateUrl: "./update-resume-event.component.html",
@@ -18,7 +18,7 @@ export class UpdateResumeEventComponent {
 
     @ViewChild(PreviewResumeEventComponent)
     private _previewResumeEvent: PreviewResumeEventComponent;
-    private _previewObserver: Subscription
+    private _previewObserver: Subscription;
     private _id: number;
 
     constructor(private _fb: FormBuilder, private _resumeService: ResumeEventsService, private _router: Router, private _route: ActivatedRoute) {
@@ -41,9 +41,9 @@ export class UpdateResumeEventComponent {
             previewResumeEvent.message = this.form.get("message").value;
 
             this._previewResumeEvent.previewResumeEvent = previewResumeEvent;
-        })
+        });
 
-        let id: number = parseInt(this._route.snapshot.paramMap.get("id"));
+        let id: number = parseInt(this._route.snapshot.paramMap.get("id"), 0);
         this._resumeService.get(id).subscribe(resumeEvent => {
             this._id = resumeEvent.id;
             this.updateForm(resumeEvent);
@@ -53,7 +53,7 @@ export class UpdateResumeEventComponent {
     formatDate(jsonDate: string) {
         let date = new Date(jsonDate);
 
-        return `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`;
+        return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
     }
     updateForm(resumeEvent: ResumeEvent) {
         this.form.get("startDate").setValue(this.formatDate(resumeEvent.dateRange.startDate));
@@ -63,8 +63,9 @@ export class UpdateResumeEventComponent {
     }
 
     ngOnDestroy(): void {
-        if (this._previewObserver)
+        if (this._previewObserver) {
             this._previewObserver.unsubscribe();
+        }
     }
 
     growTextarea(element: HTMLTextAreaElement) {
@@ -73,14 +74,14 @@ export class UpdateResumeEventComponent {
 
     onSubmit() {
         if (!this.form.valid) {
-            for (let controlName in this.form.controls) {
+            for (let controlName of Object.keys(this.form.controls)) {
                 this.form.get(controlName).markAsTouched();
             }
             return;
         }
 
-        var updateResumeEventCommand = new UpdateResumeEventCommand();
-        var dateRange = new DateRange();
+        let updateResumeEventCommand = new UpdateResumeEventCommand();
+        let dateRange = new DateRange();
 
         dateRange.startDate = this.form.get("startDate").value;
         dateRange.endDate = this.form.get("endDate").value;

@@ -1,11 +1,11 @@
-import { Author } from '../../../services/authorsservice/author';
-import { Image } from '../../../services/imagesservice/image';
-import { ImagesService } from '../../../services/imagesservice/images.service';
-import { AuthorsService } from '../../../services/authorsservice/authors.service';
+import { Author } from "../../../services/authorsservice/author";
+import { Image } from "../../../services/imagesservice/image";
+import { ImagesService } from "../../../services/imagesservice/images.service";
+import { AuthorsService } from "../../../services/authorsservice/authors.service";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Enumerate } from '../../../utils/enumerate';
+import { Enumerate } from "../../../utils/enumerate";
 
 @Component({
   templateUrl: "./author.component.html",
@@ -18,7 +18,7 @@ export class AuthorComponent implements OnInit {
 
   private _author: Author;
   imageUri: string;
-  experiencesImageUris: any = {}
+  experiencesImageUris: any = {};
   form: FormGroup;
 
   ngOnInit() {
@@ -32,9 +32,9 @@ export class AuthorComponent implements OnInit {
       lastName: ["", [Validators.required, Validators.maxLength(50)]],
       about: ["", [Validators.required, Validators.maxLength(500)]],
       imageId: [""],
-      resumeUri: ["",[Validators.maxLength(255)]],
-      linkedIn: ["",[Validators.maxLength(255)]],
-      gitHub: ["",[Validators.maxLength(255)]],
+      resumeUri: ["", [Validators.maxLength(255)]],
+      linkedIn: ["", [Validators.maxLength(255)]],
+      gitHub: ["", [Validators.maxLength(255)]],
       experiences: this._fb.array([])
     });
   }
@@ -57,7 +57,7 @@ export class AuthorComponent implements OnInit {
       name: new FormControl("", Validators.maxLength(50)),
       color: new FormControl("", [Validators.maxLength(6), Validators.minLength(6)]),
       imageId: new FormControl("")
-    })
+    });
   }
 
   updateForm(author: Author) {
@@ -105,7 +105,7 @@ export class AuthorComponent implements OnInit {
     let controls = this.form.controls;
 
     if (!this.form.valid) {
-      for (let controlName in controls) {
+      for (let controlName of Object.keys(controls)) {
         controls[controlName].markAsTouched();
       }
       return;
@@ -114,13 +114,16 @@ export class AuthorComponent implements OnInit {
     let command: any = {};
 
     for (let controlName in controls) {
-      if (controls[controlName].value && controls[controlName].value.toString().length > 0)
+      if (controls[controlName].value && controls[controlName].value.toString().length > 0) {
         command[controlName] = controls[controlName].value;
+      }
     }
 
-    if (this._author)
+    if (this._author) {
       this._authorsService.update(command).subscribe(author => this._router.navigate(["admin"]));
-    else
+    }
+    else {
       this._authorsService.add(command).subscribe(author => this._router.navigate(["admin"]));
+    }
   }
 }

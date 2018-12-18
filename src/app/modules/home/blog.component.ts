@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Title } from '@angular/platform-browser';
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
-import { BlogPostSummary } from '../../services/blogpostservice/blog-post-summary';
-import { BlogPostsService } from '../../services/blogpostservice/blog-posts.service';
+import { BlogPostSummary } from "../../services/blogpostservice/blog-post-summary";
+import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 

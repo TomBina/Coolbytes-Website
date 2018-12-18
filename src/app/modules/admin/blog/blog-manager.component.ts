@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from 'rxjs';
-import { BlogPostSummary } from '../../../services/blogpostservice/blog-post-summary';
-import { BlogPostsService } from '../../../services/blogpostservice/blog-posts.service'
+import { Observable } from "rxjs";
+import { BlogPostSummary } from "../../../services/blogpostservice/blog-post-summary";
+import { BlogPostsService } from "../../../services/blogpostservice/blog-posts.service";
 
 
 @Component({
@@ -24,8 +24,9 @@ export class BlogManagerComponent implements OnInit {
     }
 
     delete(blogPostId: number): void {
-        if (!confirm("Are you sure?"))
+        if (!confirm("Are you sure?")) {
             return;
+        }
 
         this._blogPostsService.delete(blogPostId).subscribe(_ => this.getBlogs());
     }

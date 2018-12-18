@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Title } from '@angular/platform-browser';
-import { Author } from '../../../services/authorsservice/author';
-import { Resume } from '../../../services/resumeservice/resume';
-import { ResumeService } from '../../../services/resumeservice/resume.service';
-import { Subscription } from 'rxjs';
+import { Title } from "@angular/platform-browser";
+import { Author } from "../../../services/authorsservice/author";
+import { Resume } from "../../../services/resumeservice/resume";
+import { ResumeService } from "../../../services/resumeservice/resume.service";
+import { Subscription } from "rxjs";
 
 @Component({ templateUrl: "./about.component.html", styleUrls: ["./about.component.css"] })
 export class AboutComponent implements OnInit, OnDestroy {
@@ -29,10 +29,10 @@ export class AboutComponent implements OnInit, OnDestroy {
 
         let years = [];
 
-        for (let year in this.resumeEvents) {
+        for (let year of Object.keys(this.resumeEvents)) {
             years.push(year);
         }
 
-        this.years = years.sort(); 
+        this.years = years.sort();
     }
 }

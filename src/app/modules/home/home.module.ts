@@ -1,15 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
-import { AboutComponent } from './about/about.component';
-import { AuthorComponent } from './about/author/author.component';
-import { ResumeEventComponent } from './about/resumeevent/resume-event.component';
-import { BlogPostIntroComponent } from './blog-post-intro.component';
-import { BlogPostComponent } from './blog-post.component';
-import { BlogComponent } from './blog.component';
-import { ContactComponent } from './contact/contact.component';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { RouterModule, Routes } from "@angular/router";
+import { SharedModule } from "../shared/shared.module";
+import { AboutComponent } from "./about/about.component";
+import { AuthorComponent } from "./about/author/author.component";
+import { ResumeEventComponent } from "./about/resumeevent/resume-event.component";
+import { BlogPostIntroComponent } from "./blog-post-intro.component";
+import { BlogPostComponent } from "./blog-post.component";
+import { BlogComponent } from "./blog.component";
+import { ContactComponent } from "./contact/contact.component";
 
 const routes: Routes = [
     {

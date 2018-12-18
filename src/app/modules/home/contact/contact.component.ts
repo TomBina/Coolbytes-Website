@@ -17,7 +17,7 @@ export class ContactComponent implements OnInit {
 
     set messageSent(value: boolean) {
         this.isMessageSent = value;
-        for (let controlName in this.form.controls) {
+        for (let controlName of Object.keys(this.form.controls)) {
             this.form.get(controlName).markAsUntouched();
             this.form.get(controlName).setValue("");
         }
@@ -38,10 +38,10 @@ export class ContactComponent implements OnInit {
     }
 
     onSubmit() {
-        var controls = this.form.controls;
+        let controls = this.form.controls;
 
         if (!this.form.valid) {
-            for (let controlName in controls) {
+            for (let controlName of Object.keys(controls)) {
                 this.form.get(controlName).markAsTouched();
             }
             return;
@@ -50,8 +50,9 @@ export class ContactComponent implements OnInit {
         let command: any = {};
 
         for (let controlName in controls) {
-            if (controls[controlName].value && controls[controlName].value.length > 0)
+            if (controls[controlName].value && controls[controlName].value.length > 0) {
                 command[controlName] = controls[controlName].value;
+            }
         }
 
         this._contactService.Send(command).subscribe(response => {

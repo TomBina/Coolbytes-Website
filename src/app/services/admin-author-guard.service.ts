@@ -1,4 +1,4 @@
-import { AuthorsService } from './authorsservice/authors.service';
+import { AuthorsService } from "./authorsservice/authors.service";
 import { Injectable } from "@angular/core";
 import { CanActivate, Router } from "@angular/router";
 import { Observable } from "rxjs";
@@ -11,8 +11,9 @@ export class AdminAuthorGuardService implements CanActivate {
   private _hasAuthor: boolean;
 
   public canActivate(): Observable<boolean> | true {
-    if (this._hasAuthor)
+    if (this._hasAuthor) {
       return true;
+    }
 
     return Observable.create(observer => {
       this._authorsService.get().subscribe(

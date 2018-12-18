@@ -1,4 +1,4 @@
-import { DateRange } from './date-range';
+import { DateRange } from "./date-range";
 export class ResumeEvent {
     id: number;
     dateRange: DateRange;

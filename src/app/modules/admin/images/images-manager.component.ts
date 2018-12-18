@@ -1,6 +1,6 @@
-import { ImagesService } from '../../../services/imagesservice/images.service';
-import { Image } from '../../../services/imagesservice/image';
-import { environment } from '../../../../environments/environment';
+import { ImagesService } from "../../../services/imagesservice/images.service";
+import { Image } from "../../../services/imagesservice/image";
+import { environment } from "../../../../environments/environment";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormControl } from "@angular/forms";
 
@@ -19,10 +19,10 @@ export class ImagesManagerComponent implements OnInit {
 
     @Output()
     onImageSelected = new EventEmitter<Image>();
-    
+
     private _imagesUri;
-    
-    constructor(public imagesService: ImagesService) { 
+
+    constructor(public imagesService: ImagesService) {
     }
 
     ngOnInit(): void {
@@ -30,13 +30,14 @@ export class ImagesManagerComponent implements OnInit {
     }
 
     uploadImages(element: HTMLInputElement) {
-        if (!element.files)
+        if (!element.files) {
             return;
+        }
 
         this.imagesService.uploadImages(element.files).subscribe(images => {
             this.images = this.images.concat(images);
             element.value = "";
-        })
+        });
     }
 
     loadImages() {
@@ -51,7 +52,7 @@ export class ImagesManagerComponent implements OnInit {
         else {
             this.imagesService.delete(image.id).subscribe(response => {
                 this.loadImages();
-            })
+            });
         }
     }
 

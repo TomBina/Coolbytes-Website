@@ -4,7 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HomeModule } from "../home/home.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { FooterComponent } from './footer.component';
+import { FooterComponent } from "./footer.component";
 import { HeaderComponent } from "./header.component";
 
 @NgModule({

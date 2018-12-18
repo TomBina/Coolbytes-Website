@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { ApiService } from '../api-service';
-import { Author } from './author';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+import { ApiService } from "../api-service";
+import { Author } from "./author";
 
 @Injectable()
 export class AuthorsService extends ApiService {

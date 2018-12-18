@@ -10,8 +10,9 @@ export class AdminGuardService implements CanActivate {
   }
 
   canActivate(): boolean {
-    if (this._authService.isAuthenticated())
+    if (this._authService.isAuthenticated()) {
       return true;
+    }
 
     this._authService.login();
 

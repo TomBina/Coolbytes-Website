@@ -1,4 +1,4 @@
-import { Image } from '../imagesservice/image';
+import { Image } from "../imagesservice/image";
 
 export class BlogPostSummary {
     id: number;

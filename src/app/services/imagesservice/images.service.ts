@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { ApiService } from '../api-service';
-import { Image } from './image';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+import { ApiService } from "../api-service";
+import { Image } from "./image";
 
-@Injectable({ 
-    providedIn: "root" 
+@Injectable({
+    providedIn: "root"
 })
 export class ImagesService extends ApiService {
     private _url: string = environment.apiUri + "api/images/";
@@ -17,8 +17,9 @@ export class ImagesService extends ApiService {
     uploadImages(files: FileList): Observable<Image> {
         let formData = new FormData();
 
-        for (let i = 0; i < files.length; i++)
+        for (let i = 0; i < files.length; i++) {
             formData.append("Files", files[i], files[i].name);
+        }
 
         return this.http.post<Image>(this._url, formData, this.createRequestOptions());
     }
@@ -28,8 +29,9 @@ export class ImagesService extends ApiService {
     }
 
     getUri(uriPath: string) {
-        if (!uriPath)
+        if (!uriPath) {
             return;
+        }
 
         let length = environment.imagesUri.length;
         return environment.imagesUri.substring(0, --length) + uriPath;

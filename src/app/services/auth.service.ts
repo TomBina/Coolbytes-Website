@@ -1,11 +1,11 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import * as auth0 from 'auth0-js';
-import { environment } from '../../environments/environment';
+import * as auth0 from "auth0-js";
+import { environment } from "../../environments/environment";
 
-@Injectable({ 
-    providedIn: "root" 
+@Injectable({
+    providedIn: "root"
 })
 export class AuthService {
     private auth0;

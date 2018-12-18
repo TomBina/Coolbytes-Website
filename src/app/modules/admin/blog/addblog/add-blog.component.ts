@@ -17,8 +17,8 @@ import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
     styleUrls: ["./add-blog.component.css"]
 })
 export class AddBlogComponent implements OnInit, OnDestroy {
-    constructor(private _authorsService: AuthorsService, private _blogPostsService: BlogPostsService, private _router: Router, private _fb: FormBuilder,
-    private _imagesService : ImagesService) { }
+    constructor(private _authorsService: AuthorsService, private _blogPostsService: BlogPostsService,
+        private _router: Router, private _fb: FormBuilder, private _imagesService: ImagesService) { }
 
     form: FormGroup;
     externalLinks = [];
@@ -26,7 +26,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
 
     @ViewChild(PreviewBlogComponent)
     private _previewBlogComponent: PreviewBlogComponent;
-    private _previewObserver: Subscription
+    private _previewObserver: Subscription;
 
     ngOnInit() {
         this.form = this._fb.group(
@@ -37,22 +37,23 @@ export class AddBlogComponent implements OnInit, OnDestroy {
                 tags: ["", [Validators.maxLength(500)]],
                 externalLinks: this._fb.array([this.createExternalLinkFormGroup()])
             }
-        )
+        );
         this._previewObserver = this.form.valueChanges.subscribe(v => {
             this._previewBlogComponent.blogPostPreview
                 = new BlogPostPreview(this.form.get("subject").value,
                     this.form.get("contentIntro").value,
                     this.form.get("content").value);
-        })
+        });
     }
 
     ngOnDestroy(): void {
-        if (this._previewObserver)
+        if (this._previewObserver) {
             this._previewObserver.unsubscribe();
+        }
     }
 
     growTextarea(element: HTMLTextAreaElement) {
-        element.style.height = `${element.scrollHeight+2}px`;
+        element.style.height = `${element.scrollHeight + 2}px`;
     }
 
     getExternalLinksControls(): FormArray {
@@ -68,7 +69,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
         return new FormGroup({
             name: new FormControl("", Validators.maxLength(50)),
             url: new FormControl("", Validators.maxLength(255))
-        })
+        });
     }
 
     onImageSelectedHandler(image: Image) {
@@ -81,7 +82,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
 
     onSubmit(): void {
         if (!this.form.valid) {
-            for (let controlName in this.form.controls) {
+            for (let controlName of Object.keys(this.form.controls)) {
                 this.form.get(controlName).markAsTouched();
             }
             return;
@@ -97,15 +98,17 @@ export class AddBlogComponent implements OnInit, OnDestroy {
         let controls = this.getExternalLinksControls();
         for (let control of controls.controls) {
             let externalLink = new ExternalLink(control.get("name").value, control.get("url").value);
-            if (externalLink.name.length > 0 && externalLink.url.length > 0)
+            if (externalLink.name.length > 0 && externalLink.url.length > 0) {
                 externalLinks.push(externalLink);
+            }
         }
 
         addBlogPostCommand.externalLinks = externalLinks;
 
         let tags: string = this.form.get("tags").value;
-        if (tags.indexOf(",") !== -1 || tags.length > 0)
+        if (tags.indexOf(",") !== -1 || tags.length > 0) {
             addBlogPostCommand.tags = tags.split(",");
+        }
 
         this._blogPostsService.add(addBlogPostCommand, this._files).subscribe(b => this._router.navigateByUrl("admin/blogs"));
     }

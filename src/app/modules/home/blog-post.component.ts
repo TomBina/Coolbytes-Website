@@ -18,7 +18,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     private _blogPostSubscription: any;
     private _onRouteChanges: Subscription;
 
-    constructor(private _blogPostsService: BlogPostsService, private _route: ActivatedRoute, 
+    constructor(private _blogPostsService: BlogPostsService, private _route: ActivatedRoute,
         private _imagesService: ImagesService, private _titleService: Title) { }
 
     ngOnInit(): void {
