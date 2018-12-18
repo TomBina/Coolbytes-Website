@@ -45,7 +45,7 @@ export class ImagesManagerComponent implements OnInit {
     }
 
     onImageClick(image: Image) {
-        if (this.deleteImageText == "delete image")  {
+        if (this.deleteImageText === "delete image")  {
             this.close();
             this.onImageSelected.emit(image);
         }
@@ -57,7 +57,7 @@ export class ImagesManagerComponent implements OnInit {
     }
 
     toggleDelete() {
-        if (this.deleteImageText == "delete image") {
+        if (this.deleteImageText === "delete image") {
             this.deleteImageText = "finished deleting";
         }
         else {

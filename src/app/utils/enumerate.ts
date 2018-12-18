@@ -12,7 +12,7 @@ export class Enumerate {
     }
 
     private static deepLoop(object, when, then) {
-        for (let property in object) {
+        for (let property of Object.keys(object)) {
             let type = typeof object[property];
 
             if (type !== "object") {

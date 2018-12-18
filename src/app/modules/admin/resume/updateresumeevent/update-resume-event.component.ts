@@ -21,7 +21,8 @@ export class UpdateResumeEventComponent {
     private _previewObserver: Subscription;
     private _id: number;
 
-    constructor(private _fb: FormBuilder, private _resumeService: ResumeEventsService, private _router: Router, private _route: ActivatedRoute) {
+    constructor(private _fb: FormBuilder, private _resumeService: ResumeEventsService,
+        private _router: Router, private _route: ActivatedRoute) {
 
     }
 

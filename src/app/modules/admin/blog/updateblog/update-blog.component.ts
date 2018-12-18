@@ -124,7 +124,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
 
     onSubmit(): void {
         if (!this.form.valid) {
-            for (let controlName in this.form.controls) {
+            for (let controlName of Object.keys(this.form.controls)) {
                 this.form.get(controlName).markAsTouched();
             }
             return;

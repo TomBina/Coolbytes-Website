@@ -61,7 +61,7 @@ export class AuthorComponent implements OnInit {
   }
 
   updateForm(author: Author) {
-    Enumerate.deep(author, prop => this.form.get(prop) && prop != "experiences", (prop, value) => this.form.get(prop).setValue(value));
+    Enumerate.deep(author, prop => this.form.get(prop) && prop !== "experiences", (prop, value) => this.form.get(prop).setValue(value));
     this._author = author;
 
     if (author.image) {
