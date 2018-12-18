@@ -1,8 +1,7 @@
-import { ContactService } from '../../../services/contactservice/contact.service';
+import { ContactService } from "../../../services/contactservice/contact.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { Title } from '@angular/platform-browser';
-import { AuthorsService } from '../../../services/authorsservice/authors.service';
+import { Title } from "@angular/platform-browser";
 
 @Component({
     templateUrl: "./contact.component.html",
@@ -13,7 +12,7 @@ export class ContactComponent implements OnInit {
     isMessageSent: boolean;
 
     get messageSent() {
-        return this.isMessageSent
+        return this.isMessageSent;
     }
 
     set messageSent(value: boolean) {
@@ -56,7 +55,7 @@ export class ContactComponent implements OnInit {
         }
 
         this._contactService.Send(command).subscribe(response => {
-            
+            this.isMessageSent = true;
         });
     }
 }

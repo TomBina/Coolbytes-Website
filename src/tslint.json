@@ -10,6 +10,10 @@
             true,
             "element",
             "kebab-case"
-        ]
+        ],
+        "one-line": [
+            false
+        ],
+        "prefer-const": false
     }
 }
