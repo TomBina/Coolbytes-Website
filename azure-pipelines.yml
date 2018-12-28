@@ -14,10 +14,16 @@ steps:
 
 - script: |
     npm install -g @angular/cli
+    npm install -g tslint typescript
     npm install
-    ng build --prod
-  displayName: 'npm install and ng build'
+  displayName: 'npm install'
 
+- script: tslint --project ./
+  displayName: 'static analysis using tslint'
+
+- script: ng build
+  displayName: 'ng build'
+  
 - task: CopyFiles@2
   inputs:
     Contents: |
