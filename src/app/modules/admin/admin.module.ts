@@ -1,25 +1,24 @@
 import { CommonModule } from "@angular/common";
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { AdminAuthorGuardService } from '../../services/admin-author-guard.service';
-import { AdminGuardService } from '../../services/admin-guard.service';
-import { AuthService } from '../../services/auth.service';
-import { AuthorsService } from '../../services/authorsservice/authors.service';
-import { ResumeEventsService } from '../../services/resumeservice/resume-events.service';
-import { SharedModule } from '../shared/shared.module';
-import { AuthorComponent } from './author/author.component';
-import { AddBlogComponent } from './blog/addblog/add-blog.component';
-import { BlogManagerComponent } from './blog/blog-manager.component';
-import { PreviewBlogComponent } from './blog/previewblog/preview-blog.component';
-import { UpdateBlogComponent } from './blog/updateblog/update-blog.component';
-import { ImagesManagerComponent } from './images/images-manager.component';
-import { MenuComponent } from './menu/menu.component';
-import { ProcessAuthComponent } from './processauth/process-auth.component';
-import { AddResumeEventComponent } from './resume/addresumeevent/add-resume-event.component';
-import { PreviewResumeEventComponent } from './resume/previewresumeevent/preview-resume-event.component';
-import { ResumeManagerComponent } from './resume/resume-manager.component';
-import { UpdateResumeEventComponent } from './resume/updateresumeevent/update-resume-event.component';
+import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { AdminAuthorGuardService } from "../../services/admin-author-guard.service";
+import { AdminGuardService } from "../../services/admin-guard.service";
+import { AuthorsService } from "../../services/authorsservice/authors.service";
+import { ResumeEventsService } from "../../services/resumeservice/resume-events.service";
+import { SharedModule } from "../shared/shared.module";
+import { AuthorComponent } from "./author/author.component";
+import { AddBlogComponent } from "./blog/addblog/add-blog.component";
+import { BlogManagerComponent } from "./blog/blog-manager.component";
+import { PreviewBlogComponent } from "./blog/previewblog/preview-blog.component";
+import { UpdateBlogComponent } from "./blog/updateblog/update-blog.component";
+import { ImagesManagerComponent } from "./images/images-manager.component";
+import { MenuComponent } from "./menu/menu.component";
+import { ProcessAuthComponent } from "./processauth/process-auth.component";
+import { AddResumeEventComponent } from "./resume/addresumeevent/add-resume-event.component";
+import { PreviewResumeEventComponent } from "./resume/previewresumeevent/preview-resume-event.component";
+import { ResumeManagerComponent } from "./resume/resume-manager.component";
+import { UpdateResumeEventComponent } from "./resume/updateresumeevent/update-resume-event.component";
 
 @NgModule({
     imports: [

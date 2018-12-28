@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../environments/environment';
-import { ApiService } from '../api-service';
-import { AddResumeEventCommand } from './add-resume-event-command';
-import { ResumeEvent } from './resume-event';
-import { UpdateResumeEventCommand } from './update-resume-event-command';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+import { ApiService } from "../api-service";
+import { AddResumeEventCommand } from "./add-resume-event-command";
+import { ResumeEvent } from "./resume-event";
+import { UpdateResumeEventCommand } from "./update-resume-event-command";
 
 
 @Injectable()

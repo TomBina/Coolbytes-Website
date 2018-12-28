@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../environments/environment';
-import { ApiService } from '../api-service';
-import { AddBlogPostCommand } from './add-blog-post-command';
-import { BlogPost } from './blog-post';
-import { BlogPostSummary } from './blog-post-summary';
-import { BlogPostUpdate } from './blog-post-update';
+import { Injectable } from "@angular/core";
+import { environment } from "../../../environments/environment";
+import { ApiService } from "../api-service";
+import { AddBlogPostCommand } from "./add-blog-post-command";
+import { BlogPost } from "./blog-post";
+import { BlogPostSummary } from "./blog-post-summary";
+import { BlogPostUpdate } from "./blog-post-update";
 import { UpdateBlogPostCommand } from "./update-blog-post-command";
-import { catchError } from 'rxjs/operators';
+import { catchError } from "rxjs/operators";
+import { Observable } from "rxjs";
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class BlogPostsService extends ApiService {
     private _url: string = environment.apiUri + "api/blogposts";
 
@@ -20,7 +22,7 @@ export class BlogPostsService extends ApiService {
 
     getAll(tag?): Observable<BlogPostSummary[]> {
         let url = tag ? `${this._url}/?tag=${encodeURIComponent(tag)}` : this._url;
-        return this.http.get<BlogPostSummary[]>(url, this.createRequestOptions())
+        return this.http.get<BlogPostSummary[]>(url, this.createRequestOptions());
     }
 
     add(addBlogPostCommand: AddBlogPostCommand, files: FileList): Observable<BlogPostSummary> {

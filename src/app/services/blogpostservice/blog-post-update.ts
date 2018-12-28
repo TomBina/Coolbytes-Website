@@ -1,6 +1,6 @@
-import { Image } from '../imagesservice/image';
-import { ExternalLink } from './external-link';
-import { BlogPostTag } from './blog-post-tag';
+import { Image } from "../imagesservice/image";
+import { ExternalLink } from "./external-link";
+import { BlogPostTag } from "./blog-post-tag";
 
 export class BlogPostUpdate {
     id: number;

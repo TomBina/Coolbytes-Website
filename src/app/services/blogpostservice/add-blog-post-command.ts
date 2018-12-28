@@ -1,4 +1,4 @@
-import { ExternalLink } from './external-link';
+import { ExternalLink } from "./external-link";
 export class AddBlogPostCommand {
     subject: string;
     contentIntro: string;

@@ -1,16 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { Title } from '@angular/platform-browser';
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
-import { BlogPostSummary } from '../../services/blogpostservice/blog-post-summary';
-import { BlogPostsService } from '../../services/blogpostservice/blog-posts.service';
+import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 import { map } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { BlogPostViewModel } from "./BlogPostViewModel";
 
 @Component({
     templateUrl: "./blog.component.html",
     styleUrls: ["./blog.component.css"]
 })
 export class BlogComponent implements OnInit {
-    blogPosts: BlogPostViewModel[];
+    blogPosts$: Observable<BlogPostViewModel[]>;
     tag: string;
 
     constructor(private _blogpostsService: BlogPostsService, private _route: ActivatedRoute, private _titleService: Title) {
@@ -19,22 +20,18 @@ export class BlogComponent implements OnInit {
 
     ngOnInit(): void {
         this._titleService.setTitle("Cool Bytes");
-        this._blogpostsService.getAll(this.tag).pipe(
+        this.blogPosts$ = this._blogpostsService.getAll(this.tag).pipe(
             map(blogPosts => {
-                let blogPostsViewModel: BlogPostViewModel[] = [];
+                let blogPostsViewModels: BlogPostViewModel[] = [];
 
                 blogPosts.forEach(blogPost => {
                     let blogPostViewModel = new BlogPostViewModel();
                     blogPostViewModel.blogPost = blogPost;
-                    blogPostsViewModel.push(blogPostViewModel);
+                    blogPostsViewModels.push(blogPostViewModel);
                 });
 
-                return blogPostsViewModel;
-            })).subscribe(blogPosts => { this.blogPosts = blogPosts; });
+                return blogPostsViewModels;
+            })
+        );
     }
-}
-
-export class BlogPostViewModel {
-    blogPost: BlogPostSummary;
-    cssClass: string = "post";
 }

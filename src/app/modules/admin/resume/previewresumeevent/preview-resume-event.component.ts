@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
-import { PreviewResumeEvent } from './preview-resume-event';
+import { PreviewResumeEvent } from "./preview-resume-event";
 
 @Component({
-    selector: 'admin-preview-resume-event',
+    selector: "admin-preview-resume-event",
     template: `<div *ngIf="previewResumeEvent">
                     <h1 class="no-top-margin">{{previewResumeEvent.name}}</h1>
                     <small>{{previewResumeEvent.startDate | date}} {{previewResumeEvent.endDate | date}}</small>

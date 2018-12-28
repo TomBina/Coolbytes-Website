@@ -12,12 +12,13 @@ export class Enumerate {
     }
 
     private static deepLoop(object, when, then) {
-        for (let property in object) {
-            let type = typeof object[property]
+        for (let property of Object.keys(object)) {
+            let type = typeof object[property];
 
             if (type !== "object") {
-                if (when(property, object[property]))
+                if (when(property, object[property])) {
                     then(property, object[property]);
+                }
             }
             else {
                 this.deepLoop(object[property], when, then);

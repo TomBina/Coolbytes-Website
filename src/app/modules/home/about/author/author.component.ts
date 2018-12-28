@@ -1,15 +1,13 @@
-import { environment } from '../../../../../environments/environment';
-import { ImagesService } from '../../../../services/imagesservice/images.service';
-import { Author } from '../../../../services/authorsservice/author';
+import { environment } from "../../../../../environments/environment";
+import { ImagesService } from "../../../../services/imagesservice/images.service";
+import { Author } from "../../../../services/authorsservice/author";
 import { Component, Input } from "@angular/core";
 
-@Component(
-    {
-        selector: "home-about-author",
-        templateUrl: "./author.component.html",
-        styleUrls: ["./author.component.css"]
-    }
-)
+@Component({
+    selector: "home-about-author",
+    templateUrl: "./author.component.html",
+    styleUrls: ["./author.component.css"]
+})
 export class AuthorComponent {
     experiences;
     authorImage: string;
