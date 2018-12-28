@@ -21,8 +21,8 @@ steps:
 - script: tslint --project ./
   displayName: 'static analysis using tslint'
 
-- script: ng build
-  displayName: 'ng build'
+- script: ng build --prod
+  displayName: 'ng build --prod'
   
 - task: CopyFiles@2
   inputs:
