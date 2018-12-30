@@ -1,4 +1,4 @@
-export class BlogPostTag {
+export interface BlogPostTag {
     id: number;
     name: string;
 }

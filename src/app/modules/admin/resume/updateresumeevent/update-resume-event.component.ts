@@ -2,7 +2,7 @@ import { ResumeEvent } from "../../../../services/resumeservice/resume-event";
 import { ResumeEventsService } from "../../../../services/resumeservice/resume-events.service";
 import { DateRange } from "../../../../services/resumeservice/date-range";
 import { UpdateResumeEventCommand } from "../../../../services/resumeservice/update-resume-event-command";
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { PreviewResumeEvent } from "../previewresumeevent/preview-resume-event";
 import { PreviewResumeEventComponent } from "../previewresumeevent/preview-resume-event.component";
@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from "@angular/router";
     templateUrl: "./update-resume-event.component.html",
     styleUrls: ["./update-resume-event.component.css"]
 })
-export class UpdateResumeEventComponent {
+export class UpdateResumeEventComponent implements OnInit {
     form: FormGroup;
 
     @ViewChild(PreviewResumeEventComponent)
@@ -35,11 +35,12 @@ export class UpdateResumeEventComponent {
         });
 
         this._previewObserver = this.form.valueChanges.subscribe(v => {
-            let previewResumeEvent = new PreviewResumeEvent();
-            previewResumeEvent.startDate = this.form.get("startDate").value;
-            previewResumeEvent.endDate = this.form.get("endDate").value;
-            previewResumeEvent.name = this.form.get("name").value;
-            previewResumeEvent.message = this.form.get("message").value;
+            let previewResumeEvent = {
+                startDate : this.form.get("startDate").value,
+                endDate : this.form.get("endDate").value,
+                name : this.form.get("name").value,
+                message : this.form.get("message").value
+            }
 
             this._previewResumeEvent.previewResumeEvent = previewResumeEvent;
         });
@@ -81,15 +82,18 @@ export class UpdateResumeEventComponent {
             return;
         }
 
-        let updateResumeEventCommand = new UpdateResumeEventCommand();
-        let dateRange = new DateRange();
+        let dateRange: DateRange = {
+            startDate: this.form.get("startDate").value,
+            endDate: this.form.get("endDate").value
+        };
 
-        dateRange.startDate = this.form.get("startDate").value;
-        dateRange.endDate = this.form.get("endDate").value;
-        updateResumeEventCommand.id = this._id;
-        updateResumeEventCommand.dateRange = dateRange;
-        updateResumeEventCommand.name = this.form.get("name").value;
-        updateResumeEventCommand.message = this.form.get("message").value;
+        let updateResumeEventCommand: UpdateResumeEventCommand = {
+            id: this._id,
+            dateRange: dateRange,
+            name: this.form.get("name").value,
+            message: this.form.get("message").value
+        };
+
 
         this._resumeService.update(updateResumeEventCommand).subscribe(r => this._router.navigateByUrl("admin/resume"));
     }

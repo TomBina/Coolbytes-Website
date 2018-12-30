@@ -1,8 +1,8 @@
 import { ExternalLink } from "./external-link";
-export class AddBlogPostCommand {
+export interface AddBlogPostCommand {
     subject: string;
     contentIntro: string;
     content: string;
-    tags: string[];
+    tags?: string[];
     externalLinks: ExternalLink[];
 }

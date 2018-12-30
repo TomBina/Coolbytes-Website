@@ -60,14 +60,16 @@ export class AddResumeEventComponent implements OnInit, OnDestroy {
             return;
         }
 
-        let addResumeEventCommand = new AddResumeEventCommand();
-        let dateRange = new DateRange();
+        let dateRange: DateRange = {
+            startDate: this.form.get("startDate").value,
+            endDate: this.form.get("endDate").value
+        };
 
-        dateRange.startDate = this.form.get("startDate").value;
-        dateRange.endDate = this.form.get("endDate").value;
-        addResumeEventCommand.dateRange = dateRange;
-        addResumeEventCommand.name = this.form.get("name").value;
-        addResumeEventCommand.message = this.form.get("message").value;
+        let addResumeEventCommand: AddResumeEventCommand = {
+            dateRange: dateRange,
+            name: this.form.get("name").value,
+            message: this.form.get("message").value
+        };
 
         this._resumeService.add(addResumeEventCommand).subscribe(r => this._router.navigateByUrl("admin/resume"));
     }

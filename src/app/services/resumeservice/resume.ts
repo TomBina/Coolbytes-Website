@@ -1,5 +1,5 @@
 import { Author } from "../authorsservice/author";
-export class Resume {
+export interface Resume {
     author: Author;
     resumeEvents: any;
 }

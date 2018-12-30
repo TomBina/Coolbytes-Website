@@ -4,7 +4,7 @@ import { ExternalLink } from "./external-link";
 import { BlogPostLink } from "./blog-post-link";
 import { BlogPostTag } from "./blog-post-tag";
 
-export class BlogPost {
+export interface BlogPost {
     id: number;
     date: Date;
     updated: Date;

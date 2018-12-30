@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "ng serve",
-    "build": "ng build"
+    "ng-serve": "ng serve",
+    "ng-build": "ng build"
   },
   "private": true,
   "dependencies": {

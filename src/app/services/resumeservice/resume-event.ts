@@ -1,5 +1,5 @@
 import { DateRange } from "./date-range";
-export class ResumeEvent {
+export interface ResumeEvent {
     id: number;
     dateRange: DateRange;
     name: string;

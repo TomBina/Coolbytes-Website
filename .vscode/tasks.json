@@ -11,6 +11,16 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "type": "npm",
+            "script": "ng-serve",
+            "runOptions": {
+                "runOn": "folderOpen"
             }
         }
     ]

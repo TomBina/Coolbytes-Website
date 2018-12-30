@@ -1,6 +1,6 @@
 import { Image } from "../imagesservice/image";
 
-export class BlogPostSummary {
+export interface BlogPostSummary {
     id: number;
     date: Date;
     subject: string;

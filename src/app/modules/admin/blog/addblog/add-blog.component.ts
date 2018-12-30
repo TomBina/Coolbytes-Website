@@ -3,7 +3,6 @@ import { Image } from "../../../../services/imagesservice/image";
 import { AddBlogPostCommand } from "../../../../services/blogpostservice/add-blog-post-command";
 import { ExternalLink } from "../../../../services/blogpostservice/external-link";
 import { BlogPostsService } from "../../../../services/blogpostservice/blog-posts.service";
-import { AuthorsService } from "../../../../services/authorsservice/authors.service";
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -17,7 +16,7 @@ import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
     styleUrls: ["./add-blog.component.css"]
 })
 export class AddBlogComponent implements OnInit, OnDestroy {
-    constructor(private _authorsService: AuthorsService, private _blogPostsService: BlogPostsService,
+    constructor(private _blogPostsService: BlogPostsService,
         private _router: Router, private _fb: FormBuilder, private _imagesService: ImagesService) { }
 
     form: FormGroup;
@@ -88,13 +87,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
             return;
         }
 
-        let addBlogPostCommand = new AddBlogPostCommand();
-        addBlogPostCommand.subject = this.form.get("subject").value;
-        addBlogPostCommand.content = this.form.get("content").value;
-        addBlogPostCommand.contentIntro = this.form.get("contentIntro").value;
-
         let externalLinks: ExternalLink[] = [];
-
         let controls = this.getExternalLinksControls();
         for (let control of controls.controls) {
             let externalLink = new ExternalLink(control.get("name").value, control.get("url").value);
@@ -103,13 +96,18 @@ export class AddBlogComponent implements OnInit, OnDestroy {
             }
         }
 
-        addBlogPostCommand.externalLinks = externalLinks;
+        let command: AddBlogPostCommand = {
+            subject: this.form.get("subject").value,
+            content: this.form.get("content").value,
+            contentIntro: this.form.get("contentIntro").value,
+            externalLinks: externalLinks
+        };
 
         let tags: string = this.form.get("tags").value;
         if (tags.indexOf(",") !== -1 || tags.length > 0) {
-            addBlogPostCommand.tags = tags.split(",");
+            command.tags = tags.split(",");
         }
 
-        this._blogPostsService.add(addBlogPostCommand, this._files).subscribe(b => this._router.navigateByUrl("admin/blogs"));
+        this._blogPostsService.add(command, this._files).subscribe(b => this._router.navigateByUrl("admin/blogs"));
     }
 }
