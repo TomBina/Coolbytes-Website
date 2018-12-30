@@ -1,19 +1,18 @@
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Subscription } from "rxjs";
+import { DateRange } from "../../../../services/resumeservice/date-range";
 import { ResumeEvent } from "../../../../services/resumeservice/resume-event";
 import { ResumeEventsService } from "../../../../services/resumeservice/resume-events.service";
-import { DateRange } from "../../../../services/resumeservice/date-range";
 import { UpdateResumeEventCommand } from "../../../../services/resumeservice/update-resume-event-command";
-import { Component, ViewChild, OnInit } from "@angular/core";
-import { Validators, FormBuilder, FormGroup } from "@angular/forms";
-import { PreviewResumeEvent } from "../previewresumeevent/preview-resume-event";
 import { PreviewResumeEventComponent } from "../previewresumeevent/preview-resume-event.component";
-import { Subscription } from "rxjs";
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
     templateUrl: "./update-resume-event.component.html",
     styleUrls: ["./update-resume-event.component.css"]
 })
-export class UpdateResumeEventComponent implements OnInit {
+export class UpdateResumeEventComponent implements OnInit, OnDestroy {
     form: FormGroup;
 
     @ViewChild(PreviewResumeEventComponent)
@@ -40,7 +39,7 @@ export class UpdateResumeEventComponent implements OnInit {
                 endDate : this.form.get("endDate").value,
                 name : this.form.get("name").value,
                 message : this.form.get("message").value
-            }
+            };
 
             this._previewResumeEvent.previewResumeEvent = previewResumeEvent;
         });

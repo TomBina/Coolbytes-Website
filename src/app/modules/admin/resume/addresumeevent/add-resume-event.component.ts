@@ -32,11 +32,12 @@ export class AddResumeEventComponent implements OnInit, OnDestroy {
         });
 
         this._previewObserver = this.form.valueChanges.subscribe(v => {
-            let previewResumeEvent = new PreviewResumeEvent();
-            previewResumeEvent.startDate = this.form.get("startDate").value;
-            previewResumeEvent.endDate = this.form.get("endDate").value;
-            previewResumeEvent.name = this.form.get("name").value;
-            previewResumeEvent.message = this.form.get("message").value;
+            let previewResumeEvent: PreviewResumeEvent = {
+                startDate : this.form.get("startDate").value,
+                endDate : this.form.get("endDate").value,
+                name : this.form.get("name").value,
+                message : this.form.get("message").value
+            };
 
             this._previewResumeEvent.previewResumeEvent = previewResumeEvent;
         });
