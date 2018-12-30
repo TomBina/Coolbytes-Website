@@ -32,11 +32,12 @@ export class AddResumeEventComponent implements OnInit, OnDestroy {
         });
 
         this._previewObserver = this.form.valueChanges.subscribe(v => {
-            let previewResumeEvent = new PreviewResumeEvent();
-            previewResumeEvent.startDate = this.form.get("startDate").value;
-            previewResumeEvent.endDate = this.form.get("endDate").value;
-            previewResumeEvent.name = this.form.get("name").value;
-            previewResumeEvent.message = this.form.get("message").value;
+            let previewResumeEvent: PreviewResumeEvent = {
+                startDate : this.form.get("startDate").value,
+                endDate : this.form.get("endDate").value,
+                name : this.form.get("name").value,
+                message : this.form.get("message").value
+            };
 
             this._previewResumeEvent.previewResumeEvent = previewResumeEvent;
         });
@@ -60,14 +61,16 @@ export class AddResumeEventComponent implements OnInit, OnDestroy {
             return;
         }
 
-        let addResumeEventCommand = new AddResumeEventCommand();
-        let dateRange = new DateRange();
+        let dateRange: DateRange = {
+            startDate: this.form.get("startDate").value,
+            endDate: this.form.get("endDate").value
+        };
 
-        dateRange.startDate = this.form.get("startDate").value;
-        dateRange.endDate = this.form.get("endDate").value;
-        addResumeEventCommand.dateRange = dateRange;
-        addResumeEventCommand.name = this.form.get("name").value;
-        addResumeEventCommand.message = this.form.get("message").value;
+        let addResumeEventCommand: AddResumeEventCommand = {
+            dateRange: dateRange,
+            name: this.form.get("name").value,
+            message: this.form.get("message").value
+        };
 
         this._resumeService.add(addResumeEventCommand).subscribe(r => this._router.navigateByUrl("admin/resume"));
     }

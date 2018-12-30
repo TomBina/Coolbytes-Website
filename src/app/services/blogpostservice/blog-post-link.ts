@@ -1,4 +1,4 @@
-export class BlogPostLink {
+export interface BlogPostLink {
     id: number;
     subject: string;
 }

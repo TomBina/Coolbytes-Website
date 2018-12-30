@@ -130,15 +130,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
             return;
         }
 
-        let updateBlogPostCommand = new UpdateBlogPostCommand();
-
-        updateBlogPostCommand.id = this._id;
-        updateBlogPostCommand.subject = this.form.get("subject").value;
-        updateBlogPostCommand.content = this.form.get("content").value;
-        updateBlogPostCommand.contentIntro = this.form.get("contentIntro").value;
-
         let externalLinks: ExternalLink[] = [];
-
         let controls = this.getExternalLinksControls();
         for (let control of controls.controls) {
             let externalLink = new ExternalLink(control.get("name").value, control.get("url").value);
@@ -147,15 +139,22 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
             }
         }
 
-        updateBlogPostCommand.externalLinks = externalLinks;
+        let command: UpdateBlogPostCommand = {
+            id : this._id,
+            subject : this.form.get("subject").value,
+            content : this.form.get("content").value,
+            contentIntro : this.form.get("contentIntro").value,
+            externalLinks : externalLinks
+        };
+
 
         let tags: string = this.form.get("tags").value;
 
         if (tags.indexOf(",") !== -1 || tags.length > 0) {
-            updateBlogPostCommand.tags = tags.split(",");
+            command.tags = tags.split(",");
         }
 
-        this._blogPostsService.update(updateBlogPostCommand, this._files).subscribe(blogpost => {
+        this._blogPostsService.update(command, this._files).subscribe(blogpost => {
             this._router.navigateByUrl("admin/blogs");
         });
     }

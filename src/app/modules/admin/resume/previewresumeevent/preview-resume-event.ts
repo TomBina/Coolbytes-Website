@@ -1,4 +1,4 @@
-export class PreviewResumeEvent {
+export interface PreviewResumeEvent {
     startDate: string;
     endDate: string;
     name: string;
