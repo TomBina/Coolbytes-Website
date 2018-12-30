@@ -145,7 +145,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
             content : this.form.get("content").value,
             contentIntro : this.form.get("contentIntro").value,
             externalLinks : externalLinks
-        }
+        };
 
 
         let tags: string = this.form.get("tags").value;
