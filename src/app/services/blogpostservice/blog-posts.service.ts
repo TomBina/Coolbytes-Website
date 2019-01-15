@@ -56,6 +56,8 @@ export class BlogPostsService extends ApiService {
             model.tags.forEach(t => formData.append("tags", t));
         }
 
+        formData.append("categoryid", model.categoryId);
+
         if (model.externalLinks) {
             formData.append("externalLinks", JSON.stringify(model.externalLinks));
         }

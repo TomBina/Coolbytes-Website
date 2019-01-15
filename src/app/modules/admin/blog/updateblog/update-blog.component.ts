@@ -1,17 +1,18 @@
-import { ExternalLink } from "../../../../services/blogpostservice/external-link";
-import { BlogPostUpdate } from "../../../../services/blogpostservice/blog-post-update";
-import { Image } from "../../../../services/imagesservice/image";
-import { BlogPostSummary } from "../../../../services/blogpostservice/blog-post-summary";
-import { ImagesService } from "../../../../services/imagesservice/images.service";
-import { BlogPostsService } from "../../../../services/blogpostservice/blog-posts.service";
-import { AuthorsService } from "../../../../services/authorsservice/authors.service";
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from "@angular/forms";
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Subscription } from "rxjs";
+import { Observable, Subscription } from "rxjs";
+import { map } from "rxjs/operators";
+import { BlogPostUpdate } from "../../../../services/blogpostservice/blog-post-update";
+import { BlogPostsService } from "../../../../services/blogpostservice/blog-posts.service";
+import { ExternalLink } from "../../../../services/blogpostservice/external-link";
+import { UpdateBlogPostCommand } from "../../../../services/blogpostservice/update-blog-post-command";
+import { CategoriesService } from "../../../../services/categoriesservice/categories.service";
+import { Category } from "../../../../services/categoriesservice/category";
+import { Image } from "../../../../services/imagesservice/image";
+import { ImagesService } from "../../../../services/imagesservice/images.service";
 import { BlogPostPreview } from "../previewblog/blog-post-preview";
 import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
-import { UpdateBlogPostCommand } from "../../../../services/blogpostservice/update-blog-post-command";
 
 @Component({
     templateUrl: "./update-blog.component.html",
@@ -20,8 +21,8 @@ import { UpdateBlogPostCommand } from "../../../../services/blogpostservice/upda
 export class UpdateBlogComponent implements OnInit, OnDestroy {
     constructor(
         private _route: ActivatedRoute,
-        private _authorsService: AuthorsService,
         private _blogPostsService: BlogPostsService,
+        private _categoriesService: CategoriesService,
         private _router: Router,
         private _imagesService: ImagesService,
         private _formBuilder: FormBuilder) { }
@@ -30,11 +31,12 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
     image: Image;
 
     private _id: number;
-    private _blogPost: BlogPostSummary;
     private _files: FileList;
     @ViewChild(PreviewBlogComponent)
     private _previewBlogComponent: PreviewBlogComponent;
     private _previewObserver: Subscription;
+
+    categories$: Observable<Category[]>;
 
     ngOnInit(): void {
         this.form = this._formBuilder.group({
@@ -42,6 +44,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
             contentIntro: ["", [Validators.required, Validators.maxLength(120)]],
             content: ["", [Validators.required, Validators.maxLength(8000)]],
             tags: ["", Validators.maxLength(500)],
+            category: [""],
             externalLinks: this._formBuilder.array([])
         });
 
@@ -50,8 +53,13 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
                 = new BlogPostPreview(this.form.get("subject").value, this.form.get("contentIntro").value, this.form.get("content").value);
         });
 
-        let id: number = parseInt(this._route.snapshot.paramMap.get("id"), 0);
-        this._blogPostsService.getUpdate(id).subscribe(blogPostUpdate => this.updateForm(blogPostUpdate));
+        let blogPostId = parseInt(this._route.snapshot.paramMap.get("id"), 0);
+        let blogPost$: Observable<BlogPostUpdate> = this._blogPostsService.getUpdate(blogPostId);
+        let currentCategoryId$ = blogPost$.pipe(map(b => b.categoryId));
+
+        blogPost$.subscribe(b => this.updateForm(b));
+        this.categories$ = this._categoriesService.getAll();
+        this.categories$.subscribe(_ => currentCategoryId$.subscribe(id => this.form.get("category").setValue(id)));
     }
 
     ngOnDestroy(): void {
@@ -140,13 +148,13 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         }
 
         let command: UpdateBlogPostCommand = {
-            id : this._id,
-            subject : this.form.get("subject").value,
-            content : this.form.get("content").value,
-            contentIntro : this.form.get("contentIntro").value,
-            externalLinks : externalLinks
+            id: this._id,
+            subject: this.form.get("subject").value,
+            content: this.form.get("content").value,
+            contentIntro: this.form.get("contentIntro").value,
+            categoryId: this.form.get("category").value,
+            externalLinks: externalLinks
         };
-
 
         let tags: string = this.form.get("tags").value;
 

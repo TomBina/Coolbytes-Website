@@ -5,5 +5,6 @@ export interface UpdateBlogPostCommand {
     contentIntro: string;
     content: string;
     tags?: string[];
+    categoryId: number;
     externalLinks: ExternalLink[];
 }
