@@ -19,7 +19,7 @@ import { CategoriesService } from "src/app/services/categoriesservice/categories
 })
 export class AddBlogComponent implements OnInit, OnDestroy {
     constructor(private _blogPostsService: BlogPostsService,
-        private _router: Router, private _fb: FormBuilder, 
+        private _router: Router, private _fb: FormBuilder,
         private _imagesService: ImagesService, private _categoriesService: CategoriesService) { }
 
     form: FormGroup;
