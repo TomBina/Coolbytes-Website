@@ -162,7 +162,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
             command.tags = tags.split(",");
         }
 
-        this._blogPostsService.update(command, this._files).subscribe(blogpost => {
+        this._blogPostsService.update(command, this._files).subscribe(() => {
             this._router.navigateByUrl("admin/blogs");
         });
     }

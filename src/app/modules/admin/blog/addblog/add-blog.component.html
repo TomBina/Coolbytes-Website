@@ -25,6 +25,12 @@
                 <p>
                     <input type="file" id="file" (change)="onFileChanged($event.target)" />
                 </p>
+                <label for="category">Category</label>
+                <p>
+                    <select formControlName="category" id="category">
+                        <option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</option>
+                    </select>
+                </p>
                 <label>Links
                     <a (click)="addExternalLinkControl()">add external link</a>
                 </label>

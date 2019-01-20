@@ -4,5 +4,6 @@ export interface AddBlogPostCommand {
     contentIntro: string;
     content: string;
     tags?: string[];
+    categoryId: number;
     externalLinks: ExternalLink[];
 }

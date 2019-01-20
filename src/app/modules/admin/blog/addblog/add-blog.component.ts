@@ -6,10 +6,12 @@ import { BlogPostsService } from "../../../../services/blogpostservice/blog-post
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 
 import { BlogPostPreview } from "../previewblog/blog-post-preview";
 import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
+import { Category } from "../../../../services/categoriesservice/category";
+import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
 
 @Component({
     templateUrl: "./add-blog.component.html",
@@ -17,15 +19,17 @@ import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
 })
 export class AddBlogComponent implements OnInit, OnDestroy {
     constructor(private _blogPostsService: BlogPostsService,
-        private _router: Router, private _fb: FormBuilder, private _imagesService: ImagesService) { }
+        private _router: Router, private _fb: FormBuilder,
+        private _imagesService: ImagesService, private _categoriesService: CategoriesService) { }
 
     form: FormGroup;
     externalLinks = [];
-    private _files: FileList;
+    categories$: Observable<Category[]>;
 
     @ViewChild(PreviewBlogComponent)
     private _previewBlogComponent: PreviewBlogComponent;
     private _previewObserver: Subscription;
+    private _files: FileList;
 
     ngOnInit() {
         this.form = this._fb.group(
@@ -34,9 +38,11 @@ export class AddBlogComponent implements OnInit, OnDestroy {
                 contentIntro: ["", [Validators.required, Validators.maxLength(120)]],
                 content: ["", [Validators.required, Validators.maxLength(4000)]],
                 tags: ["", [Validators.maxLength(500)]],
+                category: [""],
                 externalLinks: this._fb.array([this.createExternalLinkFormGroup()])
             }
         );
+        this.categories$ = this._categoriesService.getAll();
         this._previewObserver = this.form.valueChanges.subscribe(v => {
             this._previewBlogComponent.blogPostPreview
                 = new BlogPostPreview(this.form.get("subject").value,
@@ -100,6 +106,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
             subject: this.form.get("subject").value,
             content: this.form.get("content").value,
             contentIntro: this.form.get("contentIntro").value,
+            categoryId: this.form.get("category").value,
             externalLinks: externalLinks
         };
 
@@ -108,6 +115,6 @@ export class AddBlogComponent implements OnInit, OnDestroy {
             command.tags = tags.split(",");
         }
 
-        this._blogPostsService.add(command, this._files).subscribe(b => this._router.navigateByUrl("admin/blogs"));
+        this._blogPostsService.add(command, this._files).subscribe(() => this._router.navigateByUrl("admin/blogs"));
     }
 }
