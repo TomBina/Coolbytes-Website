@@ -11,6 +11,7 @@ export class ApiService {
     createRequestOptions(): Object {
         let headers = new HttpHeaders();
         headers = this.authService.addAuthorizationHeader(headers);
+        headers = headers.set("X-CACHE-ENABLED", "false");
         return { headers: headers };
     }
 
