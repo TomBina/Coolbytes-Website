@@ -8,12 +8,6 @@ export class ApiService {
     constructor(protected http: HttpClient, protected authService: AuthService) {
     }
 
-    createRequestOptions(): Object {
-        let headers = new HttpHeaders();
-        headers = this.authService.addAuthorizationHeader(headers);
-        return { headers: headers };
-    }
-
     handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
             console.error("An error occurred:", error.error.message);

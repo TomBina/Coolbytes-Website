@@ -11,7 +11,7 @@ export class ImagesService extends ApiService {
     private _url: string = environment.apiUri + "api/images/";
 
     getAll(): Observable<Image[]> {
-        return this.http.get<Image[]>(this._url, this.createRequestOptions());
+        return this.http.get<Image[]>(this._url);
     }
 
     uploadImages(files: FileList): Observable<Image> {
@@ -21,11 +21,11 @@ export class ImagesService extends ApiService {
             formData.append("Files", files[i], files[i].name);
         }
 
-        return this.http.post<Image>(this._url, formData, this.createRequestOptions());
+        return this.http.post<Image>(this._url, formData);
     }
 
     delete(imageId: number) {
-        return this.http.delete(`${this._url}?id=${imageId}`, this.createRequestOptions());
+        return this.http.delete(`${this._url}?id=${imageId}`);
     }
 
     getUri(uriPath: string) {

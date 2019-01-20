@@ -22,26 +22,26 @@ export class BlogPostsService extends ApiService {
 
     getAll(tag?): Observable<BlogPostSummary[]> {
         let url = tag ? `${this._url}/?tag=${encodeURIComponent(tag)}` : this._url;
-        return this.http.get<BlogPostSummary[]>(url, this.createRequestOptions());
+        return this.http.get<BlogPostSummary[]>(url);
     }
 
     add(addBlogPostCommand: AddBlogPostCommand, files: FileList): Observable<BlogPostSummary> {
         let formData = this.createFormData(addBlogPostCommand, files);
-        return this.http.post<BlogPostSummary>(this._url, formData, this.createRequestOptions());
+        return this.http.post<BlogPostSummary>(this._url, formData);
     }
 
     getUpdate(id) {
-        return this.http.get<BlogPostUpdate>(`${this._url}/update/${id}`, this.createRequestOptions());
+        return this.http.get<BlogPostUpdate>(`${this._url}/update/${id}`);
     }
 
     update(updateBlogPostCommand: UpdateBlogPostCommand, files: FileList): Observable<BlogPostSummary> {
         let formData = this.createFormData(updateBlogPostCommand, files);
         formData.append("id", updateBlogPostCommand.id.toString());
-        return this.http.put<BlogPostSummary>(`${this._url}/update/`, formData, this.createRequestOptions());
+        return this.http.put<BlogPostSummary>(`${this._url}/update/`, formData);
     }
 
     delete(id) {
-        return this.http.delete(`${this._url}/${id}`, this.createRequestOptions()).pipe(catchError(this.handleError));
+        return this.http.delete(`${this._url}/${id}`).pipe(catchError(this.handleError));
     }
 
     private createFormData(model, files: FileList): FormData {

@@ -6,6 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { FooterComponent } from "./footer.component";
 import { HeaderComponent } from "./header.component";
+import { httpInterceptorProviders } from "../../services/httpinterceptors";
 
 @NgModule({
   imports: [
@@ -19,6 +20,9 @@ import { HeaderComponent } from "./header.component";
     HeaderComponent,
     FooterComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    httpInterceptorProviders
+  ]
 })
 export class AppModule { }

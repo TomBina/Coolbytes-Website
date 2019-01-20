@@ -58,6 +58,11 @@ export class AuthService {
     }
 
     public addAuthorizationHeader(headers: HttpHeaders): HttpHeaders {
-        return headers.set("Authorization", "Bearer " + localStorage.getItem("access_token"));
+        if (localStorage.getItem("access_token")) {
+            return headers.set("Authorization", "Bearer " + localStorage.getItem("access_token"));
+        }
+        else {
+            return headers;
+        }
     }
 }
