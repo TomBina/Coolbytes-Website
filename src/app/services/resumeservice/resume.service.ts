@@ -11,6 +11,6 @@ export class ResumeService extends ApiService {
     private _url: string = environment.apiUri + "api/resume";
 
     get(authorId: number): Observable<Resume> {
-        return this.http.get<Resume>(`${this._url}/${authorId}/`, this.createRequestOptions());
+        return this.http.get<Resume>(`${this._url}/${authorId}/`);
     }
 }

@@ -19,6 +19,7 @@ import { AddResumeEventComponent } from "./resume/addresumeevent/add-resume-even
 import { PreviewResumeEventComponent } from "./resume/previewresumeevent/preview-resume-event.component";
 import { ResumeManagerComponent } from "./resume/resume-manager.component";
 import { UpdateResumeEventComponent } from "./resume/updateresumeevent/update-resume-event.component";
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
     imports: [
@@ -67,6 +68,11 @@ import { UpdateResumeEventComponent } from "./resume/updateresumeevent/update-re
                 path: "author",
                 component: AuthorComponent,
                 canActivate: [AdminGuardService]
+            },
+            {
+                path: "settings",
+                component: SettingsComponent,
+                canActivate: [AdminGuardService]
             }
         ]),
         ReactiveFormsModule,
@@ -84,7 +90,8 @@ import { UpdateResumeEventComponent } from "./resume/updateresumeevent/update-re
         AddResumeEventComponent,
         ResumeManagerComponent,
         PreviewResumeEventComponent,
-        UpdateResumeEventComponent
+        UpdateResumeEventComponent,
+        SettingsComponent
     ],
     providers: [
         AuthorsService,

@@ -16,6 +16,6 @@ export class CategoriesService extends ApiService {
     }
 
     getAll(): Observable<Category[]> {
-        return this.http.get<Category[]>(this._url, this.createRequestOptions());
+        return this.http.get<Category[]>(this._url);
     }
 }
