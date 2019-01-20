@@ -7,6 +7,7 @@ import { throwError } from "rxjs";
 export class ApiService {
     constructor(protected http: HttpClient, protected authService: AuthService) {
     }
+
     handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
             console.error("An error occurred:", error.error.message);

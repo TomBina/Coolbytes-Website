@@ -14,7 +14,11 @@ export class AdminInterceptor implements HttpInterceptor {
         }
 
         let headers = this._authService.addAuthorizationHeader(req.headers);
-        headers = headers.set("X-CACHE-ENABLED", "false");
+        let loc = location.href;
+
+        if (loc.indexOf("admin") !== -1) {
+            headers = headers.set("X-CACHE-ENABLED", "false");
+        }
 
         let request = req.clone({
             headers: headers
