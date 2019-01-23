@@ -12,6 +12,7 @@ import { BlogPostPreview } from "../previewblog/blog-post-preview";
 import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
 import { Category } from "../../../../services/categoriesservice/category";
 import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
+import { CdkTextareaAutosize } from "@angular/cdk/text-field";
 
 @Component({
     templateUrl: "./add-blog.component.html",
@@ -25,6 +26,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
     form: FormGroup;
     externalLinks = [];
     categories$: Observable<Category[]>;
+    selectedFileName: string;
 
     @ViewChild(PreviewBlogComponent)
     private _previewBlogComponent: PreviewBlogComponent;
@@ -57,10 +59,6 @@ export class AddBlogComponent implements OnInit, OnDestroy {
         }
     }
 
-    growTextarea(element: HTMLTextAreaElement) {
-        element.style.height = `${element.scrollHeight + 2}px`;
-    }
-
     getExternalLinksControls(): FormArray {
         return this.form.get("externalLinks") as FormArray;
     }
@@ -83,6 +81,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
 
     onFileChanged(element: HTMLInputElement) {
         this._files = element.files;
+        this.selectedFileName = this._files.item(0).name;
     }
 
     onSubmit(): void {

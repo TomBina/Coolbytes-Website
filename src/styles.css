@@ -1,4 +1,5 @@
-@import url("external/prism/prism.css");
+@import "external/prism/prism.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
     color:#231e1e;
@@ -68,44 +69,6 @@ label {
     color:#7B808F;
 }
 
-input {
-    width:100%;
-    padding:6px;
-    font-size:14px;
-    font-family: 'Open Sans', sans-serif;
-    border:1px solid #a0a0a0;
-    box-sizing: border-box;
-}
-
-input.ng-invalid, textarea.ng-invalid {
-    border-color:#B60E0E;
-    background-color:rgb(243, 230, 230);
-}
-
-input.ng-untouched, textarea.ng-untouched {
-    border-color:#a0a0a0;
-    background-color:#fff;
-}
-
-input[type="submit"] {
-    width:auto;
-    background-color: #1e243d;  
-    color:#fff;
-    font-size:14px;
-    padding:8px;
-    cursor: pointer;
-}
-
-textarea {
-    width:100%;
-    padding:6px;
-    font-size:14px;
-    font-family: 'Open Sans', sans-serif;
-    min-height: 100px;
-    border:1px solid #a0a0a0;
-    box-sizing: border-box;
-}
-
 .backdrop { 
     background-color:#000; 
     opacity:0.65; 
@@ -138,6 +101,10 @@ textarea {
 .admin-content {
     margin:152px 20px 20px 20px;
     font-size:15px;
+}
+
+mat-form-field {
+    width:100%;
 }
 
 @media screen and (max-width: 900px) {

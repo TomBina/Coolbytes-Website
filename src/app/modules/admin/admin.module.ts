@@ -20,6 +20,7 @@ import { PreviewResumeEventComponent } from "./resume/previewresumeevent/preview
 import { ResumeManagerComponent } from "./resume/resume-manager.component";
 import { UpdateResumeEventComponent } from "./resume/updateresumeevent/update-resume-event.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { MaterialModule } from "../material/material.module";
 
 @NgModule({
     imports: [
@@ -76,7 +77,8 @@ import { SettingsComponent } from "./settings/settings.component";
             }
         ]),
         ReactiveFormsModule,
-        SharedModule
+        SharedModule,
+        MaterialModule
     ],
     declarations: [
         MenuComponent,
