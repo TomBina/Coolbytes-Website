@@ -49,10 +49,6 @@ export class AddResumeEventComponent implements OnInit, OnDestroy {
         }
     }
 
-    growTextarea(element: HTMLTextAreaElement) {
-        element.style.height = `${element.scrollHeight + 2}px`;
-    }
-
     onSubmit() {
         if (!this.form.valid) {
             for (let controlName of Object.keys(this.form.controls)) {

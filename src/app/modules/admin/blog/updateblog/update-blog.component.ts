@@ -68,10 +68,6 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         }
     }
 
-    growTextarea(element: HTMLTextAreaElement) {
-        element.style.height = `${element.scrollHeight + 2}px`;
-    }
-
     getExternalLinksControls(): FormArray {
         return this.form.get("externalLinks") as FormArray;
     }
