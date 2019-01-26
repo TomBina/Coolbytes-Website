@@ -30,6 +30,10 @@ a {
     cursor:pointer;
 }
 
+a.small-link {
+    font-size:13px;
+}
+
 a.md-link {
     font-weight:700;
 }
