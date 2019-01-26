@@ -10,6 +10,7 @@ import { BlogPostIntroComponent } from "./blog-post-intro.component";
 import { BlogPostComponent } from "./blog-post.component";
 import { BlogComponent } from "./blog.component";
 import { ContactComponent } from "./contact/contact.component";
+import { MaterialModule } from "../material/material.module";
 
 const routes: Routes = [
     {
@@ -43,7 +44,8 @@ const routes: Routes = [
         CommonModule,
         RouterModule.forChild(routes),
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MaterialModule
     ],
     declarations: [
         BlogComponent,
