@@ -5,18 +5,18 @@
             <h1 class="no-top-margin">Add blog</h1>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <mat-form-field>
-                    <input formControlName="subject" id="subject" placeholder="subject" matInput />
+                    <input formControlName="subject" placeholder="subject" matInput />
                 </mat-form-field>
                 <mat-form-field>
-                    <textarea formControlName="contentIntro" id="contentIntro" placeholder="content intro" matInput
+                    <textarea formControlName="contentIntro" placeholder="content intro" matInput
                         cdkTextareaAutosize></textarea>
                 </mat-form-field>
                 <mat-form-field>
-                    <textarea formControlName="content" id="content" placeholder="content" matInput cdkTextareaAutosize></textarea>
+                    <textarea formControlName="content" placeholder="content" matInput cdkTextareaAutosize></textarea>
                 </mat-form-field>
                 <admin-images-manager title="insert image" (onImageSelected)="onImageSelectedHandler($event)"></admin-images-manager>
                 <mat-form-field>
-                    <textarea formControlName="tags" id="tags" placeholder="tags" matInput cdkTextareaAutosize></textarea>
+                    <textarea formControlName="tags" placeholder="tags" matInput cdkTextareaAutosize></textarea>
                 </mat-form-field>
                 <label>Image</label>
                 <p>
@@ -27,7 +27,7 @@
                     {{selectedFileName}}
                 </p>
                 <mat-form-field>
-                    <mat-select placeholder="category" formControlName="category" id="category">
+                    <mat-select placeholder="category" formControlName="category">
                         <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>

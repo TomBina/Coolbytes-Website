@@ -12,7 +12,6 @@ import { BlogPostPreview } from "../previewblog/blog-post-preview";
 import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
 import { Category } from "../../../../services/categoriesservice/category";
 import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
-import { CdkTextareaAutosize } from "@angular/cdk/text-field";
 
 @Component({
     templateUrl: "./add-blog.component.html",
@@ -40,7 +39,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
                 contentIntro: ["", [Validators.required, Validators.maxLength(120)]],
                 content: ["", [Validators.required, Validators.maxLength(4000)]],
                 tags: ["", [Validators.maxLength(500)]],
-                category: [""],
+                category: ["", [Validators.required]],
                 externalLinks: this._fb.array([this.createExternalLinkFormGroup()])
             }
         );

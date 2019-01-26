@@ -29,6 +29,8 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
     image: Image;
+    categories$: Observable<Category[]>;
+    selectedFileName: string;
 
     private _id: number;
     private _files: FileList;
@@ -36,15 +38,13 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
     private _previewBlogComponent: PreviewBlogComponent;
     private _previewObserver: Subscription;
 
-    categories$: Observable<Category[]>;
-
     ngOnInit(): void {
         this.form = this._formBuilder.group({
             subject: ["", [Validators.required, Validators.maxLength(100)]],
             contentIntro: ["", [Validators.required, Validators.maxLength(120)]],
             content: ["", [Validators.required, Validators.maxLength(8000)]],
             tags: ["", Validators.maxLength(500)],
-            category: [""],
+            category: ["", Validators.required],
             externalLinks: this._formBuilder.array([])
         });
 
@@ -128,6 +128,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
 
     onFileChanged(element: HTMLInputElement) {
         this._files = element.files;
+        this.selectedFileName = this._files.item(0).name;
     }
 
     onSubmit(): void {
