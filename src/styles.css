@@ -30,20 +30,6 @@ a {
     cursor:pointer;
 }
 
-a.button {
-    background-color: #1e243d;  
-    color:#fff;
-    font-size:14px;
-    padding:8px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-a.button.small {
-    padding:4px;
-    font-size:13px;
-}
-
 a.md-link {
     font-weight:700;
 }
@@ -67,6 +53,10 @@ label {
     text-transform: uppercase;
     font-size:14px;
     color:#7B808F;
+}
+
+table {
+    width:100%;
 }
 
 .backdrop { 

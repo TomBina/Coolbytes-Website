@@ -10,6 +10,7 @@ import { BlogPostsService } from "../../../services/blogpostservice/blog-posts.s
 })
 export class BlogManagerComponent implements OnInit {
     blogPosts$: Observable<BlogPostSummary[]>;
+    columnsToDisplay = ["date", "name", "options"];
 
     constructor(private _blogPostsService: BlogPostsService) {
 

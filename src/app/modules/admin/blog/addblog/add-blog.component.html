@@ -32,7 +32,7 @@
                     </mat-select>
                 </mat-form-field>
                 <label>Links <a (click)="addExternalLinkControl()">add external link</a></label>
-                <ng-container formArrayName="externalLinks" *ngFor="let item of form.get('externalLinks')?.controls; let i = index">
+                <ng-container formArrayName="externalLinks" *ngFor="let item of form.get('externalLinks')?.controls ; let i = index">
                     <span [formGroupName]="i" class="flex">
                         <mat-form-field>
                             <input formControlName="name" placeholder="external link name" matInput />
