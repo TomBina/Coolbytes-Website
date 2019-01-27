@@ -11,13 +11,13 @@
         <mat-form-field>
             <textarea formControlName="about" placeholder="about me" matInput cdkTextareaAutosize></textarea>
         </mat-form-field>
-        <admin-images-manager title="Insert image" (onImageSelected)="onContentImageSelectedHandler($event)"></admin-images-manager>
+        <admin-images-manager title="Insert image" (imageSelected)="onContentImageSelectedHandler($event)"></admin-images-manager>
         <input formControlName="imageId" type="hidden" name="imageId" />
         <p *ngIf="imageUri">
             <img [src]="imageUri" width="200" />
         </p>
         <p>
-            <admin-images-manager title="Choose image" (onImageSelected)="onMainImageSelectedHandler($event)"></admin-images-manager>
+            <admin-images-manager title="Choose image" (imageSelected)="onMainImageSelectedHandler($event)"></admin-images-manager>
         </p>
         <mat-form-field>
             <input formControlName="resumeUri" placeholder="resume url" matInput />
@@ -48,7 +48,7 @@
                     </mat-form-field>
                 </span>
                 <p>
-                    <admin-images-manager title="Choose image" (onImageSelected)="onExperiencesImageSelectedHandler($event, item, i)"></admin-images-manager>
+                    <admin-images-manager title="Choose image" (imageSelected)="onExperiencesImageSelectedHandler($event, item, i)"></admin-images-manager>
                     - <a (click)="removeExperience(i)" class="small-link">Remove experience</a>
                 </p>
             </ng-container>

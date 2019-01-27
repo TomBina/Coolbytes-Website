@@ -14,7 +14,7 @@
                 <mat-form-field>
                     <textarea formControlName="content" placeholder="content" matInput cdkTextareaAutosize></textarea>
                 </mat-form-field>
-                <admin-images-manager title="insert image" (onImageSelected)="onImageSelectedHandler($event)"></admin-images-manager>
+                <admin-images-manager title="insert image" (imageSelected)="onImageSelectedHandler($event)"></admin-images-manager>
                 <mat-form-field>
                     <textarea formControlName="tags" placeholder="tags" matInput cdkTextareaAutosize></textarea>
                 </mat-form-field>
@@ -32,7 +32,7 @@
                     </mat-select>
                 </mat-form-field>
                 <label>Links <a (click)="addExternalLinkControl()">add external link</a></label>
-                <ng-container formArrayName="externalLinks" *ngFor="let item of form.get('externalLinks')?.controls ; let i = index">
+                <ng-container formArrayName="externalLinks" *ngFor="let item of form.get('externalLinks')?.controls; let i = index">
                     <span [formGroupName]="i" class="flex">
                         <mat-form-field>
                             <input formControlName="name" placeholder="external link name" matInput />
