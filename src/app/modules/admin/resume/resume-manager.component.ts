@@ -3,13 +3,14 @@ import { Component, OnInit } from "@angular/core";
 
 import { ResumeEvent } from "../../../services/resumeservice/resume-event";
 import { ResumeEventsService } from "../../../services/resumeservice/resume-events.service";
+import { Observable } from "rxjs";
 
 @Component({ templateUrl: "./resume-manager.component.html", styleUrls: ["./resume-manager.component.css"] })
 export class ResumeManagerComponent implements OnInit {
-    resumeEvents: ResumeEvent[];
+    resumeEvents$: Observable<ResumeEvent[]>;
+    columnsToDisplay = ["date", "name", "options"];
 
     constructor(private _resumeEventsService: ResumeEventsService, private _authorsService: AuthorsService) {
-
     }
 
     ngOnInit(): void {
@@ -18,7 +19,7 @@ export class ResumeManagerComponent implements OnInit {
 
     getResumeEvents(): void {
         this._authorsService.get().subscribe(author => {
-            this._resumeEventsService.getAll(author.id).subscribe(resumeEvents => this.resumeEvents = resumeEvents);
+            this.resumeEvents$ = this._resumeEventsService.getAll(author.id);
         });
     }
 

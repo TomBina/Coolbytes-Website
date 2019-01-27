@@ -7,13 +7,17 @@ import { AppComponent } from "./app.component";
 import { FooterComponent } from "./footer.component";
 import { HeaderComponent } from "./header.component";
 import { httpInterceptorProviders } from "../../services/httpinterceptors";
+import { MaterialModule } from "../material/material.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     HomeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
   ],
   declarations: [
     AppComponent,

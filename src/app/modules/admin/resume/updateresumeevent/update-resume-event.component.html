@@ -4,23 +4,21 @@
         <div class="left">
             <h1 class="no-top-margin">Update resume event</h1>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <label for="startDate">Start date:</label>
+                <mat-form-field>
+                    <input formControlName="startDate" placeholder="start date" matInput />
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="endDate" placeholder="end date" matInput />
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="name" placeholder="name" matInput />
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea formControlName="message" placeholder="message" matInput cdkTextareaAutosize></textarea>
+                </mat-form-field>
                 <p>
-                    <input formControlName="startDate" id="startDate" />
+                    <button type="submit" mat-raised-button>save</button>
                 </p>
-                <label for="endDate">End date:</label>
-                <p>
-                    <input formControlName="endDate" id="endDate" />
-                </p>
-                <label for="name">Name:</label>
-                <p>
-                    <input formControlName="name" id="name" />
-                </p>
-                <label for="message">Message:</label>
-                <p>
-                    <textarea formControlName="message" id="message" (keydown)="growTextarea($event.target)"></textarea>
-                </p>
-                <input type="submit" value="save" />
             </form>
         </div>
         <div class="right">

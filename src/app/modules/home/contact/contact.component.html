@@ -10,21 +10,20 @@
     </p>
     <h1>Contact us</h1>
     <p>
-        Contact us if you have any questions, or if you would like to post blogs on Cool Bytes. We're always looking for new people!
+        Contact us if you have any questions, or if you would like to post blogs on Cool Bytes. We're always looking
+        for new people!
     </p>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <label for="name">Name:</label>
-        <p>
-            <input formControlName="name" id="name" />
-        </p>
-        <label for="email">Email:</label>
-        <p>
-            <input formControlName="email" id="email">
-        </p>
-        <label for="message">Message:</label>
-        <p>
-            <textarea formControlName="message" id="message"></textarea>
-        </p>
-        <input type="submit" value="send message" />
+        <mat-form-field>
+            <input formControlName="name" placeholder="name" matInput />
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="email" placeholder="email" matInput />
+        </mat-form-field>
+        <mat-form-field>
+            <textarea formControlName="message" placeholder="message" matInput cdkTextareaAutosize></textarea>
+        </mat-form-field>
+
+        <button type="submit">send message</button>
     </form>
 </article>

@@ -1,4 +1,4 @@
-<a *ngIf="!isOpen" (click)="open()">{{title}}</a>
+<a *ngIf="!isOpen" (click)="open()" class="small-link">{{title}}</a>
 <div *ngIf="isOpen">
     <div class="backdrop" (click)="close()"></div>
     <div class="dialog">

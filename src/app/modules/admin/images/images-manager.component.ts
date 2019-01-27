@@ -18,7 +18,7 @@ export class ImagesManagerComponent implements OnInit {
     title: string;
 
     @Output()
-    onImageSelected = new EventEmitter<Image>();
+    imageSelected = new EventEmitter<Image>();
 
     private _imagesUri;
 
@@ -47,7 +47,7 @@ export class ImagesManagerComponent implements OnInit {
     onImageClick(image: Image) {
         if (this.deleteImageText === "delete image")  {
             this.close();
-            this.onImageSelected.emit(image);
+            this.imageSelected.emit(image);
         }
         else {
             this.imagesService.delete(image.id).subscribe(response => {

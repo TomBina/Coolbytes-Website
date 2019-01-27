@@ -25,6 +25,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
     form: FormGroup;
     externalLinks = [];
     categories$: Observable<Category[]>;
+    selectedFileName: string;
 
     @ViewChild(PreviewBlogComponent)
     private _previewBlogComponent: PreviewBlogComponent;
@@ -38,7 +39,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
                 contentIntro: ["", [Validators.required, Validators.maxLength(120)]],
                 content: ["", [Validators.required, Validators.maxLength(4000)]],
                 tags: ["", [Validators.maxLength(500)]],
-                category: [""],
+                category: ["", [Validators.required]],
                 externalLinks: this._fb.array([this.createExternalLinkFormGroup()])
             }
         );
@@ -55,10 +56,6 @@ export class AddBlogComponent implements OnInit, OnDestroy {
         if (this._previewObserver) {
             this._previewObserver.unsubscribe();
         }
-    }
-
-    growTextarea(element: HTMLTextAreaElement) {
-        element.style.height = `${element.scrollHeight + 2}px`;
     }
 
     getExternalLinksControls(): FormArray {
@@ -83,6 +80,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
 
     onFileChanged(element: HTMLInputElement) {
         this._files = element.files;
+        this.selectedFileName = this._files.item(0).name;
     }
 
     onSubmit(): void {

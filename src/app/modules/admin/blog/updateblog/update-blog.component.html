@@ -2,48 +2,49 @@
 <div class="admin-content">
     <div class="flex">
         <div class="left">
-            <h1 class="no-top-margin">Edit blog</h1>
+            <h1 class="no-top-margin">Add blog</h1>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <label for="subject">Subject</label>
-                <p>
-                    <input formControlName="subject" id="subject" />
-                </p>
-                <label for="contentIntro">Content intro:</label>
-                <p>
-                    <textarea formControlName="contentIntro" id="contentIntro" (onchange)="growTextarea($event.target)" (click)="growTextarea($event.target)"></textarea>
-                </p>
-                <label for="content">Content:</label>
-                <p>
-                    <textarea formControlName="content" id="content" (onchange)="growTextarea($event.target)" (click)="growTextarea($event.target)"></textarea>
-                    <admin-images-manager title="Insert image" (onImageSelected)="onImageSelectedHandler($event)"></admin-images-manager>
-                </p>
-                <label for="tag">Tags</label>
-                <p>
-                    <textarea formControlName="tags" id="tags"></textarea>
-                </p>
-                <label for="image">Image</label>
+                <mat-form-field>
+                    <input formControlName="subject" placeholder="subject" matInput />
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea formControlName="contentIntro" placeholder="content intro" matInput cdkTextareaAutosize></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea formControlName="content" placeholder="content" matInput cdkTextareaAutosize></textarea>
+                </mat-form-field>
+                <admin-images-manager title="insert image" (imageSelected)="onImageSelectedHandler($event)"></admin-images-manager>
+                <mat-form-field>
+                    <textarea formControlName="tags" placeholder="tags" matInput cdkTextareaAutosize></textarea>
+                </mat-form-field>
+                <label>Image</label>
                 <p *ngIf="image && image.uri">
                     <img [src]="image.uri" width="200" />
                 </p>
                 <p>
-                    <input type="file" id="file" (change)="onFileChanged($event.target)" />
+                    <button type="button" (click)="fileinput.click()" mat-raised-button>add an image</button>
+                    <input hidden type="file" #fileinput (change)="onFileChanged($event.target)" />
                 </p>
-                <label for="category">Category</label>
-                <p>
-                    <select formControlName="category" id="category">
-                        <option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</option>
-                    </select>
+                <p *ngIf="selectedFileName">
+                    {{selectedFileName}}
                 </p>
-                <label>links
-                    <a (click)="addExternalLinkControl()">add external link</a>
-                </label>
-                <div formArrayName="externalLinks" *ngFor="let item of form.get('externalLinks')?.controls; let i = index">
-                    <p [formGroupName]="i" class="flex">
-                        <input formControlName="name" placeholder="External link name" />
-                        <input formControlName="url" placeholder="External link URL" />
-                    </p>
-                </div>
-                <input type="submit" value="save" />
+                <mat-form-field>
+                    <mat-select placeholder="category" formControlName="category">
+                        <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <label>Links <a (click)="addExternalLinkControl()">add external link</a></label>
+                <ng-container formArrayName="externalLinks" *ngFor="let item of form.get('externalLinks')?.controls; let i = index">
+                    <span [formGroupName]="i" class="flex">
+                        <mat-form-field>
+                            <input formControlName="name" placeholder="external link name" matInput />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input formControlName="url" placeholder="external link url" matInput />
+                        </mat-form-field>
+                    </span>
+                </ng-container>
+                <button mat-raised-button type="submit">save</button>
             </form>
         </div>
         <div class="right">
