@@ -1,0 +1,26 @@
+<app-admin-menu></app-admin-menu>
+<div class="admin-content">
+    <h1>Blogs</h1>
+    <table mat-table [dataSource]="categories$ | async">
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let blogpost"> {{blogpost.date | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let blogpost"> {{blogpost.subject}} </td>
+        </ng-container>
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef>Options</th>
+            <td mat-cell *matCellDef="let blogpost">
+                <a routerLink="/admin/blogs/edit/{{blogpost.id}}" mat-button>edit</a>
+                <a (click)="delete(blogpost.id)" mat-button>delete</a>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    </table>
+    <p>
+        <a routerLink="/admin/categories/add" mat-raised-button>add new category</a>
+    </p>
+</div>
