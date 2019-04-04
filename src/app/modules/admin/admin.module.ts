@@ -21,6 +21,7 @@ import { ResumeManagerComponent } from "./resume/resume-manager.component";
 import { UpdateResumeEventComponent } from "./resume/updateresumeevent/update-resume-event.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { MaterialModule } from "../material/material.module";
+import { CategoriesListComponent } from "./categories/categories-list.component";
 
 @NgModule({
     imports: [
@@ -33,6 +34,11 @@ import { MaterialModule } from "../material/material.module";
             {
                 path: "",
                 component: BlogManagerComponent,
+                canActivate: [AdminGuardService, AdminAuthorGuardService]
+            },
+            {
+                path: "categories",
+                component: CategoriesListComponent,
                 canActivate: [AdminGuardService, AdminAuthorGuardService]
             },
             {
@@ -83,6 +89,7 @@ import { MaterialModule } from "../material/material.module";
     declarations: [
         MenuComponent,
         ProcessAuthComponent,
+        CategoriesListComponent,
         BlogManagerComponent,
         AddBlogComponent,
         UpdateBlogComponent,
