@@ -4,9 +4,9 @@
     <mat-list cdkDropList>
         <ng-container *ngFor="let category of categories$ | async">
             <mat-list-item cdkDrag>
-                <div style="display:flex; align-items: center; width:100%;">
-                    <div>{{category.name}}</div>
-                    <div style="flex-grow:1; text-align: right;">
+                <div class="row">
+                    <div class="col">{{category.name}}</div>
+                    <div class="col right">
                         <button mat-button>
                             <mat-icon matListIcon>edit</mat-icon>
                         </button>

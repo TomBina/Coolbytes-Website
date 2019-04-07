@@ -1,6 +1,7 @@
 @import "external/prism/prism.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css");
 
 body {
     color:#231e1e;
@@ -100,6 +101,20 @@ table {
 
 mat-form-field {
     width:100%;
+}
+
+.row {
+    display:flex;
+    width:100%;
+}
+
+.col {
+    flex-shrink: 0;
+    flex-grow:1;
+
+    &.right {
+        text-align:right;
+    }
 }
 
 @media screen and (max-width: 900px) {
