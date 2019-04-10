@@ -1,0 +1,14 @@
+.row {
+    display:flex;
+    width:100%;
+    align-items:center;
+}
+
+.col {
+    flex-shrink: 0;
+    flex-grow:1;
+
+    &.right {
+        text-align:right;
+    }
+}

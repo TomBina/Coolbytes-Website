@@ -18,4 +18,11 @@ export class CategoriesService extends ApiService {
     getAll(): Observable<Category[]> {
         return this.http.get<Category[]>(this._url);
     }
+
+    sort(ids: Number[]) {
+        let sortCategoriesCommand = {
+            newSortOrder: ids
+        }
+        return this.http.put(`${this._url}/sort/`, sortCategoriesCommand, { observe: "response" });
+    }
 }
