@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from "@angular/material";
 
 @Component({
     templateUrl: "./add-category.component.html"
