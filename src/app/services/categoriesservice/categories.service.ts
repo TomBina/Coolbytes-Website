@@ -28,6 +28,10 @@ export class CategoriesService extends ApiService {
         return this.http.put(this._url, command);
     }
 
+    delete(id: number) {
+        return this.http.delete(`${this._url}/${id}/`);
+    }
+
     sort(ids: Number[]) {
         let sortCategoriesCommand = {
             newSortOrder: ids

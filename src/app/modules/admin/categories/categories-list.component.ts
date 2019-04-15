@@ -5,6 +5,7 @@ import { Category } from "src/app/services/categoriesservice/category";
 import { MatSnackBar, MatDialog } from "@angular/material";
 import { AddCategoryComponent } from "./add-category.component";
 import { UpdateCategoryComponent } from "./update-category.component";
+import { catchError } from 'rxjs/operators';
 
 @Component({
     templateUrl: "./categories-list.component.html"
@@ -53,8 +54,13 @@ export class CategoriesListComponent implements OnInit {
     }
 
     delete(id: number): void {
-        if (!confirm("Are you sure?")) {
-            return;
+        if (confirm("Are you sure?")) {
+            this._categoriesService.delete(id).pipe(catchError(this._onDeleteError.bind(this))).subscribe(() => this.refresh());
         }
+    }
+
+    _onDeleteError(error: any) {
+        this._snackbar.open(`Oops! Delete failed. Error: ${error.error}`);
+        return error;
     }
 }
