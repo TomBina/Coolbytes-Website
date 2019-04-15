@@ -21,7 +21,8 @@
             "script": "ng-serve",
             "runOptions": {
                 "runOn": "folderOpen"
-            }
+            },
+            "problemMatcher": []
         }
     ]
 }

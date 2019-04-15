@@ -1,0 +1,25 @@
+<app-admin-menu></app-admin-menu>
+<div class="admin-content">
+    <h1>Categories</h1>
+    <mat-list cdkDropList (cdkDropListDropped)="onDrop($event)">
+        <ng-container *ngFor="let category of categories">
+            <mat-list-item cdkDrag>
+                <div class="row">
+                    <div class="col">{{category.name}}</div>
+                    <div class="col right">
+                        <button mat-button>
+                            <mat-icon matListIcon (click)="update(category)">edit</mat-icon>
+                        </button>
+                        <button mat-button>
+                            <mat-icon matListIcon (click)="delete(category.id)">delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </ng-container>
+    </mat-list>
+    <p>
+        <a (click)="add()" mat-raised-button>add new category</a>
+    </p>
+</div>
