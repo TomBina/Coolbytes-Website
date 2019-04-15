@@ -5,7 +5,7 @@ import { Category } from "src/app/services/categoriesservice/category";
 import { MatSnackBar, MatDialog } from "@angular/material";
 import { AddCategoryComponent } from "./add-category.component";
 import { UpdateCategoryComponent } from "./update-category.component";
-import { catchError } from 'rxjs/operators';
+import { catchError } from "rxjs/operators";
 
 @Component({
     templateUrl: "./categories-list.component.html"
