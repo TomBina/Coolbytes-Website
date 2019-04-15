@@ -3,7 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
 import { Category } from "src/app/services/categoriesservice/category";
 import { MatSnackBar, MatDialog } from "@angular/material";
-import { AddCategoryComponent } from './add-category.component';
+import { AddCategoryComponent } from "./add-category.component";
+import { UpdateCategoryComponent } from "./update-category.component";
 
 @Component({
     templateUrl: "./categories-list.component.html"
@@ -37,6 +38,15 @@ export class CategoriesListComponent implements OnInit {
         let dialog = this._matDialog.open(AddCategoryComponent);
         dialog.afterClosed().subscribe(added => {
             if (added) {
+                this.refresh();
+            }
+        });
+    }
+
+    update(category: Category) {
+        let dialog = this._matDialog.open(UpdateCategoryComponent, { data: category });
+        dialog.afterClosed().subscribe(updated => {
+            if (updated) {
                 this.refresh();
             }
         });

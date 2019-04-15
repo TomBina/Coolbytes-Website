@@ -8,7 +8,7 @@
                     <div class="col">{{category.name}}</div>
                     <div class="col right">
                         <button mat-button>
-                            <mat-icon matListIcon>edit</mat-icon>
+                            <mat-icon matListIcon (click)="update(category)">edit</mat-icon>
                         </button>
                         <button mat-button>
                             <mat-icon matListIcon>delete</mat-icon>

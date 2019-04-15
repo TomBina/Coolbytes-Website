@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { ApiService } from "../api-service";
 import { Category } from "./category";
+import { UpdateCategoryCommand } from './update-category-command';
 
 @Injectable({
     providedIn: "root"
@@ -21,6 +22,10 @@ export class CategoriesService extends ApiService {
 
     add(name: string) {
         return this.http.post(this._url, { name: name });
+    }
+
+    update(command: UpdateCategoryCommand) {
+        return this.http.put(this._url, command);
     }
 
     sort(ids: Number[]) {

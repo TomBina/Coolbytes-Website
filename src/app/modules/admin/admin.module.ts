@@ -23,6 +23,7 @@ import { SettingsComponent } from "./settings/settings.component";
 import { MaterialModule } from "../material/material.module";
 import { CategoriesListComponent } from "./categories/categories-list.component";
 import { AddCategoryComponent } from "./categories/add-category.component";
+import { UpdateCategoryComponent } from "./categories/update-category.component";
 
 const routes = [
     {
@@ -37,11 +38,6 @@ const routes = [
     {
         path: "categories",
         component: CategoriesListComponent,
-        canActivate: [AdminGuardService, AdminAuthorGuardService]
-    },
-    {
-        path: "categories/add",
-        component: AddCategoryComponent,
         canActivate: [AdminGuardService, AdminAuthorGuardService]
     },
     {
@@ -99,6 +95,7 @@ const routes = [
         ProcessAuthComponent,
         CategoriesListComponent,
         AddCategoryComponent,
+        UpdateCategoryComponent,
         BlogManagerComponent,
         AddBlogComponent,
         UpdateBlogComponent,
@@ -110,6 +107,10 @@ const routes = [
         PreviewResumeEventComponent,
         UpdateResumeEventComponent,
         SettingsComponent
+    ],
+    entryComponents: [
+        AddCategoryComponent,
+        UpdateCategoryComponent
     ],
     providers: [
         AuthorsService,
