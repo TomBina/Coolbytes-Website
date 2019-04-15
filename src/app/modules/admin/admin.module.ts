@@ -22,66 +22,74 @@ import { UpdateResumeEventComponent } from "./resume/updateresumeevent/update-re
 import { SettingsComponent } from "./settings/settings.component";
 import { MaterialModule } from "../material/material.module";
 import { CategoriesListComponent } from "./categories/categories-list.component";
+import { AddCategoryComponent } from "./categories/add-category.component";
+
+const routes = [
+    {
+        path: "processauth",
+        component: ProcessAuthComponent
+    },
+    {
+        path: "",
+        component: BlogManagerComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "categories",
+        component: CategoriesListComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "categories/add",
+        component: AddCategoryComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "blogs",
+        component: BlogManagerComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "blogs/add",
+        component: AddBlogComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "blogs/edit/:id",
+        component: UpdateBlogComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "resume/addevent",
+        component: AddResumeEventComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "resume/event/:id",
+        component: UpdateResumeEventComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "resume",
+        component: ResumeManagerComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "author",
+        component: AuthorComponent,
+        canActivate: [AdminGuardService]
+    },
+    {
+        path: "settings",
+        component: SettingsComponent,
+        canActivate: [AdminGuardService]
+    }
+];
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forChild([
-            {
-                path: "processauth",
-                component: ProcessAuthComponent
-            },
-            {
-                path: "",
-                component: BlogManagerComponent,
-                canActivate: [AdminGuardService, AdminAuthorGuardService]
-            },
-            {
-                path: "categories",
-                component: CategoriesListComponent,
-                canActivate: [AdminGuardService, AdminAuthorGuardService]
-            },
-            {
-                path: "blogs",
-                component: BlogManagerComponent,
-                canActivate: [AdminGuardService, AdminAuthorGuardService]
-            },
-            {
-                path: "blogs/add",
-                component: AddBlogComponent,
-                canActivate: [AdminGuardService, AdminAuthorGuardService]
-            },
-            {
-                path: "blogs/edit/:id",
-                component: UpdateBlogComponent,
-                canActivate: [AdminGuardService, AdminAuthorGuardService]
-            },
-            {
-                path: "resume/addevent",
-                component: AddResumeEventComponent,
-                canActivate: [AdminGuardService, AdminAuthorGuardService]
-            },
-            {
-                path: "resume/event/:id",
-                component: UpdateResumeEventComponent,
-                canActivate: [AdminGuardService, AdminAuthorGuardService]
-            },
-            {
-                path: "resume",
-                component: ResumeManagerComponent,
-                canActivate: [AdminGuardService, AdminAuthorGuardService]
-            },
-            {
-                path: "author",
-                component: AuthorComponent,
-                canActivate: [AdminGuardService]
-            },
-            {
-                path: "settings",
-                component: SettingsComponent,
-                canActivate: [AdminGuardService]
-            }
-        ]),
+        RouterModule.forChild(routes),
         ReactiveFormsModule,
         SharedModule,
         MaterialModule
@@ -90,6 +98,7 @@ import { CategoriesListComponent } from "./categories/categories-list.component"
         MenuComponent,
         ProcessAuthComponent,
         CategoriesListComponent,
+        AddCategoryComponent,
         BlogManagerComponent,
         AddBlogComponent,
         UpdateBlogComponent,

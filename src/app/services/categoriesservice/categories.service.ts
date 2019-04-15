@@ -19,6 +19,10 @@ export class CategoriesService extends ApiService {
         return this.http.get<Category[]>(this._url);
     }
 
+    add(name: string) {
+        return this.http.post(this._url, { name: name });
+    }
+
     sort(ids: Number[]) {
         let sortCategoriesCommand = {
             newSortOrder: ids
