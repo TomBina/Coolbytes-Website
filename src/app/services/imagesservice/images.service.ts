@@ -34,6 +34,6 @@ export class ImagesService extends ApiService {
         }
 
         let length = environment.imagesUri.length;
-        return environment.imagesUri.substring(0, --length) + uriPath;
+        return environment.imagesUri + uriPath;
     }
 }
