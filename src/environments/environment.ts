@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   appUri: "http://localhost:4200/",
   apiUri: "http://localhost:5000/",
-  imagesUri: "http://localhost:5000/"
+  imagesUri: "https://coolbytesstorage.blob.core.windows.net/development/"
 };
