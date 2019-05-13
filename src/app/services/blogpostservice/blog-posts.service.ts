@@ -13,7 +13,7 @@ import { Observable } from "rxjs";
     providedIn: "root"
 })
 export class BlogPostsService extends ApiService {
-    private _url: string = environment.apiUri + "api/blogposts";
+    private _url: string = environment.apiUri + "/blogposts";
 
     get(id): Observable<BlogPost> {
         let observable = this.http.get<BlogPost>(`${this._url}/${id}`);

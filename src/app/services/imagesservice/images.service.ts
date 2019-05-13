@@ -8,7 +8,7 @@ import { Image } from "./image";
     providedIn: "root"
 })
 export class ImagesService extends ApiService {
-    private _url: string = environment.apiUri + "api/images/";
+    private _url: string = environment.apiUri + "/images";
 
     getAll(): Observable<Image[]> {
         return this.http.get<Image[]>(this._url);
@@ -34,6 +34,6 @@ export class ImagesService extends ApiService {
         }
 
         let length = environment.imagesUri.length;
-        return environment.imagesUri + uriPath;
+        return environment.imagesUri + "/" + uriPath;
     }
 }

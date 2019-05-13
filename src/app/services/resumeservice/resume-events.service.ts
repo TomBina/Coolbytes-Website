@@ -9,7 +9,7 @@ import { UpdateResumeEventCommand } from "./update-resume-event-command";
 
 @Injectable()
 export class ResumeEventsService extends ApiService {
-    private _url: string = environment.apiUri + "api/resumeevents";
+    private _url: string = environment.apiUri + "/resumeevents";
 
     getAll(authorId: number): Observable<ResumeEvent[]> {
         return this.http.get<ResumeEvent[]>(`${this._url}/${authorId}/`);

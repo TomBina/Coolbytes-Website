@@ -9,7 +9,7 @@ import { UpdateCategoryCommand } from "./update-category-command";
     providedIn: "root"
 })
 export class CategoriesService extends ApiService {
-    private _url: string = environment.apiUri + "api/categories";
+    private _url: string = environment.apiUri + "/categories";
 
     get(id): Observable<Category> {
         let observable = this.http.get<Category>(`${this._url}/${id}`);

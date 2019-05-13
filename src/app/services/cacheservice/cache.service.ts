@@ -9,7 +9,7 @@ import { ApiService } from "../api-service";
     providedIn: "root"
 })
 export class CacheService extends ApiService {
-    private _url: string = environment.apiUri + "api/cache";
+    private _url: string = environment.apiUri + "/cache";
 
     delete(): Observable<boolean> {
         return this.http.delete<HttpResponse<Object>>(`${this._url}`, { observe: "response" })

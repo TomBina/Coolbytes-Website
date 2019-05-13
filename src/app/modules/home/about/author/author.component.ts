@@ -20,7 +20,7 @@ export class AuthorComponent {
 
         if (author.experiences) {
             for (let experience of author.experiences) {
-                experience.uri = `${environment.imagesUri}${experience.image.uriPath}`;
+                experience.uri = `${environment.imagesUri}/${experience.image.uriPath}`;
                 experience.backgroundColor = `#${experience.color}`;
             }
 

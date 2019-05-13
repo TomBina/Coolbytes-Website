@@ -7,7 +7,7 @@ import { ApiService } from "../api-service";
     providedIn: "root"
 })
 export class ContactService extends ApiService {
-    private _url: string = environment.apiUri + "api/contact";
+    private _url: string = environment.apiUri + "/contact";
 
     public Send(command): Observable<Object> {
         return this.http.post(this._url, command);
