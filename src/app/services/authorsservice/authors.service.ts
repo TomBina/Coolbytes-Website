@@ -6,7 +6,7 @@ import { Author } from "./author";
 
 @Injectable()
 export class AuthorsService extends ApiService {
-    private _url: string = environment.apiUri + "api/authors/";
+    private _url: string = environment.apiUri + "/authors/";
 
     get(): Observable<Author> {
         return this.http.get<Author>(this._url);

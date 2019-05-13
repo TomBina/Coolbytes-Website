@@ -8,7 +8,7 @@ import { Resume } from "./resume";
     providedIn: "root"
 })
 export class ResumeService extends ApiService {
-    private _url: string = environment.apiUri + "api/resume";
+    private _url: string = environment.apiUri + "/resume";
 
     get(authorId: number): Observable<Resume> {
         return this.http.get<Resume>(`${this._url}/${authorId}/`);

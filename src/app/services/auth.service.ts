@@ -15,7 +15,7 @@ export class AuthService {
             clientID: "1172o11AfEVrHK8QTiqwixHdlTD2nwvA",
             domain: "coolbytes.auth0.com",
             responseType: "token id_token",
-            audience: environment.apiUri + "api/",
+            audience: environment.apiUri + "/",
             redirectUri: environment.appUri + "admin/processauth",
             scope: "openid email admin"
         });
