@@ -14,6 +14,9 @@
     text-align: center;
 }
 
+.author-about img {
+    margin-right:5px;
+}
 .resume-link-desktop {
     display:none;
 }
@@ -49,7 +52,6 @@ h2 {
     text-transform: uppercase;
     font-size:13px;
     font-weight:700;
-    color:#444;
 }
 
 .experiences img {

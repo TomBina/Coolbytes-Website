@@ -1,12 +1,11 @@
 .resume {
     margin-top:72px;
-    background-color: #b2bbd1;
-    background: radial-gradient(ellipse at center, #b2bbd1 0%,#ffffff 100%);
+    background-color: #fff;
     padding-top:30px;
 }
 
 .resume-events {
-    background-color:#1e243d;
+    background-color:rgb(29, 90, 82);
     margin-top:30px;
     padding-top:3px;
     padding-bottom:30px;

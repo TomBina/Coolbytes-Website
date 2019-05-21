@@ -8,6 +8,7 @@ import { BlogPostUpdate } from "./blog-post-update";
 import { UpdateBlogPostCommand } from "./update-blog-post-command";
 import { catchError } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { BlogPostOverview } from "./blog-post-overview";
 
 @Injectable({
     providedIn: "root"
@@ -23,6 +24,11 @@ export class BlogPostsService extends ApiService {
     getAll(tag?): Observable<BlogPostSummary[]> {
         let url = tag ? `${this._url}/?tag=${encodeURIComponent(tag)}` : this._url;
         return this.http.get<BlogPostSummary[]>(url);
+    }
+
+    getOverview() {
+        let url = `${this._url}/overview/`;
+        return this.http.get<BlogPostOverview>(url);
     }
 
     add(addBlogPostCommand: AddBlogPostCommand, files: FileList): Observable<BlogPostSummary> {
