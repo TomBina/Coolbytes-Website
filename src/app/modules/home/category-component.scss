@@ -1,0 +1,26 @@
+h1 {
+    font-family: 'Raleway';
+    color:#000;
+    font-weight:700;
+    margin:0;
+    display: inline;
+    font-size:22px;
+}
+
+.category {
+    padding:20px 20px 0 20px;
+}   
+
+.posts {
+    margin-top:10px;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+
+@media screen and (min-width: 900px) {
+    h1 {
+        font-size:28px;
+    }
+}

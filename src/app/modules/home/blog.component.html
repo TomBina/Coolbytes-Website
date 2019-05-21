@@ -1,15 +1,15 @@
-<article>
+<div class="explore">
     <div class="title" *ngIf="tag">
         <h1>
             Search results for {{tag}}
         </h1>
     </div>
     <div class="title" *ngIf="!tag">
-        <h1>Welcome to Cool Bytes!</h1>
-        <p class="text">Read the latest blogs about cool technologies, patterns &amp; practices on CoolBytes.io.</p>
+        <h1>Become a <u>better</u> developer today.</h1>
+        <h2>Start learning new things right now.</h2>
     </div>
-    <div class="posts">
-        <home-blog-post-intro [blogPost]="blog.blogPost" *ngFor="let blog of (blogPosts$ | async)">
-        </home-blog-post-intro>
-    </div>
+</div>
+
+<article>
+    <category-component [category]="category" *ngFor="let category of categories$ | async"></category-component>
 </article>

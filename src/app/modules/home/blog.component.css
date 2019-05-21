@@ -1,6 +1,5 @@
 article {
-    background: radial-gradient(ellipse at center, #b2bbd1 0%,#ffffff 100%);
-    padding:100px 0 15px 0px;
+    padding:15px 0 0px 0px;
 }
 
 .title {
@@ -12,34 +11,48 @@ article {
     margin:0 10px 0 10px;
 }
 
-h1 {
-    font-size:25px;
-    margin:0 0 8px 0;
-    padding:0;
+.explore {
+    margin-top:82px;
+    background-color:rgb(29, 90, 82);
+    padding:25px 0 25px 0px;
 }
 
-.posts {
-    display: flex;
-    justify-content:center;
-    flex-wrap: wrap;
-    margin-top:10px;
+h1 {
+    color:#fff;
+    font-size:25px;
+    margin: 0 20px 0 20px;
+    font-weight:700;
+    font-family: 'Baloo Bhai', cursive;
+}
+
+h2 {
+    color:#fff;
+    font-size:20px;
+    font-family: 'Raleway';
+    margin:0;
 }
 
 @media screen and (min-width: 900px) {
     article {
-        padding:100px 0 30px 0px;
-    }
-
-    h1 {
-        font-size:32px;
-        margin-bottom:10px;
+        padding:20px 0 30px 0px;
     }
 
     .text {
         font-size:22px;
     }
 
-    .posts {
-        margin-top:15px;
+    .explore {
+        padding:15px 0 25px 0px;
+    }
+
+    h1 {
+        font-size:45px;
+    }
+
+    h2 {
+        color:#fff;
+        font-size:30px;
+        font-family: 'Raleway';
+        margin:0;
     }
 }

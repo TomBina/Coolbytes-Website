@@ -11,6 +11,7 @@ import { BlogPostComponent } from "./blog-post.component";
 import { BlogComponent } from "./blog.component";
 import { ContactComponent } from "./contact/contact.component";
 import { MaterialModule } from "../material/material.module";
+import { CategoryComponent } from './category-component';
 
 const routes: Routes = [
     {
@@ -49,6 +50,7 @@ const routes: Routes = [
     ],
     declarations: [
         BlogComponent,
+        CategoryComponent,
         BlogPostIntroComponent,
         BlogPostComponent,
         AboutComponent,
