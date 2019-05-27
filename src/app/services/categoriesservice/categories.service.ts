@@ -10,6 +10,7 @@ import { UpdateCategoryCommand } from "./update-category-command";
 })
 export class CategoriesService extends ApiService {
     private _url: string = environment.apiUri + "/categories";
+    private _categoriesCache: Category[];
 
     get(id): Observable<Category> {
         let observable = this.http.get<Category>(`${this._url}/${id}`);
@@ -18,6 +19,14 @@ export class CategoriesService extends ApiService {
 
     getAll(): Observable<Category[]> {
         return this.http.get<Category[]>(this._url);
+    }
+
+    async getByName(name) {
+        if (!this._categoriesCache) {
+            this._categoriesCache = await this.getAll().toPromise();
+        }
+
+        return this._categoriesCache.find(c => c.name === name);
     }
 
     add(name: string) {
