@@ -26,7 +26,7 @@ export class CategoriesService extends ApiService {
             this._categoriesCache = await this.getAll().toPromise();
         }
 
-        return this._categoriesCache.find(c => c.name === name);
+        return this._categoriesCache.find(c => c.name.toLowerCase() === name);
     }
 
     add(name: string) {

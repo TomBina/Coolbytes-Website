@@ -8,4 +8,9 @@ export class UrlFormatter {
         pathString = pathString.toLowerCase().replace(/\s/g, "-");
         return pathString;
     }
+
+    unformat(pathString) {
+        pathString = pathString.toLowerCase().replace(/-/g, " ");
+        return pathString;
+    }
 }

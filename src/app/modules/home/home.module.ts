@@ -37,6 +37,10 @@ const routes: Routes = [
     {
         path: "contact",
         component: ContactComponent
+    },
+    {
+        path: ":category",
+        component: CategoryComponent
     }
 ];
 

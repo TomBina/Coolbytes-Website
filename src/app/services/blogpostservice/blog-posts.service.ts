@@ -16,9 +16,14 @@ import { BlogPostOverview } from "./blog-post-overview";
 export class BlogPostsService extends ApiService {
     private _url: string = environment.apiUri + "/blogposts";
 
-    get(id): Observable<BlogPost> {
+    getById(id): Observable<BlogPost> {
         let observable = this.http.get<BlogPost>(`${this._url}/${id}`);
         return observable;
+    }
+
+    async getByCategory(id) {
+        let blogPosts = await this.http.get<BlogPostSummary[]>(`${this._url}/category/${id}`).toPromise();
+        return blogPosts;
     }
 
     getAll(tag?): Observable<BlogPostSummary[]> {
