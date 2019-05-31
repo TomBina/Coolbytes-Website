@@ -9,12 +9,12 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '12.x'
+    versionSpec: '8.x'
   displayName: 'install Node.js'
 
 - script: |
-    npm install -g @angular/cli
-    npm install -g tslint typescript
+    npm install -g @angular/cli@7.2.2
+    npm install -g tslint typescript@3.2.4
     npm install
   displayName: 'npm install'
 
