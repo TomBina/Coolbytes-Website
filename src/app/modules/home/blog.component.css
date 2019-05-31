@@ -1,18 +1,8 @@
-article {
-    padding:15px 0 0px 0px;
-}
-
 .title {
     text-align: center;
 }
 
-.text {
-    font-size:14px;
-    margin:0 10px 0 10px;
-}
-
 .explore {
-    margin-top:82px;
     background-color:rgb(29, 90, 82);
     padding:12px 0 17px 0px;
 }
@@ -34,10 +24,6 @@ h2 {
 @media screen and (min-width: 900px) {
     article {
         padding:20px 0 0px 0px;
-    }
-
-    .text {
-        font-size:22px;
     }
 
     .explore {
