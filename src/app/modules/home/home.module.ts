@@ -13,7 +13,7 @@ import { ContactComponent } from "./contact/contact.component";
 import { MaterialModule } from "../material/material.module";
 import { CategoryComponent } from "./category-component";
 
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: "",
         component: BlogComponent
