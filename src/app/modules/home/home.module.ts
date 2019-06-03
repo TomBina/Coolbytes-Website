@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes, UrlSegment } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { AboutComponent } from "./about/about.component";
 import { AuthorComponent } from "./about/author/author.component";
@@ -39,8 +39,16 @@ const routes: Routes = [
         component: ContactComponent
     },
     {
-        path: ":category",
-        component: CategoryComponent
+        component: CategoryComponent,
+        matcher: (segments, group, route) => {
+            let isAdmin = segments.some(s => s.path.includes("admin"));
+            return isAdmin ? null : ({
+                consumed: segments,
+                posParams: {
+                    category: new UrlSegment(segments[0].path, {})
+                }
+            });
+        }
     }
 ];
 
