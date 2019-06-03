@@ -40,17 +40,19 @@ const routes: Routes = [
     },
     {
         component: CategoryComponent,
-        matcher: (segments, group, route) => {
-            let isAdmin = segments.some(s => s.path.includes("admin"));
-            return isAdmin ? null : ({
-                consumed: segments,
-                posParams: {
-                    category: new UrlSegment(segments[0].path, {})
-                }
-            });
-        }
+        matcher: checkRoute
     }
 ];
+
+function checkRoute(segments, group, route) {
+    let isAdmin = segments.some(s => s.path.includes("admin"));
+    return isAdmin ? null : ({
+        consumed: segments,
+        posParams: {
+            category: new UrlSegment(segments[0].path, {})
+        }
+    });
+}
 
 @NgModule({
     imports: [
