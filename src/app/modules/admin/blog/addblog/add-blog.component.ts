@@ -24,7 +24,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
     externalLinks = [];
-    categories$: Observable<Category[]>;
+    categories: Category[];
     selectedFileName: string;
 
     @ViewChild(PreviewBlogComponent)
@@ -32,7 +32,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
     private _previewObserver: Subscription;
     private _files: FileList;
 
-    ngOnInit() {
+    async ngOnInit() {
         this.form = this._fb.group(
             {
                 subject: ["", [Validators.required, Validators.maxLength(100)]],
@@ -43,7 +43,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
                 externalLinks: this._fb.array([this.createExternalLinkFormGroup()])
             }
         );
-        this.categories$ = this._categoriesService.getAll();
+        this.categories = await this._categoriesService.getAll();
         this._previewObserver = this.form.valueChanges.subscribe(v => {
             this._previewBlogComponent.blogPostPreview
                 = new BlogPostPreview(this.form.get("subject").value,

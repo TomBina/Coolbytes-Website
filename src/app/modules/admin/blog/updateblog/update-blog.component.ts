@@ -29,7 +29,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
     image: Image;
-    categories$: Observable<Category[]>;
+    categories: Category[];
     selectedFileName: string;
 
     private _id: number;
@@ -38,7 +38,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
     private _previewBlogComponent: PreviewBlogComponent;
     private _previewObserver: Subscription;
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.form = this._formBuilder.group({
             subject: ["", [Validators.required, Validators.maxLength(100)]],
             contentIntro: ["", [Validators.required, Validators.maxLength(120)]],
@@ -58,8 +58,8 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         let currentCategoryId$ = blogPost$.pipe(map(b => b.categoryId));
 
         blogPost$.subscribe(b => this.updateForm(b));
-        this.categories$ = this._categoriesService.getAll();
-        this.categories$.subscribe(_ => currentCategoryId$.subscribe(id => this.form.get("category").setValue(id)));
+        this.categories = await this._categoriesService.getAll();
+        currentCategoryId$.subscribe(id => this.form.get("category").setValue(id));
     }
 
     ngOnDestroy(): void {

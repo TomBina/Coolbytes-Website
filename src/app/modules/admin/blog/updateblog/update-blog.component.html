@@ -30,7 +30,7 @@
                 </p>
                 <mat-form-field>
                     <mat-select placeholder="category" formControlName="category">
-                        <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</mat-option>
+                        <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <label>Links <a (click)="addExternalLinkControl()">add external link</a></label>

@@ -11,6 +11,10 @@ import { CategoriesService } from "src/app/services/categoriesservice/categories
             <mat-form-field>
                 <input formControlName="name" placeholder="name" matInput />
             </mat-form-field>
+            <mat-form-field>
+                <textarea formControlName="description" placeholder="description" matInput cdkTextareaAutosize
+                cdkAutosizeMinRows="3"></textarea>
+            </mat-form-field>
         </mat-dialog-content>
         <mat-dialog-actions>
             <button type="submit" mat-raised-button color="primary">save</button>
@@ -28,11 +32,12 @@ export class UpdateCategoryComponent implements OnInit {
 
     ngOnInit() {
         this.form = this._fb.group({
-            name: [this.data.name, [Validators.required, Validators.maxLength(50)]]
+            name: [this.data.name, [Validators.required, Validators.maxLength(50)]],
+            description: [this.data.description, [Validators.required, Validators.maxLength(1000)]]
         });
     }
 
-    onSubmit() {
+    async onSubmit() {
         if (!this.form.valid) {
             for (let controlName of Object.keys(this.form.controls)) {
                 this.form.get(controlName).markAsTouched();
@@ -42,8 +47,11 @@ export class UpdateCategoryComponent implements OnInit {
 
         let command = {
             id: this.data.id,
-            name: this.form.get("name").value
+            name: this.form.get("name").value,
+            description: this.form.get("description").value
         };
-        let subscription = this._categoriesService.update(command).subscribe(() => this._dialogRef.close(true));
+
+        await this._categoriesService.update(command);
+        this._dialogRef.close(true);
     }
 }

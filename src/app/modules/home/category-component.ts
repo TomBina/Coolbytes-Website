@@ -11,6 +11,7 @@ import { BlogPostsService } from "src/app/services/blogpostservice/blog-posts.se
         <div class="category">
             <ng-container *ngIf="category">
             <h1><a routerLink="/{{this.formatPath(category.category)}}">{{category.category}}</a></h1> - {{category.blogPosts.length}} posts
+            <p>{{category.description}}</p>
             <div class="posts">
                 <home-blog-post-intro [blogPost]="blog" *ngFor="let blog of category.blogPosts">
                 </home-blog-post-intro>
@@ -49,6 +50,7 @@ export class CategoryComponent implements OnInit {
 
         this.category = {
             category: category.name,
+            description: category.description,
             blogPosts: blogPosts
         };
     }
