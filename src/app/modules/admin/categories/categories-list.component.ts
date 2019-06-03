@@ -23,8 +23,8 @@ export class CategoriesListComponent implements OnInit {
         this.refresh();
     }
 
-    refresh() {
-        this._categoriesService.getAll().subscribe(c => this.categories = c);
+    async refresh() {
+        this.categories = await this._categoriesService.getAll();
     }
 
     onDrop(event: CdkDragDrop<Category[]>): void {

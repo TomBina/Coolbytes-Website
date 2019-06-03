@@ -17,24 +17,24 @@ export class CategoriesService extends ApiService {
         return observable;
     }
 
-    getAll(): Observable<Category[]> {
-        return this.http.get<Category[]>(this._url);
+    async getAll(): Promise<Category[]> {
+        return await this.http.get<Category[]>(this._url).toPromise();
     }
 
     async getByName(name) {
         if (!this._categoriesCache) {
-            this._categoriesCache = await this.getAll().toPromise();
+            this._categoriesCache = await this.getAll();
         }
 
         return this._categoriesCache.find(c => c.name.toLowerCase() === name);
     }
 
-    add(name: string) {
-        return this.http.post(this._url, { name: name });
+    async add(command) {
+        await this.http.post(this._url, command).toPromise();
     }
 
-    update(command: UpdateCategoryCommand) {
-        return this.http.put(this._url, command);
+    async update(command: UpdateCategoryCommand) {
+        await this.http.put(this._url, command).toPromise();
     }
 
     delete(id: number) {
