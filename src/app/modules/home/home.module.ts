@@ -44,7 +44,7 @@ export const routes: Routes = [
     }
 ];
 
-function checkRoute(segments, group, route) {
+export function checkRoute(segments, group, route) {
     let isAdmin = segments.some(s => s.path.includes("admin"));
     return isAdmin ? null : ({
         consumed: segments,
