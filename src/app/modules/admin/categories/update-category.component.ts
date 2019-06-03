@@ -12,7 +12,8 @@ import { CategoriesService } from "src/app/services/categoriesservice/categories
                 <input formControlName="name" placeholder="name" matInput />
             </mat-form-field>
             <mat-form-field>
-                <textarea formControlName="description" placeholder="description" matInput cdkTextareaAutosize></textarea>
+                <textarea formControlName="description" placeholder="description" matInput cdkTextareaAutosize 
+                cdkAutosizeMinRows="3"></textarea>
             </mat-form-field>
         </mat-dialog-content>
         <mat-dialog-actions>
