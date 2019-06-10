@@ -5,8 +5,6 @@
         </h1>
     </div>
     <div class="title" *ngIf="!tag">
-        <h1>Become a <u>better</u> developer today.</h1>
-        <h2>Start learning new things right now.</h2>
     </div>
 </div>
 <category-component [category]="category" *ngFor="let category of categories$ | async"></category-component>
