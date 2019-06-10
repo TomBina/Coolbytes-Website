@@ -3,8 +3,10 @@
 }
 
 .explore {
-    background-color:rgb(29, 90, 82);
-    padding:12px 0 17px 0px;
+    background:url("../../../assets/bg.png");
+    background-size: 150%;
+    background-color:rgb(58, 124, 115);
+    height:40px;
 }
 
 h1 {
@@ -27,7 +29,7 @@ h2 {
     }
 
     .explore {
-        padding:15px 0 25px 0px;
+        background-size: 60%;
     }
 
     h1 {
