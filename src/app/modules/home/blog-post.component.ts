@@ -5,6 +5,8 @@ import { Subscription } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 import { ImagesService } from "../../services/imagesservice/images.service";
+import { SeoService } from "../../services/metaservice/seo.service";
+import { BlogPost } from "src/app/services/blogpostservice/blog-post";
 
 @Component({
     templateUrl: "./blog-post.component.html",
@@ -19,7 +21,8 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     private _onRouteChanges: Subscription;
 
     constructor(private _blogPostsService: BlogPostsService, private _route: ActivatedRoute,
-        private _imagesService: ImagesService, private _titleService: Title) { }
+        private _imagesService: ImagesService, private _titleService: Title,
+        private _seoService: SeoService) { }
 
     ngOnInit(): void {
         this._onRouteChanges = this._route.params.subscribe(changes => {
@@ -41,6 +44,8 @@ export class BlogPostComponent implements OnInit, OnDestroy {
 
     proccesData(blogPost) {
         this._titleService.setTitle(`${blogPost.subject} - Cool Bytes`);
+        this._seoService.setAuthor(`${blogPost.author.firstName} ${blogPost.author.lastName}`);
+        this._seoService.setDescription(blogPost.contentIntro);
         window.scrollTo(0, 0);
 
         this.shareInfo = {
