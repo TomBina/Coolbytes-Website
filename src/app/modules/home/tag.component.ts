@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { BlogPostsService } from "src/app/services/blogpostservice/blog-posts.service";
-import { SeoService } from "src/app/services/metaservice/seo.service";
+import { SeoService } from "src/app/services/seoservice/seo.service";
 import { UrlFormatter } from "src/app/services/url-formatter";
 
 @Component({

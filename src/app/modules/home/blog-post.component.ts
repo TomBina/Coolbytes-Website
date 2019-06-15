@@ -6,7 +6,7 @@ import { UrlFormatter } from "src/app/services/url-formatter";
 import { environment } from "../../../environments/environment";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 import { ImagesService } from "../../services/imagesservice/images.service";
-import { SeoService } from "../../services/metaservice/seo.service";
+import { SeoService } from "../../services/seoservice/seo.service";
 
 @Component({
     templateUrl: "./blog-post.component.html",
@@ -21,7 +21,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     private _onRouteChanges: Subscription;
 
     constructor(private _blogPostsService: BlogPostsService, private _route: ActivatedRoute,
-        private _imagesService: ImagesService, private _titleService: Title,
+        private _imagesService: ImagesService,
         private _seoService: SeoService,
         private _urlFormatter: UrlFormatter) { }
 
@@ -44,7 +44,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     }
 
     proccesData(blogPost) {
-        this._titleService.setTitle(`${blogPost.subject} - Cool Bytes`);
+        this._seoService.setTitle(`${blogPost.subject} - Cool Bytes`);
         this._seoService.setAuthor(`${blogPost.author.firstName} ${blogPost.author.lastName}`);
         this._seoService.setDescription(blogPost.contentIntro);
         window.scrollTo(0, 0);

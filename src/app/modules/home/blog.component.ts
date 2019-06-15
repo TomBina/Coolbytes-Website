@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { SeoService } from "../../services/metaservice/seo.service";
+import { SeoService } from "../../services/seoservice/seo.service";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 
 @Component({

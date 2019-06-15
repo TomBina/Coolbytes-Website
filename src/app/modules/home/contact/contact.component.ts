@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { SeoService } from "../../../../app/services/metaservice/seo.service";
+import { SeoService } from "../../../services/seoservice/seo.service";
 import { ContactService } from "../../../services/contactservice/contact.service";
 
 @Component({
