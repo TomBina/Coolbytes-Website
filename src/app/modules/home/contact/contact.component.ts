@@ -1,7 +1,7 @@
-import { ContactService } from "../../../services/contactservice/contact.service";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { Title } from "@angular/platform-browser";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { SeoService } from "../../../../app/services/metaservice/seo.service";
+import { ContactService } from "../../../services/contactservice/contact.service";
 
 @Component({
     templateUrl: "./contact.component.html",
@@ -24,12 +24,12 @@ export class ContactComponent implements OnInit {
         return;
     }
 
-    constructor(private _fb: FormBuilder, private _contactService: ContactService, private _titleService: Title) {
-
+    constructor(private _fb: FormBuilder, private _contactService: ContactService, private _seoService: SeoService) {
     }
 
     ngOnInit() {
-        this._titleService.setTitle("Contact Cool Bytes");
+        this._seoService.setTitle("Contact Cool Bytes");
+        this._seoService.setDescription(`If you have any questions or need support, please fill in our contact form.`);
         this.form = this._fb.group({
             name: ["", Validators.required],
             email: ["", Validators.required],
