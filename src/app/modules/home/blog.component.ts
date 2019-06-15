@@ -13,8 +13,7 @@ export class BlogComponent implements OnInit {
     categories$: Observable<any[]>;
     tag: string;
 
-    constructor(private _blogpostsService: BlogPostsService, private _route: ActivatedRoute, private _titleService: Title) {
-        this.tag = this._route.snapshot.paramMap.get("tag");
+    constructor(private _blogpostsService: BlogPostsService, private _titleService: Title) {
     }
 
     ngOnInit(): void {

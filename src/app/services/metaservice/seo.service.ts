@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Meta } from "@angular/platform-browser";
+import { Meta, Title } from "@angular/platform-browser";
 import { Router, NavigationEnd } from "@angular/router";
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Router, NavigationEnd } from "@angular/router";
 export class SeoService {
     _tagNames: any[];
 
-    constructor(private _meta: Meta, private _router: Router) {
+    constructor(private _meta: Meta, private _router: Router, private _titleService: Title) {
         this._tagNames = [];
         _router.events.subscribe(e => {
             if (e instanceof NavigationEnd) {
@@ -19,6 +19,10 @@ export class SeoService {
 
     setAuthor(author) {
         this.setTag("author", author);
+    }
+
+    setTitle(title) {
+        this._titleService.setTitle(title);
     }
 
     setDescription(description) {

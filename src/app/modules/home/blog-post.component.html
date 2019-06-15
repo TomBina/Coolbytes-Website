@@ -37,7 +37,7 @@
             <h2>Tags</h2>
             <ul>
                 <li *ngFor="let tag of blogPost.tags">
-                    <a routerLink="/home/tag/{{tag.name}}">{{tag.name}}</a>
+                    <a routerLink="/tag/{{formatPath(tag.name)}}">{{tag.name}}</a>
                 </li>
             </ul>
         </div>
