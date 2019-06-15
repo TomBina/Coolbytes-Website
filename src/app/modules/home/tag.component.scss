@@ -15,7 +15,7 @@ h1 {
 }
 
 .posts {
-    margin-top:10px;
+    margin-top:20px;
     display: flex;
     justify-content:center;
     flex-wrap: wrap;
@@ -23,4 +23,10 @@ h1 {
 
 .tag {
     margin:20px;
+}
+
+@media (min-width: 576px) {
+    .explore {
+        background-size: 60%;
+    }
 }
