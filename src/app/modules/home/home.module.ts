@@ -12,6 +12,7 @@ import { BlogComponent } from "./blog.component";
 import { ContactComponent } from "./contact/contact.component";
 import { MaterialModule } from "../material/material.module";
 import { CategoryComponent } from "./category-component";
+import { TagComponent } from "./tag.component";
 
 export const routes: Routes = [
     {
@@ -19,8 +20,8 @@ export const routes: Routes = [
         component: BlogComponent
     },
     {
-        path: "home/tag/:tag",
-        component: BlogComponent
+        path: "tag/:tag",
+        component: TagComponent
     },
     {
         path: "home",
@@ -70,7 +71,8 @@ export function checkRoute(segments, group, route) {
         AboutComponent,
         ResumeEventComponent,
         AuthorComponent,
-        ContactComponent
+        ContactComponent,
+        TagComponent
     ]
 })
 export class HomeModule {

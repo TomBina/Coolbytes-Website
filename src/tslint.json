@@ -15,6 +15,7 @@
             false
         ],
         "prefer-const": false,
-        "eofline": false
+        "eofline": false,
+        "max-line-length": false
     }
 }

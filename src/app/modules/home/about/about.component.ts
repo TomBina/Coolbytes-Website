@@ -4,6 +4,7 @@ import { Author } from "../../../services/authorsservice/author";
 import { Resume } from "../../../services/resumeservice/resume";
 import { ResumeService } from "../../../services/resumeservice/resume.service";
 import { Subscription } from "rxjs";
+import { SeoService } from "../../../services/seoservice/seo.service";
 
 @Component({ templateUrl: "./about.component.html", styleUrls: ["./about.component.css"] })
 export class AboutComponent implements OnInit, OnDestroy {
@@ -12,10 +13,11 @@ export class AboutComponent implements OnInit, OnDestroy {
     author: Author;
     _resumeSubscription: Subscription;
 
-    constructor(private _resumeService: ResumeService, private _titleService: Title) { }
+    constructor(private _resumeService: ResumeService, private _seoService: SeoService) { }
 
     ngOnInit() {
-        this._titleService.setTitle("About Cool Bytes");
+        this._seoService.setTitle("About Cool Bytes");
+        this._seoService.setDescription(`Cool bytes is an open source platform for learning full stack development using frameworks like React, Angular and .Net Core.`);
         this._resumeSubscription = this._resumeService.get(41).subscribe(resume => this.updateTemplate(resume));
     }
 

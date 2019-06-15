@@ -1,0 +1,32 @@
+h1 {
+    font-family: 'Raleway';
+    color:#000;
+    font-weight:700;
+    margin:0;
+    display: inline;
+    font-size:22px;
+}
+
+.explore {
+    background:url("../../../assets/bg.png");
+    background-size: 150%;
+    background-color:rgb(58, 124, 115);
+    height:40px;
+}
+
+.posts {
+    margin-top:20px;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.tag {
+    margin:20px;
+}
+
+@media (min-width: 576px) {
+    .explore {
+        background-size: 60%;
+    }
+}
