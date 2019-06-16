@@ -1,3 +1,5 @@
+@import "../../../styles/mixins.scss";
+
 :host {
     flex-basis:100%;
 }
@@ -53,7 +55,7 @@
     text-overflow: ellipsis;
 }
 
-@media (min-width: 576px) {
+@include phone-large {
     :host {
         flex-basis:50%;
     }
@@ -68,13 +70,13 @@
     }
 }
 
-@media (min-width: 768px) { 
+@include tablet { 
     :host {
         flex-basis:33%;
     }
  }
 
- @media (min-width: 1200px) { 
+@include desktop { 
     :host {
         flex-basis:25%;
     }
