@@ -6,9 +6,10 @@ import { BlogPost } from "./blog-post";
 import { BlogPostSummary } from "./blog-post-summary";
 import { BlogPostUpdate } from "./blog-post-update";
 import { UpdateBlogPostCommand } from "./update-blog-post-command";
-import { catchError } from "rxjs/operators";
-import { Observable } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+import { Observable, of } from "rxjs";
 import { BlogPostOverview } from "./blog-post-overview";
+import { makeStateKey } from "@angular/platform-browser";
 
 @Injectable({
     providedIn: "root"
@@ -32,8 +33,23 @@ export class BlogPostsService extends ApiService {
     }
 
     getOverview() {
+        let key = makeStateKey("overview");
+
+        if (this.isBrowser) {
+            let cached = this.transferState.get(key, null);
+            if (cached) {
+                return of(cached);
+            }
+        }
+
         let url = `${this._url}/overview/`;
-        return this.http.get<BlogPostOverview>(url);
+        return this.http.get<BlogPostOverview>(url).pipe(
+            tap(obj => {
+                if (!this.isBrowser) {
+                    this.transferState.set(key, obj);
+                }
+            })
+        );
     }
 
     add(addBlogPostCommand: AddBlogPostCommand, files: FileList): Observable<BlogPostSummary> {
