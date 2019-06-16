@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
-import { UrlFormatter } from "src/app/services/url-formatter";
+import { UrlFormatter } from "../../../app/services/url-formatter";
 import { environment } from "../../../environments/environment";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 import { ImagesService } from "../../services/imagesservice/images.service";

@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { BlogPostsService } from "src/app/services/blogpostservice/blog-posts.service";
-import { SeoService } from "src/app/services/seoservice/seo.service";
-import { UrlFormatter } from "src/app/services/url-formatter";
+import { BlogPostsService } from "../../../app/services/blogpostservice/blog-posts.service";
+import { SeoService } from "../../../app/services/seoservice/seo.service";
+import { UrlFormatter } from "../../../app/services/url-formatter";
 
 @Component({
     template: `

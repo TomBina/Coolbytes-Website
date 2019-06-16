@@ -11,7 +11,7 @@ import { Subscription, Observable } from "rxjs";
 import { BlogPostPreview } from "../previewblog/blog-post-preview";
 import { PreviewBlogComponent } from "../previewblog/preview-blog.component";
 import { Category } from "../../../../services/categoriesservice/category";
-import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
+import { CategoriesService } from "../../../../../app/services/categoriesservice/categories.service";
 
 @Component({
     templateUrl: "./add-blog.component.html",

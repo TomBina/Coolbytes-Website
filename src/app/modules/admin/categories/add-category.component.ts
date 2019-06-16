@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material";
+import { CategoriesService } from "../../../../app/services/categoriesservice/categories.service";
 
 @Component({
     templateUrl: "./add-category.component.html"
