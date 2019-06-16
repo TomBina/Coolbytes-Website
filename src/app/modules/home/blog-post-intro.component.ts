@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 @Component({
     selector: "home-blog-post-intro",
     templateUrl: "./blog-post-intro.component.html",
-    styleUrls: ["blog-post-intro.component.css"]
+    styleUrls: ["blog-post-intro.component.scss"]
 })
 export class BlogPostIntroComponent {
     @Input()
