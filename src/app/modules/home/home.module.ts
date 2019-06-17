@@ -14,6 +14,7 @@ import { MaterialModule } from "../material/material.module";
 import { CategoryComponent } from "./category-component";
 import { TagComponent } from "./tag.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HeaderImageComponent } from "./header-image.component";
 
 export const routes: Routes = [
     {
@@ -74,7 +75,8 @@ export function checkRoute(segments, group, route) {
         ResumeEventComponent,
         AuthorComponent,
         ContactComponent,
-        TagComponent
+        TagComponent,
+        HeaderImageComponent
     ]
 })
 export class HomeModule {

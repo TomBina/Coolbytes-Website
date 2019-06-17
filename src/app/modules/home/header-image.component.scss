@@ -1,12 +1,14 @@
-.explore {
+@import "../../../styles/mixins.scss";
+
+.image {
     background:url("../../../assets/bg.png");
     background-size: 150%;
     background-color:rgb(58, 124, 115);
     height:40px;
 }
 
-@media (min-width: 576px) {
-    .explore {
+@include phone-large {
+    .image {
         background-size: 60%;
     }
 }
