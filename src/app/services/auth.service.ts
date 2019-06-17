@@ -1,17 +1,20 @@
 import { HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
 import { Router } from "@angular/router";
 import * as auth0 from "auth0-js";
 import { environment } from "../../environments/environment";
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
     providedIn: "root"
 })
 export class AuthService {
-    private auth0;
+    private _auth0;
+    private _isBrowser: boolean;
 
-    constructor(private _router: Router) {
-        this.auth0 = new auth0.WebAuth({
+    constructor(private _router: Router, @Inject(PLATFORM_ID) platformId) {
+        this._isBrowser = isPlatformBrowser(platformId);
+        this._auth0 = new auth0.WebAuth({
             clientID: "1172o11AfEVrHK8QTiqwixHdlTD2nwvA",
             domain: "coolbytes.auth0.com",
             responseType: "token id_token",
@@ -22,11 +25,11 @@ export class AuthService {
     }
 
     public login(): void {
-        this.auth0.authorize();
+        this._auth0.authorize();
     }
 
     public handleAuthentication(): void {
-        this.auth0.parseHash((err, authResult) => {
+        this._auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
                 this._router.navigateByUrl("admin");
@@ -53,7 +56,10 @@ export class AuthService {
     }
 
     public isAuthenticated(): boolean {
-        return false;
+        if (!this._isBrowser) {
+            return false;
+        }
+        
         const expiresAt = JSON.parse(localStorage.getItem("expires_at"));
         return new Date().getTime() < expiresAt;
     }

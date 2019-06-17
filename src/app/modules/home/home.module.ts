@@ -13,6 +13,7 @@ import { ContactComponent } from "./contact/contact.component";
 import { MaterialModule } from "../material/material.module";
 import { CategoryComponent } from "./category-component";
 import { TagComponent } from "./tag.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 export const routes: Routes = [
     {
@@ -61,7 +62,8 @@ export function checkRoute(segments, group, route) {
         RouterModule.forChild(routes),
         SharedModule,
         ReactiveFormsModule,
-        MaterialModule
+        MaterialModule,
+        BrowserAnimationsModule
     ],
     declarations: [
         BlogComponent,
