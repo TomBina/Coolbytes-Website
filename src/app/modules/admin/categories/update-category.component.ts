@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
+import { CategoriesService } from "../../../../app/services/categoriesservice/categories.service";
 
 @Component({
     template: `

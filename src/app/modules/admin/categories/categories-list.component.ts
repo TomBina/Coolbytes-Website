@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Component, OnInit } from "@angular/core";
-import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
-import { Category } from "src/app/services/categoriesservice/category";
+import { CategoriesService } from "../../../../app/services/categoriesservice/categories.service";
+import { Category } from "../../../../app/services/categoriesservice/category";
 import { MatSnackBar, MatDialog } from "@angular/material";
 import { AddCategoryComponent } from "./add-category.component";
 import { UpdateCategoryComponent } from "./update-category.component";

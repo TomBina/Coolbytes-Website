@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { UrlFormatter } from "src/app/services/url-formatter";
-import { CategoriesService } from "src/app/services/categoriesservice/categories.service";
+import { UrlFormatter } from "../../../app/services/url-formatter";
+import { CategoriesService } from "../../../app/services/categoriesservice/categories.service";
 import { ActivatedRoute } from "@angular/router";
-import { BlogPostsService } from "src/app/services/blogpostservice/blog-posts.service";
+import { BlogPostsService } from "../../../app/services/blogpostservice/blog-posts.service";
 
 @Component({
     selector: "category-component",
