@@ -59,7 +59,7 @@ export class AuthService {
         if (!this._isBrowser) {
             return false;
         }
-        
+
         const expiresAt = JSON.parse(localStorage.getItem("expires_at"));
         return new Date().getTime() < expiresAt;
     }

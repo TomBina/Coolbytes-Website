@@ -11,7 +11,7 @@ import { HeaderComponent } from "./header.component";
 
 @NgModule({
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: "serverApp" }),
     HttpClientModule,
     HomeModule,
     AppRoutingModule,
