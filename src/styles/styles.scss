@@ -3,42 +3,52 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "rows.scss";
 @import "mixins.scss";
+@import "variables.scss";
+
+html {
+    font-size:16px;
+}
 
 body {
-    color:#231e1e;
-    font-size: 15px;
     font-family: 'Open Sans', sans-serif;
+    font-size:1rem;
     padding: 0px;
     margin: 0px;
 }
 
-h1 {
-    font-size:28px;
-    color:#1e243d;
-    font-weight:700;
+h1, h2 {
+    font-size:1.5rem;
+
+    &.first {
+        margin-top:0px;
+    }
 }
 
 h2 {
-    font-size:20px;
-    color:#1e243d;
-    font-weight:700;
-}
-
-h1.no-top-margin, h2.no-top-margin {
-    margin-top:0px;
+    font-size:1.2rem;
 }
 
 a {
-    color:#1e243d;
+    color: $link;
     cursor:pointer;
+
+    &.small-link {
+        font-size:0.8rem;
+    }
+
+    &.md-link {
+        font-weight:700;
+    }
 }
 
-a.small-link {
-    font-size:13px;
+p {
+    line-height:1.6em;
 }
 
-a.md-link {
-    font-weight:700;
+ul {
+    li {
+        line-height:1.6em;
+    }
 }
 
 code {
@@ -90,22 +100,22 @@ table {
     box-shadow:-2px 6px 42px -1px #494949;
 }
 
-.author-image {
-    width:70px;
-    border-radius:50%;
-}
-
 .admin-content {
     margin:70px 20px 20px 20px;
-    font-size:15px;
 }
 
 mat-form-field {
     width:100%;
 }
 
-@media screen and (max-width: 900px) {
-    body {
-        font-size:14px;
+@include tablet {  
+    html {
+        font-size:16px;
+    }
+}
+
+@include desktop {
+    html {
+        font-size:16px;
     }
 }

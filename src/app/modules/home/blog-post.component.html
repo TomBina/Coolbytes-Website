@@ -1,6 +1,6 @@
 <div class="page">
     <article *ngIf="blogPost">
-        <h1 class="no-top-margin">{{blogPost.subject}}</h1>
+        <h1 class="first">{{blogPost.subject}}</h1>
         <p class="post-info">{{blogPost.date | date}} by {{blogPost.author.firstName}}</p>
         <md [value]="blogPost.contentIntro"></md>
         <md [value]="blogPost.content"></md>
@@ -8,17 +8,13 @@
     </article>
     <aside *ngIf="blogPost">
         <div *ngIf="authorImage">
-            <h2 class="no-top-margin">Author</h2>
+            <h2 class="first">Author</h2>
             <div class="author">
                 <div>
                     <img [src]="authorImage" class="author-image" />
                 </div>
                 <div class="about">
-                    <a>{{blogPost.author.firstName}} {{blogPost.author.lastName}}</a>
-                    <br />
-                    <span>
-                        <md [value]="blogPost.author.about"></md>
-                    </span>
+                    <md [value]="(blogPost.author.firstName + ' ' + blogPost.author.lastName + '\n' + blogPost.author.about)"></md>
                 </div>
             </div>
         </div>
