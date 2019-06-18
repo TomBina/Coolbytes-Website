@@ -1,9 +1,5 @@
 @import "../../../styles/mixins.scss";
 
-:host {
-    flex-basis:100%;
-}
-
 .post {
     border: 1px solid #ABB0C5;
     box-sizing: border-box;
@@ -49,16 +45,13 @@
     text-overflow: ellipsis;
     text-decoration: none;
 }
+
 .text > p {
     text-overflow: ellipsis;
     font-size:0.85rem;
 }
 
 @include phone-large {
-    :host {
-        flex-basis:50%;
-    }
-
     .post {
         margin-right:15px;
         margin-bottom:20px;
@@ -69,19 +62,8 @@
     }
 }
 
-@include tablet { 
-    :host {
-        flex-basis:33%;
-    }
- }
-
 @include desktop { 
-    :host {
-        flex-basis:25%;
-    }
-
     .text > p {
-        text-overflow: ellipsis;
         font-size:0.95rem;
     }
 }

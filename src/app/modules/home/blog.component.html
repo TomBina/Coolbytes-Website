@@ -1,4 +1,6 @@
 <home-header-image></home-header-image>
 <div class="page">
-    <category-component [category]="category" *ngFor="let category of categories$ | async"></category-component>
+    <div *ngFor="let category of categories$ | async" class="category">
+        <home-blog-category-component [category]="category"></home-blog-category-component>
+    </div>
 </div>
