@@ -8,7 +8,7 @@ import { BlogPostsService } from "../../services/blogpostservice/blog-posts.serv
     selector: "home-category-component",
     styleUrls: ["./category.component.scss"],
     template: `
-        <div class="category">
+        <div class="page">
             <ng-container *ngIf="category">
             <h1>{{category.category}}</h1>
             <p><md [value]="category.description"></md></p>

@@ -7,16 +7,16 @@ import { UrlFormatter } from "../../../app/services/url-formatter";
 @Component({
     template: `
     <ng-container *ngIf="tagName">
-        <div class="explore">
-        </div>
-        <div class="tag">
-        <h1>
-            {{tagName}}
-        </h1>
-        <div class="posts">
-            <home-blog-post-intro [blogPost]="blog" *ngFor="let blog of blogPosts$ | async">
-            </home-blog-post-intro>
-        </div>
+        <div class="page">
+            <h1>
+                {{tagName}}
+            </h1>
+            <div class="posts">
+                <div class="post" *ngFor="let blog of blogPosts$ | async">
+                    <home-blog-post-intro [blogPost]="blog">
+                    </home-blog-post-intro>
+                </div>
+            </div>
         </div>
     </ng-container>`,
     styleUrls: ["./tag.component.scss"]

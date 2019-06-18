@@ -9,14 +9,14 @@ a {
     text-decoration: none;
 }
 
-.category {
+.page {
     margin:20px;
 }
 
 .posts {
     margin-top:10px;
     display: flex;
-    justify-content:center;
+    justify-content:flex-start;
     flex-wrap: wrap;
 }
 
@@ -35,7 +35,7 @@ a {
         font-size:0.8rem;
     }
 
-    .category {
+    .page {
         margin:20px auto 20px auto;
         width:90%;
     }

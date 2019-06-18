@@ -1,32 +1,39 @@
-h1 {
-    font-family: 'Raleway';
-    color:#000;
-    font-weight:700;
-    margin:0;
-    display: inline;
-    font-size:22px;
-}
+@import "../../../styles/mixins.scss";
 
-.explore {
-    background:url("../../../assets/bg.png");
-    background-size: 150%;
-    background-color:rgb(58, 124, 115);
-    height:40px;
+.page {
+    margin:20px;
 }
 
 .posts {
     margin-top:20px;
     display: flex;
-    justify-content:center;
+    justify-content:flex-start;
     flex-wrap: wrap;
 }
 
-.tag {
-    margin:20px;
+.post {
+    flex-basis:100%;
 }
 
-@media (min-width: 576px) {
-    .explore {
-        background-size: 60%;
+@include phone-large {
+    .post {
+        flex-basis:50%;
+    }
+}
+
+@include tablet {
+    .page {
+        margin:20px auto 20px auto;
+        width:90%;
+    }
+
+    .post {
+        flex-basis:33%;
+    }
+}
+
+@include desktop {
+    .post {
+        flex-basis:25%;
     }
 }
