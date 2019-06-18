@@ -22,7 +22,7 @@
 }
 
 .info {
-    font-size:12px; 
+    font-size:0.7rem; 
     text-transform: uppercase;
     height:20px;
     padding:2px 5px 3px 5px;
@@ -44,15 +44,14 @@
 
 .text > a {
     font-family:Raleway;
-    font-size:18px;
     font-weight:700;
     color:#1e243d;
     text-overflow: ellipsis;
     text-decoration: none;
 }
 .text > p {
-    font-size:14px;
     text-overflow: ellipsis;
+    font-size:0.85rem;
 }
 
 @include phone-large {
@@ -79,5 +78,10 @@
 @include desktop { 
     :host {
         flex-basis:25%;
+    }
+
+    .text > p {
+        text-overflow: ellipsis;
+        font-size:0.95rem;
     }
 }

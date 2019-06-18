@@ -1,0 +1,8 @@
+@import "../../../styles/mixins.scss";
+
+@include desktop { 
+    .page {
+        margin:0 auto 0 auto;
+        width:90%;
+    }
+}

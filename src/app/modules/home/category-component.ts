@@ -10,12 +10,13 @@ import { BlogPostsService } from "../../../app/services/blogpostservice/blog-pos
     template: `
         <div class="category">
             <ng-container *ngIf="category">
-            <h1><a routerLink="/{{this.formatPath(category.category)}}">{{category.category}}</a></h1> - {{category.blogPosts.length}} posts
+            <h1>{{category.category}}</h1> <a routerLink="/{{this.formatPath(category.category)}}" *ngIf="!singleCategory">see all {{category.blogPosts.length}} posts</a>
             <p><md [value]="category.description"></md></p>
             <div class="posts">
-                <home-blog-post-intro [blogPost]="blog" *ngFor="let blog of category.blogPosts">
+                <home-blog-post-intro [blogPost]="blog" *ngFor="let blog of blogPosts">
                 </home-blog-post-intro>
             </div>
+            <a mat-raised-button routerLink="/{{this.formatPath(category.category)}}" *ngIf="!singleCategory">see all {{category.blogPosts.length}} posts</a>
             </ng-container>
         </div>
     `
@@ -23,6 +24,15 @@ import { BlogPostsService } from "../../../app/services/blogpostservice/blog-pos
 export class CategoryComponent implements OnInit {
     @Input()
     category;
+    singleCategory: boolean;
+    get blogPosts() {
+        if (this.singleCategory) {
+            return this.category.blogPosts;
+        }
+        else {
+            return this.category.blogPosts.slice(0,4);
+        }
+    }
 
     constructor(private _urlFormatter: UrlFormatter,
         private _categoriesService: CategoriesService,
@@ -47,7 +57,7 @@ export class CategoryComponent implements OnInit {
         }
 
         let blogPosts = await this._blogPostsService.getByCategory(category.id);
-
+        this.singleCategory = true;
         this.category = {
             category: category.name,
             description: category.description,

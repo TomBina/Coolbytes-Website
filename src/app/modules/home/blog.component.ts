@@ -5,7 +5,8 @@ import { SeoService } from "../../services/seoservice/seo.service";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 
 @Component({
-    templateUrl: "./blog.component.html"
+    templateUrl: "./blog.component.html",
+    styleUrls: ["./blog.component.scss"]
 })
 export class BlogComponent implements OnInit {
     categories$: Observable<any[]>;

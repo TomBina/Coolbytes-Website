@@ -1,0 +1,14 @@
+code {
+    background-color:#dddcdc;
+}
+
+pre {
+    background-color:#1E1E1E;
+    color:#dcdcdc;
+    padding:10px;
+}
+
+pre > code {
+    background-color: transparent;
+    color:#dcdcdc;
+}
