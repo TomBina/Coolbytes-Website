@@ -35,7 +35,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
                 this._blogPostSubscription.unsubscribe();
             }
 
-            this._blogPostSubscription = this._blogPostsService.getById(changes.id).subscribe(b => setTimeout(() => this.proccesData(b), 2000));
+            this._blogPostSubscription = this._blogPostsService.getById(changes.id).subscribe(b => this.proccesData(b));
         });
     }
 
