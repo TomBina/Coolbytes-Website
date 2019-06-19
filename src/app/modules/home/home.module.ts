@@ -16,6 +16,7 @@ import { TagComponent } from "./tag.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeaderImageComponent } from "./header-image.component";
 import { BlogCategoryComponent } from "./blog-category.component";
+import { BlogPostLoadingComponent } from "./blog-post-loading.component";
 
 export const routes: Routes = [
     {
@@ -73,6 +74,7 @@ export function checkRoute(segments, group, route) {
         CategoryComponent,
         BlogPostIntroComponent,
         BlogPostComponent,
+        BlogPostLoadingComponent,
         AboutComponent,
         ResumeEventComponent,
         AuthorComponent,
