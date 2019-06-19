@@ -1,0 +1,41 @@
+@import "../../../styles/variables.scss";
+
+.footer-row {
+    height:12px;
+    background-color: $color-secondary;
+}
+
+footer {
+    padding:10px;
+    font-size:13px;
+    text-align: center;
+    background-color: #1e243d;
+    color:#fff;
+}
+
+ul {
+    margin:0;
+    padding:0;
+    list-style: none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    li:first-child {
+        margin-right:20px;
+    }
+
+    li:last-child {
+        text-align:left;
+    }
+}
+
+img {
+    width:60px;
+}
+
+a {
+    font-weight:700;
+    text-decoration: none;
+    color:#fff;
+}
