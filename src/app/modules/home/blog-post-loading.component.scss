@@ -1,0 +1,56 @@
+@import "../../../styles/mixins.scss";
+
+.loading {
+    margin:20px;
+}
+
+:host {
+    width:100%;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -1168px 0
+    }
+    100%{
+        background-position: 1168px 0
+    }
+}
+
+.loading-placeholder {
+    animation: 4s forwards infinite linear placeHolderShimmer;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1200px 104px;
+    
+    &.header {
+        height:30px;
+        margin-bottom:20px;
+        margin-top:30px;
+
+        &.first {
+            margin-top:0px;
+        }
+    }
+
+    &.paragraph {
+        height:12px;
+        margin-bottom:10px;
+    }
+
+    &.code {
+        height:150px;
+        margin-top:30px;
+        margin-bottom:30px;
+    }
+}
+
+.loading-spacer {
+    margin-top:20px;
+}
+
+@include tablet {
+    .loading {
+        margin:0px 20px 0px 20px;
+    }
+}
