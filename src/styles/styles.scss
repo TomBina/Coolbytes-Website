@@ -2,109 +2,83 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "rows.scss";
+@import "code.scss";
+@import "mixins.scss";
+@import "variables.scss";
+@import "dialog.scss";
+@import "admin.scss";
+
+html {
+    font-size:16px;
+}
 
 body {
-    color:#231e1e;
-    font-size: 15px;
     font-family: 'Open Sans', sans-serif;
+    font-size:1rem;
     padding: 0px;
     margin: 0px;
+    color: $text;
 }
 
 h1 {
-    font-size:28px;
-    color:#1e243d;
-    font-weight:700;
+    font-size:1.5rem;
 }
 
 h2 {
-    font-size:20px;
-    color:#1e243d;
-    font-weight:700;
+    font-size:1.2rem;
 }
 
-h1.no-top-margin, h2.no-top-margin {
-    margin-top:0px;
+h1,h2 {
+    &.first {
+        margin-top:0px;
+    }
 }
 
 a {
-    color:#1e243d;
+    color: $link;
     cursor:pointer;
+
+    &.small-link {
+        font-size:0.8rem;
+    }
+
+    &.md-link {
+        font-weight:700;
+    }
 }
 
-a.small-link {
-    font-size:13px;
+p {
+    line-height:1.6em;
 }
 
-a.md-link {
-    font-weight:700;
-}
-
-code {
-    background-color:#dddcdc;
-}
-
-pre {
-    background-color:#1E1E1E;
-    color:#dcdcdc;
-    padding:10px;
-}
-
-pre > code {
-    background-color: transparent;
-    color:#dcdcdc;
+ul {
+    li {
+        line-height:1.6em;
+    }
 }
 
 label {
     text-transform: uppercase;
     font-size:14px;
-    color:#7B808F;
+    color:$color-grey;
 }
 
 table {
     width:100%;
 }
 
-.backdrop { 
-    background-color:#000; 
-    opacity:0.65; 
-    position:fixed; 
-    width:100%; 
-    height:100%; 
-    top:0; 
-    left:0; 
-    z-index: 1000; 
-}
-
-.dialog { 
-    background-color:#fff; 
-    position:fixed; 
-    z-index:1001; 
-    transform:translate(-50%,-50%); 
-    top:50%; 
-    left:50%; 
-    max-height:90%; 
-    overflow:auto; 
-    padding:20px;
-    box-shadow:-2px 6px 42px -1px #494949;
-}
-
-.author-image {
-    width:70px;
-    border-radius:50%;
-}
-
-.admin-content {
-    margin:70px 20px 20px 20px;
-    font-size:15px;
-}
-
 mat-form-field {
     width:100%;
 }
 
-@media screen and (max-width: 900px) {
-    body {
-        font-size:14px;
+@include tablet {  
+    html {
+        font-size:16px;
+    }
+}
+
+@include desktop {
+    html {
+        font-size:16px;
     }
 }

@@ -11,9 +11,11 @@ import { BlogPostComponent } from "./blog-post.component";
 import { BlogComponent } from "./blog.component";
 import { ContactComponent } from "./contact/contact.component";
 import { MaterialModule } from "../material/material.module";
-import { CategoryComponent } from "./category-component";
+import { CategoryComponent } from "./category.component";
 import { TagComponent } from "./tag.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HeaderImageComponent } from "./header-image.component";
+import { BlogCategoryComponent } from "./blog-category.component";
 
 export const routes: Routes = [
     {
@@ -67,6 +69,7 @@ export function checkRoute(segments, group, route) {
     ],
     declarations: [
         BlogComponent,
+        BlogCategoryComponent,
         CategoryComponent,
         BlogPostIntroComponent,
         BlogPostComponent,
@@ -74,7 +77,8 @@ export function checkRoute(segments, group, route) {
         ResumeEventComponent,
         AuthorComponent,
         ContactComponent,
-        TagComponent
+        TagComponent,
+        HeaderImageComponent
     ]
 })
 export class HomeModule {

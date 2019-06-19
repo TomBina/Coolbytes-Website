@@ -6,7 +6,7 @@ import { Component, Input } from "@angular/core";
 @Component({
     selector: "home-about-author",
     templateUrl: "./author.component.html",
-    styleUrls: ["./author.component.css"]
+    styleUrls: ["./author.component.scss"]
 })
 export class AuthorComponent {
     experiences;

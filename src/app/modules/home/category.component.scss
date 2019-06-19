@@ -1,11 +1,20 @@
 @import "../../../styles/mixins.scss";
 
+h1 {
+    display:inline;
+    margin-right:10px;
+}
+
+a {
+    text-decoration: none;
+}
+
 .page {
     margin:20px;
 }
 
 .posts {
-    margin-top:20px;
+    margin-top:10px;
     display: flex;
     justify-content:flex-start;
     flex-wrap: wrap;
@@ -22,6 +31,10 @@
 }
 
 @include tablet {
+    p {
+        font-size:0.8rem;
+    }
+
     .page {
         margin:20px auto 20px auto;
         width:90%;
@@ -33,6 +46,10 @@
 }
 
 @include desktop {
+    p {
+        font-size:0.95rem;
+    }
+
     .post {
         flex-basis:25%;
     }

@@ -10,7 +10,7 @@ import { isPlatformBrowser } from "@angular/common";
 
 @Component({
     templateUrl: "./blog-post.component.html",
-    styleUrls: ["blog-post.component.css"]
+    styleUrls: ["blog-post.component.scss"]
 })
 export class BlogPostComponent implements OnInit, OnDestroy {
     blogPost;

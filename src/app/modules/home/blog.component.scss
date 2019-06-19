@@ -1,0 +1,8 @@
+@import "../../../styles/mixins.scss";
+
+@include tablet {
+    .page .category:nth-child(n+2) {
+        display:block;
+        margin-top:40px;
+    }
+}

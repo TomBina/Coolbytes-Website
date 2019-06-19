@@ -6,7 +6,7 @@ import { ResumeService } from "../../../services/resumeservice/resume.service";
 import { Subscription } from "rxjs";
 import { SeoService } from "../../../services/seoservice/seo.service";
 
-@Component({ templateUrl: "./about.component.html", styleUrls: ["./about.component.css"] })
+@Component({ templateUrl: "./about.component.html", styleUrls: ["./about.component.scss"] })
 export class AboutComponent implements OnInit, OnDestroy {
     resumeEvents;
     years: string[];

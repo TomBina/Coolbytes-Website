@@ -1,11 +1,20 @@
 @import "../../../styles/mixins.scss";
 
-.page {
+h1 {
+    display:inline;
+    margin-right:10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.category {
     margin:20px;
 }
 
 .posts {
-    margin-top:20px;
+    margin-top:10px;
     display: flex;
     justify-content:flex-start;
     flex-wrap: wrap;
@@ -22,9 +31,17 @@
 }
 
 @include tablet {
-    .page {
+    p {
+        font-size:0.8rem;
+    }
+
+    .category {
         margin:20px auto 20px auto;
         width:90%;
+    }
+
+    .posts .post:nth-child(n+4) {
+        display:none;
     }
 
     .post {
@@ -33,6 +50,18 @@
 }
 
 @include desktop {
+    p {
+        font-size:0.95rem;
+    }
+
+    .posts .post:nth-child(n+4) {
+        display:block;
+    }
+
+    .posts .post:nth-child(n+5) {
+        display:none;
+    }
+
     .post {
         flex-basis:25%;
     }

@@ -6,7 +6,7 @@ import { BlogPostsService } from "../../services/blogpostservice/blog-posts.serv
 
 @Component({
     templateUrl: "./blog.component.html",
-    styleUrls: ["./blog.component.css"]
+    styleUrls: ["./blog.component.scss"]
 })
 export class BlogComponent implements OnInit {
     categories$: Observable<any[]>;

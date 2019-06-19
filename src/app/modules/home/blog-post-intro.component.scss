@@ -1,6 +1,5 @@
-:host {
-    flex-basis:100%;
-}
+@import "../../../styles/mixins.scss";
+@import "../../../styles/variables.scss";
 
 .post {
     border: 1px solid #ABB0C5;
@@ -15,16 +14,16 @@
     box-shadow:-2px 6px 20px -1px #CECECE;
 }
 
-.post.tobackground {
-    opacity:0.8;
-}
-
 .info {
-    font-size:12px; 
+    font-size:0.7rem; 
     text-transform: uppercase;
     height:20px;
     padding:2px 5px 3px 5px;
     box-sizing: border-box;
+
+    a {
+        color:$text;
+    }
 }
 
 .image { 
@@ -42,22 +41,18 @@
 
 .text > a {
     font-family:Raleway;
-    font-size:18px;
     font-weight:700;
     color:#1e243d;
     text-overflow: ellipsis;
     text-decoration: none;
 }
+
 .text > p {
-    font-size:14px;
     text-overflow: ellipsis;
+    font-size:0.85rem;
 }
 
-@media (min-width: 576px) {
-    :host {
-        flex-basis:50%;
-    }
-
+@include phone-large {
     .post {
         margin-right:15px;
         margin-bottom:20px;
@@ -68,14 +63,8 @@
     }
 }
 
-@media (min-width: 768px) { 
-    :host {
-        flex-basis:33%;
-    }
- }
-
- @media (min-width: 1200px) { 
-    :host {
-        flex-basis:25%;
+@include desktop { 
+    .text > p {
+        font-size:0.95rem;
     }
 }
