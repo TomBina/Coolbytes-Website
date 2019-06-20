@@ -8,21 +8,21 @@ import { BlogPostsService } from "../../services/blogpostservice/blog-posts.serv
     selector: "home-category-component",
     styleUrls: ["./category.component.scss"],
     template: `
-        <div class="page">
-            <ng-container *ngIf="!category">
-                <home-blog-loading></home-blog-loading>
-            </ng-container>
-            <ng-container *ngIf="category">
-            <h1>{{category.category}}</h1>
-            <p><md [value]="category.description"></md></p>
-            <div class="posts">
-                <div class="post" *ngFor="let blog of category.blogPosts">
-                    <home-blog-post-intro [blogPost]="blog">
-                    </home-blog-post-intro>
+        <ng-container *ngIf="!category">
+            <home-blog-loading></home-blog-loading>
+        </ng-container>
+        <ng-container *ngIf="category">
+            <div class="page">
+                <h1>{{category.category}}</h1>
+                <p><md [value]="category.description"></md></p>
+                <div class="posts">
+                    <div class="post" *ngFor="let blog of category.blogPosts">
+                        <home-blog-post-intro [blogPost]="blog">
+                        </home-blog-post-intro>
+                    </div>
                 </div>
             </div>
-            </ng-container>
-        </div>
+        </ng-container>
     `
 })
 export class CategoryComponent implements OnInit {

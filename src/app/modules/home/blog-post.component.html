@@ -1,8 +1,8 @@
-<div class="page">
-    <ng-container *ngIf="!blogPost">
-        <home-blog-post-loading></home-blog-post-loading>
-    </ng-container>
-    <ng-container *ngIf="blogPost">
+<ng-container *ngIf="!blogPost">
+    <home-blog-post-loading></home-blog-post-loading>
+</ng-container>
+<ng-container *ngIf="blogPost">
+    <div class="page">
         <article>
             <h1 class="first">{{blogPost.subject}}</h1>
             <p class="post-info">{{blogPost.date | date}} by {{blogPost.author.firstName}}</p>
@@ -56,5 +56,5 @@
                 </ul>
             </div>
         </aside>
-    </ng-container>
-</div>
+    </div>
+</ng-container>
