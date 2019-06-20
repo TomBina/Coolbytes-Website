@@ -1,6 +1,6 @@
 @import "../../../styles/mixins.scss";
 
-.loading {
+.page {
     margin:20px;
 }
 
@@ -49,8 +49,42 @@
     margin-top:20px;
 }
 
+aside {
+    display:none;
+}
+
 @include tablet {
-    .loading {
-        margin:0px 20px 0px 20px;
+    .page {
+        margin:20px auto 20px auto;
+        display:flex;
+    }
+    
+    article {
+        width:70%;
+        padding:0px 20px 0px 15px;
+        box-sizing:border-box;
+    }
+    
+    aside {
+        display:block;
+        width:30%;
+        padding:0px 15px 0px 15px;
+        border-left:1px solid #DDDDDD;
+        box-sizing:border-box;
+    }
+}
+
+
+@include desktop {
+    .page {
+        width:90%;
+    }
+
+    article {
+        padding-right:40px;
+    }
+
+    aside {
+        padding-left:20px;
     }
 }

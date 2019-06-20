@@ -37,8 +37,9 @@ steps:
     Contents: |
       web.config
       robots.txt
+      favicon.ico
     TargetFolder: '$(Build.ArtifactStagingDirectory)/dist'
-  displayName: 'copy web.config to staging'
+  displayName: 'copy other essential files to staging'
 
 - task: PublishBuildArtifacts@1
   displayName: 'publish artifacts'
