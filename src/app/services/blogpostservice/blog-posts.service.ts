@@ -18,7 +18,7 @@ export class BlogPostsService extends ApiService {
     private _url: string = environment.apiUri + "/blogposts";
 
     getById(id): Observable<BlogPost> {
-        let key = makeStateKey(`blog${id}`);
+        let key = makeStateKey(`getbyid${id}`);
         if (this.isBrowser) {
             let cached = this.transferState.get(key, null);
             if (cached) {
@@ -38,17 +38,48 @@ export class BlogPostsService extends ApiService {
     }
 
     async getByCategory(id) {
-        let blogPosts = await this.http.get<BlogPostSummary[]>(`${this._url}/category/${id}`).toPromise();
+        let key = id ? makeStateKey(`getbycategory${id}`) : makeStateKey(`getbycategory`);
+
+        if (this.isBrowser) {
+            let cached = this.transferState.get(key, null);
+            if (cached) {
+                return of(cached);
+            }
+        }
+
+        let blogPosts = await this.http.get<BlogPostSummary[]>(`${this._url}/category/${id}`).pipe(
+            tap(obj => {
+                if (!this.isBrowser) {
+                    this.transferState.set(key, obj);
+                }
+            })
+        ).toPromise();
+
         return blogPosts;
     }
 
     getAll(tag?): Observable<BlogPostSummary[]> {
+        let key = tag ? makeStateKey(`getall${tag}`) : makeStateKey(`getall`);
+
+        if (this.isBrowser) {
+            let cached = this.transferState.get(key, null);
+            if (cached) {
+                return of(cached);
+            }
+        }
+
         let url = tag ? `${this._url}/?tag=${encodeURIComponent(tag)}` : this._url;
-        return this.http.get<BlogPostSummary[]>(url);
+        return this.http.get<BlogPostSummary[]>(url).pipe(
+            tap(obj => {
+                if (!this.isBrowser) {
+                    this.transferState.set(key, obj);
+                }
+            })
+        );
     }
 
     getOverview() {
-        let key = makeStateKey("overview");
+        let key = makeStateKey("getoverview");
 
         if (this.isBrowser) {
             let cached = this.transferState.get(key, null);
