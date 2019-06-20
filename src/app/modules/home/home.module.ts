@@ -1,23 +1,22 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes, UrlSegment } from "@angular/router";
+import { MaterialModule } from "../material/material.module";
 import { SharedModule } from "../shared/shared.module";
 import { AboutComponent } from "./about/about.component";
 import { AuthorComponent } from "./about/author/author.component";
 import { ResumeEventComponent } from "./about/resumeevent/resume-event.component";
+import { BlogCategoryComponent } from "./blog-category.component";
+import { BlogLoadingComponent } from "./blog-loading.component";
 import { BlogPostIntroComponent } from "./blog-post-intro.component";
+import { BlogPostLoadingComponent } from "./blog-post-loading.component";
 import { BlogPostComponent } from "./blog-post.component";
 import { BlogComponent } from "./blog.component";
-import { ContactComponent } from "./contact/contact.component";
-import { MaterialModule } from "../material/material.module";
 import { CategoryComponent } from "./category.component";
+import { ContactComponent } from "./contact/contact.component";
 import { TagComponent } from "./tag.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HeaderImageComponent } from "./header-image.component";
-import { BlogCategoryComponent } from "./blog-category.component";
-import { BlogPostLoadingComponent } from "./blog-post-loading.component";
-import { BlogLoadingComponent } from "./blog-loading.component";
 
 export const routes: Routes = [
     {
@@ -81,8 +80,7 @@ export function checkRoute(segments, group, route) {
         ResumeEventComponent,
         AuthorComponent,
         ContactComponent,
-        TagComponent,
-        HeaderImageComponent
+        TagComponent
     ]
 })
 export class HomeModule {
