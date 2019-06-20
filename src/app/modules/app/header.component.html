@@ -1,24 +1,32 @@
 <div class="wrapper">
     <header>
-    <img src="assets/logo.svg" (click)="toHome()" />
-    <nav>
-        <ul>
-            <li>
-                <a routerLink="/home">home</a>
-            </li>
-            <li>
-                <a routerLink="/about" class="main">about</a>
-            </li>
-            <li>
-                <a routerLink="/contact">contact</a>
-            </li>
-            <li>
-                <a routerLink="/admin" *ngIf="authService.isAuthenticated()">admin</a>
-            </li>
-            <li>
-                <a (click)="authService.logout()" *ngIf="authService.isAuthenticated()">logout</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+        <img src="assets/logo.svg" (click)="toHome()" />
+        <nav>
+            <ul>
+                <li>
+                    <a routerLink="/home">home</a>
+                </li>
+                <li>
+                    <a routerLink="/about" class="main">about</a>
+                </li>
+                <li>
+                    <a routerLink="/contact">contact</a>
+                </li>
+                <li>
+                    <a routerLink="/admin" *ngIf="authService.isAuthenticated()">admin</a>
+                </li>
+                <li>
+                    <a (click)="authService.logout()" *ngIf="authService.isAuthenticated()">logout</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <ul class="row">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
 </div>

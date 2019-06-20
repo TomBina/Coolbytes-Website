@@ -2,7 +2,6 @@
     <home-blog-loading></home-blog-loading>
 </ng-container>
 <ng-container *ngIf="categories">
-    <home-header-image></home-header-image>
     <div class="page">
         <div *ngFor="let category of categories" class="category">
             <home-blog-category-component [category]="category"></home-blog-category-component>

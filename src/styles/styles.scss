@@ -16,7 +16,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size:1rem;
     padding: 0px;
-    margin: 0px;
+    margin: 114px 0 0 0;
     color: $text;
 }
 
@@ -36,6 +36,7 @@ h1,h2 {
 
 a {
     color: $link;
+    text-decoration: none;
     cursor:pointer;
 
     &.small-link {
@@ -44,6 +45,7 @@ a {
 
     &.md-link {
         font-weight:700;
+        text-decoration: underline;
     }
 }
 
@@ -74,6 +76,10 @@ mat-form-field {
 @include tablet {  
     html {
         font-size:16px;
+    }
+
+    body {
+        margin: 124px 0 0 0;
     }
 }
 
