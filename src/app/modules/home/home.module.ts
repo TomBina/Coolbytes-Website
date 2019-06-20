@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeaderImageComponent } from "./header-image.component";
 import { BlogCategoryComponent } from "./blog-category.component";
 import { BlogPostLoadingComponent } from "./blog-post-loading.component";
+import { BlogLoadingComponent } from "./blog-loading.component";
 
 export const routes: Routes = [
     {
@@ -70,6 +71,7 @@ export function checkRoute(segments, group, route) {
     ],
     declarations: [
         BlogComponent,
+        BlogLoadingComponent,
         BlogCategoryComponent,
         CategoryComponent,
         BlogPostIntroComponent,

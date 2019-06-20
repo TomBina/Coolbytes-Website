@@ -1,0 +1,104 @@
+@import "../../../styles/mixins.scss";
+
+.page {
+    margin:20px;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -1168px 0
+    }
+    100%{
+        background-position: 1168px 0
+    }
+}
+
+.loading-placeholder {
+    animation: 4s forwards infinite linear placeHolderShimmer;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1200px 104px;
+    
+    &.header {
+        height:30px;
+        margin-bottom:20px;
+        margin-top:30px;
+
+        &.first {
+            margin-top:0px;
+        }
+    }
+
+    &.paragraph {
+        height:12px;
+        margin-bottom:10px;
+    }
+
+    &.post {
+        height:250px;
+        flex-basis:100%;
+    }
+}
+
+.loading-spacer {
+    margin-top:20px;
+}
+
+.posts {
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+}
+
+.posts .loading-placeholder.post:nth-child(n+2) {
+    display:none;
+}
+
+@include phone-large {
+    .loading-placeholder {
+        &.post {
+            flex-basis:50%;
+        }    
+    }
+
+    .posts .loading-placeholder.post:nth-child(n+2) {
+        display:block;
+    }
+
+    .posts .loading-placeholder.post:nth-child(n+3) {
+        display:none;
+    }
+}
+
+@include tablet {
+    .page {
+        margin:20px auto 20px auto;
+        width:90%;
+    }
+
+    .posts .loading-placeholder.post:nth-child(n+3) {
+        display:block;
+    }
+
+    .posts .loading-placeholder.post:nth-child(n+4) {
+        display:none;
+    }
+
+    .loading-placeholder {
+        &.post {
+            flex-basis:33%;
+        }    
+    }
+}
+
+@include desktop {
+    .posts .loading-placeholder.post:nth-child(n+4) {
+        display:block;
+    }
+
+    .loading-placeholder {
+        &.post {
+            flex-basis:24%;
+        }    
+    }
+}

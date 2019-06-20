@@ -9,8 +9,7 @@ import { BlogPostsService } from "../../services/blogpostservice/blog-posts.serv
     styleUrls: ["./blog.component.scss"]
 })
 export class BlogComponent implements OnInit {
-    categories$: Observable<any[]>;
-    tag: string;
+    categories;
 
     constructor(private _blogpostsService: BlogPostsService, private _seoService: SeoService) {
     }
@@ -18,12 +17,12 @@ export class BlogComponent implements OnInit {
     ngOnInit(): void {
         this._seoService.setTitle("Cool Bytes - Learn more every day.");
         this._seoService.setDescription(`On cool bytes you can learn full stack development using frameworks like React, Angular and .Net Core.`);
-        this.categories$ = this._blogpostsService.getOverview().pipe(
+        this._blogpostsService.getOverview().pipe(
             map(overview => (overview.categories.map(c => ({
                     cssClass: "post",
                     ...c
                 }))
             ))
-        );
+        ).subscribe(categories => this.categories = categories);
     }
 }
