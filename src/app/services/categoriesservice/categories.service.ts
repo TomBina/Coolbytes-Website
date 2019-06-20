@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { ApiService } from "../api-service";
 import { Category } from "./category";
 import { UpdateCategoryCommand } from "./update-category-command";
+import { makeStateKey } from "@angular/platform-browser";
+import { tap } from "rxjs/operators";
 
 @Injectable({
     providedIn: "root"
@@ -18,7 +20,22 @@ export class CategoriesService extends ApiService {
     }
 
     async getAll(): Promise<Category[]> {
-        return await this.http.get<Category[]>(this._url).toPromise();
+        let key = makeStateKey(`categoriesservice_getall`);
+
+        if (this.isBrowser) {
+            let cached = this.transferState.get(key, null);
+            if (cached) {
+                return of(cached).toPromise();
+            }
+        }
+
+        return await this.http.get<Category[]>(this._url).pipe(
+            tap(obj => {
+                if (!this.isBrowser) {
+                    this.transferState.set(key, obj);
+                }
+            })
+        ).toPromise();
     }
 
     async getByName(name) {

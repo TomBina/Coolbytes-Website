@@ -41,7 +41,7 @@ export class TagComponent implements OnInit {
         this.blogPosts$.subscribe(r => {
             if (r.length > 0) {
                 this._seoService.setTitle(`Articles tagged with ${this.tag}`);
-                setTimeout(() => this.tagName = this.tag, 3000);
+                this.tagName = this.tag;
                 this._seoService.setDescription(`See all articles tagged with ${this.tag}`);
             }
         });
