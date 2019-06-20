@@ -43,7 +43,7 @@ export class BlogPostsService extends ApiService {
         if (this.isBrowser) {
             let cached = this.transferState.get(key, null);
             if (cached) {
-                return of(cached);
+                return of(cached).toPromise();
             }
         }
 
@@ -59,7 +59,7 @@ export class BlogPostsService extends ApiService {
     }
 
     getAll(tag?): Observable<BlogPostSummary[]> {
-        let key = tag ? makeStateKey(`getall${tag}`) : makeStateKey(`getall`);
+        let key = tag ? makeStateKey(`getall${tag.toLowerCase().replace(/\s/g, "-")}`) : makeStateKey(`getall`);
 
         if (this.isBrowser) {
             let cached = this.transferState.get(key, null);
