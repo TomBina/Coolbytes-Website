@@ -18,7 +18,22 @@ export class BlogPostsService extends ApiService {
     private _url: string = environment.apiUri + "/blogposts";
 
     getById(id): Observable<BlogPost> {
-        let observable = this.http.get<BlogPost>(`${this._url}/${id}`);
+        let key = makeStateKey(`blog${id}`);
+        if (this.isBrowser) {
+            let cached = this.transferState.get(key, null);
+            if (cached) {
+                return of(cached);
+            }
+        }
+
+        let observable = this.http.get<BlogPost>(`${this._url}/${id}`).pipe(
+            tap(obj => {
+                if (!this.isBrowser) {
+                    this.transferState.set(key, obj);
+                }
+            })
+        );
+
         return observable;
     }
 
