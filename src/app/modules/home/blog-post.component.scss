@@ -78,6 +78,10 @@ aside a {
 }
 
 @include desktop {
+    ul {
+        padding-left:30px;
+    }
+
     .page {
         width:90%;
     }
