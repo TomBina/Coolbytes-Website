@@ -18,7 +18,7 @@ export class BlogPostsService extends ApiService {
     private _url: string = environment.apiUri + "/blogposts";
 
     getById(id): Observable<BlogPost> {
-        let key = makeStateKey(`getbyid${id}`);
+        let key = makeStateKey(`blogpostsservice_getbyid${id}`);
         if (this.isBrowser) {
             let cached = this.transferState.get(key, null);
             if (cached) {
@@ -38,12 +38,12 @@ export class BlogPostsService extends ApiService {
     }
 
     async getByCategory(id) {
-        let key = id ? makeStateKey(`getbycategory${id}`) : makeStateKey(`getbycategory`);
+        let key = id ? makeStateKey(`blogpostsservice_getbycategory${id}`) : makeStateKey(`blogpostsservice_getbycategory`);
 
         if (this.isBrowser) {
             let cached = this.transferState.get(key, null);
             if (cached) {
-                return of(cached);
+                return of(cached).toPromise();
             }
         }
 
@@ -59,7 +59,7 @@ export class BlogPostsService extends ApiService {
     }
 
     getAll(tag?): Observable<BlogPostSummary[]> {
-        let key = tag ? makeStateKey(`getall${tag}`) : makeStateKey(`getall`);
+        let key = tag ? makeStateKey(`blogpostsservice_getall${tag}`) : makeStateKey(`blogpostsservice_getall`);
 
         if (this.isBrowser) {
             let cached = this.transferState.get(key, null);
@@ -79,7 +79,7 @@ export class BlogPostsService extends ApiService {
     }
 
     getOverview() {
-        let key = makeStateKey("getoverview");
+        let key = makeStateKey("blogpostsservice_getoverview");
 
         if (this.isBrowser) {
             let cached = this.transferState.get(key, null);
