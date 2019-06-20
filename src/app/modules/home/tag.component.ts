@@ -6,6 +6,9 @@ import { UrlFormatter } from "../../../app/services/url-formatter";
 
 @Component({
     template: `
+    <ng-container *ngIf="!tagName">
+        <home-blog-loading></home-blog-loading>
+    </ng-container>
     <ng-container *ngIf="tagName">
         <div class="page">
             <h1>
@@ -38,7 +41,7 @@ export class TagComponent implements OnInit {
         this.blogPosts$.subscribe(r => {
             if (r.length > 0) {
                 this._seoService.setTitle(`Articles tagged with ${this.tag}`);
-                this.tagName = this.tag;
+                setTimeout(() => this.tagName = this.tag, 3000);
                 this._seoService.setDescription(`See all articles tagged with ${this.tag}`);
             }
         });
