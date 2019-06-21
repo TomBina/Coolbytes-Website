@@ -15,8 +15,8 @@ html {
 body {
     font-family: 'Open Sans', sans-serif;
     font-size:1rem;
-    padding: 0px;
-    margin: 114px 0 0 0;
+    margin: 0px;
+    padding: 94px 0 0 0;
     color: $text;
 }
 
@@ -76,10 +76,6 @@ mat-form-field {
 @include tablet {  
     html {
         font-size:16px;
-    }
-
-    body {
-        margin: 124px 0 0 0;
     }
 }
 
