@@ -1,9 +1,8 @@
-import { Component, Input, OnInit, Inject } from "@angular/core";
-import { UrlFormatter } from "../../services/url-formatter";
-import { CategoriesService } from "../../services/categoriesservice/categories.service";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
-import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { CategoriesService } from "../../services/categoriesservice/categories.service";
+import { UrlFormatter } from "../../services/url-formatter";
 
 @Component({
     selector: "home-category-component",
