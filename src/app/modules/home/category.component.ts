@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { UrlFormatter } from "../../services/url-formatter";
-import { CategoriesService } from "../../services/categoriesservice/categories.service";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
+import { CategoriesService } from "../../services/categoriesservice/categories.service";
+import { UrlFormatter } from "../../services/url-formatter";
 
 @Component({
     selector: "home-category-component",
@@ -31,7 +31,8 @@ export class CategoryComponent implements OnInit {
     constructor(private _urlFormatter: UrlFormatter,
         private _categoriesService: CategoriesService,
         private _blogPostsService: BlogPostsService,
-        private _route: ActivatedRoute) {
+        private _route: ActivatedRoute,
+        private _router: Router) {
     }
 
     formatPath(category) {
@@ -43,6 +44,7 @@ export class CategoryComponent implements OnInit {
         let category = await this._categoriesService.getByName(categoryName);
 
         if (!category) {
+            this._router.navigateByUrl("/404");
             return;
         }
 

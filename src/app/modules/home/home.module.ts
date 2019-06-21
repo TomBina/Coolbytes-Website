@@ -17,6 +17,7 @@ import { BlogComponent } from "./blog.component";
 import { CategoryComponent } from "./category.component";
 import { ContactComponent } from "./contact/contact.component";
 import { TagComponent } from "./tag.component";
+import { NotFoundComponent } from "../app/not-found.component";
 
 export const routes: Routes = [
     {
@@ -42,6 +43,10 @@ export const routes: Routes = [
     {
         path: "contact",
         component: ContactComponent
+    },
+    {
+        path: "404",
+        component: NotFoundComponent
     },
     {
         component: CategoryComponent,
@@ -80,7 +85,8 @@ export function checkRoute(segments, group, route) {
         ResumeEventComponent,
         AuthorComponent,
         ContactComponent,
-        TagComponent
+        TagComponent,
+        NotFoundComponent
     ]
 })
 export class HomeModule {

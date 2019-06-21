@@ -42,12 +42,12 @@
 .text > a {
     color:$link;
     text-overflow: ellipsis;
-    font-size:0.95rem
+    font-size:1rem;
+    font-weight:700;
 }
 
 .text > p {
     text-overflow: ellipsis;
-    font-size:0.85rem;
 }
 
 @include phone-large {
@@ -58,6 +58,14 @@
 
     .text {
         height:140px;
+    }
+
+    .text > a {
+        font-size:0.9rem;
+    }
+
+    .text > p {
+        font-size:0.85rem;
     }
 }
 

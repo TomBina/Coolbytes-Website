@@ -9,6 +9,10 @@ a {
     text-decoration: none;
 }
 
+p {
+    font-size:0.95rem;
+}
+
 .category {
     margin:20px;
 }
@@ -31,10 +35,6 @@ a {
 }
 
 @include tablet {
-    p {
-        font-size:0.8rem;
-    }
-
     .category {
         margin:20px auto 20px auto;
         width:90%;
