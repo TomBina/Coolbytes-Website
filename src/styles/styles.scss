@@ -7,6 +7,7 @@
 @import "variables.scss";
 @import "dialog.scss";
 @import "admin.scss";
+@import "md.scss";
 
 html {
     font-size:16px;
@@ -41,11 +42,6 @@ a {
 
     &.small-link {
         font-size:0.8rem;
-    }
-
-    &.md-link {
-        font-weight:700;
-        text-decoration: underline;
     }
 }
 

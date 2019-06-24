@@ -19,13 +19,17 @@ export class MdComponent implements OnChanges {
         let renderer = new marked.Renderer();
         renderer.image = (href: string, title: string, text: string) => {
             if (href.startsWith("/")) {
-                return `<img src="${_imagesService.getUri(href)}" />`;
+                return `<img class="md-image" src="${_imagesService.getUri(href)}" />`;
             }
             else {
-                return `<img src="${href}" />`;
+                return `<img class="md-image" src="${href}" />`;
             }
         };
         renderer.link = (href: string, title: string, text: string) => {
+            if (title == null && href === text) {
+                return href;
+            }
+
             return `<a class="md-link" href="${href}" title="${title}">${text}</a>`;
         };
 
