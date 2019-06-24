@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 import { CategoriesService } from "../../services/categoriesservice/categories.service";
 import { UrlFormatter } from "../../services/url-formatter";
-import { SeoService } from "src/app/services/seoservice/seo.service";
+import { SeoService } from "../../services/seoservice/seo.service";
 
 @Component({
     styleUrls: ["./category.component.scss"],
