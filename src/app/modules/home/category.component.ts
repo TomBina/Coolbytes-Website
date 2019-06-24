@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { BlogPostsService } from "../../services/blogpostservice/blog-posts.service";
 import { CategoriesService } from "../../services/categoriesservice/categories.service";
 import { UrlFormatter } from "../../services/url-formatter";
+import { SeoService } from "../../services/seoservice/seo.service";
 
 @Component({
-    selector: "home-category-component",
     styleUrls: ["./category.component.scss"],
     template: `
         <ng-container *ngIf="!category">
@@ -32,7 +32,8 @@ export class CategoryComponent implements OnInit {
         private _categoriesService: CategoriesService,
         private _blogPostsService: BlogPostsService,
         private _route: ActivatedRoute,
-        private _router: Router) {
+        private _router: Router,
+        private _seoService: SeoService) {
     }
 
     formatPath(category) {
@@ -47,6 +48,9 @@ export class CategoryComponent implements OnInit {
             this._router.navigateByUrl("/404");
             return;
         }
+
+        this._seoService.setTitle(category.name);
+        this._seoService.setDescription(category.description);
 
         let blogPosts = await this._blogPostsService.getByCategory(category.id);
         this.category = {

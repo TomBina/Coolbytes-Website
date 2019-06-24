@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { UrlFormatter } from "../../services/url-formatter";
 
 @Component({
@@ -24,8 +24,7 @@ export class BlogCategoryComponent {
     @Input()
     category;
 
-    constructor(private _urlFormatter: UrlFormatter) {
-    }
+    constructor(private _urlFormatter: UrlFormatter) { }
 
     formatPath(category) {
         return this._urlFormatter.format(category);
