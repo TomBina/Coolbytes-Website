@@ -8,7 +8,6 @@
             <p class="post-info">{{blogPost.date | date}} by {{blogPost.author.firstName}}</p>
             <md [value]="blogPost.contentIntro"></md>
             <md [value]="blogPost.content"></md>
-            <a target="blank" href="https://github.com/TomBina/CbCode">View the code on github</a>.
         </article>
         <aside>
             <div *ngIf="authorImage">
