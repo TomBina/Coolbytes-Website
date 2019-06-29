@@ -349,7 +349,7 @@ var _ = _self.Prism = {
 						continue;
 					}
 
-					if(lookbehind) {
+					if(lookbehind && match[1]) {
 						lookbehindLength = match[1].length;
 					}
 
