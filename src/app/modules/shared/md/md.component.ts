@@ -15,7 +15,7 @@ export class MdComponent implements OnChanges {
 
     private _marked;
 
-    constructor(private _imagesService: ImagesService, private _sanitizer: DomSanitizer) {
+    constructor(_imagesService: ImagesService, private _sanitizer: DomSanitizer) {
         let renderer = new marked.Renderer();
         renderer.image = (href: string, title: string, text: string) => {
             if (href.startsWith("/")) {
@@ -38,9 +38,25 @@ export class MdComponent implements OnChanges {
             breaks: true,
             renderer: renderer,
             sanitize: true,
-            highlight: (c, lang) =>  {
-                let val = prism.highlight(c, prism.languages.csharp);
-                return `${val}`;
+            highlight: (c, lang) => {
+                let languages = {
+                    jsx() {
+                        return prism.highlight(c, prism.languages.jsx);
+                    },
+                    js() {
+                        return prism.highlight(c, prism.languages.js);
+                    },
+                    css() {
+                        return prism.highlight(c, prism.languages.css);
+                    }
+                };
+
+                if (languages[lang]) {
+                    return languages[lang]();
+                }
+                else {
+                    return prism.highlight(c, prism.languages.csharp);
+                }
             }
         });
         this._marked = marked;
