@@ -15,8 +15,8 @@ export class AnalyticsService {
         }
 
         router.events.subscribe(event => {
-            if (event instanceof NavigationEnd) {
-                gtag("config", "UA-142788068-1", {
+            if (event instanceof NavigationEnd && !event.url.includes("admin")) {
+                gtag("config", environment.analyticsId, {
                     "page_path": event.urlAfterRedirects
                 });
             }

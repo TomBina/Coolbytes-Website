@@ -16,6 +16,7 @@
         ],
         "prefer-const": false,
         "eofline": false,
-        "max-line-length": false
+        "max-line-length": false,
+        "no-trailing-whitespace": false
     }
 }
