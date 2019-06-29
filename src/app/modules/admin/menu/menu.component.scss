@@ -1,7 +1,7 @@
+@import "../../../../styles/variables.scss";
+
 nav { 
-    background-color: #CACFE4;
-    position:fixed;
-    top:82px;
+    border-bottom:1px solid #c0c0c0;
     width:100%;
     height:50px;
     padding:12px;
@@ -24,12 +24,6 @@ a {
     font-size: 15px;
     text-transform: uppercase;
     text-decoration:none;
-    transition:border-top ease 500ms;
-    border-top:1px solid #CACFE4;
     color:#1e243d;
     padding:3px 0 12px 0;
-}
-
-a:hover {
-    border-top:1px solid #1e243d;
 }

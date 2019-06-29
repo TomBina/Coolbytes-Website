@@ -1,4 +1,5 @@
 @import "../../../../styles/mixins.scss";
+@import "../../../../styles/variables.scss";
 
 .resume {
     margin-top:72px;
@@ -7,7 +8,7 @@
 }
 
 .resume-events {
-    background-color:rgb(58, 124, 115);
+    background-color:$color-tertiary;
     margin-top:30px;
     padding-top:3px;
     padding-bottom:30px;
@@ -15,7 +16,6 @@
 
 h1 {
     text-align: center;
-    color:#fff;
     margin:10px 0 10px 0;
 }
 
