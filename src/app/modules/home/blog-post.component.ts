@@ -61,13 +61,6 @@ export class BlogPostComponent implements OnInit, OnDestroy {
             url: `${environment.appUri}post/${blogPost.id}/${blogPost.subjectUrl}`,
             subject: blogPost.subject
         };
-
-        if (blogPost.relatedLinks) {
-            for (const link of blogPost.relatedLinks) {
-                link.url = `/post/${link.id}/${link.subjectUrl}`;
-            }
-        }
-
         this.authorImage = this._imagesService.getUri(blogPost.author.image.uriPath);
         this.blogPost = blogPost;
     }

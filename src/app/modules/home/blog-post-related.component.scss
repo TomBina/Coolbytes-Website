@@ -1,0 +1,35 @@
+@import "../../../styles/mixins.scss";
+
+ul {
+    list-style: none;
+    margin:0;
+    padding:0;
+
+    li {
+        display:flex;
+
+        div:first-child {
+            margin-right:10px;
+        }
+
+        span {
+            font-weight:700;
+        }
+    }
+}
+
+img {
+    width:100px;
+}
+
+@include tablet {
+    img {
+        width:70px;
+    }
+}
+
+@include desktop {
+    img {
+        width:120px;
+    }
+}

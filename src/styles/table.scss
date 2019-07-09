@@ -1,10 +1,10 @@
-.row {
+.table-row {
     display:flex;
-    width:100%;
     align-items:center;
+    width:100%;
 }
 
-.col {
+.table-col {
     flex-shrink: 0;
     flex-grow:1;
 

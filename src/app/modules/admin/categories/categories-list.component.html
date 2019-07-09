@@ -4,9 +4,9 @@
     <mat-list cdkDropList (cdkDropListDropped)="onDrop($event)">
         <ng-container *ngFor="let category of categories">
             <mat-list-item cdkDrag>
-                <div class="row">
-                    <div class="col">{{category.name}}</div>
-                    <div class="col right">
+                <div class="table-row">
+                    <div class="table-col">{{category.name}}</div>
+                    <div class="table-col right">
                         <button mat-button>
                             <mat-icon matListIcon (click)="update(category)">edit</mat-icon>
                         </button>

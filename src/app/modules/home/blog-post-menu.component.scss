@@ -1,0 +1,118 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+
+.post-info {
+    font-size:0.9rem;
+    color: $color-grey;
+}
+
+.actions {
+    display:flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.action {
+    margin-right:20px;
+}
+
+@keyframes slide-in {
+    0% {
+        opacity:0;
+        bottom:-100vh;
+    }
+
+    100% {
+        opacity: 1;
+        bottom:0;
+    }
+}
+
+.menu {
+    width:100vw;
+    height:100vh;
+    background-color:white;
+    position:fixed;
+    bottom:-    100vh;
+    left:0;
+    z-index:1001;
+    box-sizing: border-box;
+
+    &.active {
+        animation:0.5s forwards ease-in slide-in;
+    }
+
+    .button {
+        position: absolute;
+    }
+
+    .content {
+        width:100%;
+        height:100%;
+        padding:20px;
+        box-sizing: border-box;
+        overflow-y:auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+}
+
+h1:first-child {
+    margin-top:0;
+    margin-bottom:7px;
+}
+
+h2 {
+    display:none;
+}
+
+.button {
+    position:fixed;
+    right:30px;
+    bottom:30px;
+}
+
+@include tablet {
+    h1:first-child {
+        display:none;
+    }
+
+    h1, h2 {
+        display:block;
+        font-size:1rem;
+    }
+    
+    .post-info {
+        display:none;
+    }
+
+    .menu {
+        position: static;
+        width:auto;
+        height:auto;
+        top:auto;
+        right:auto;
+
+        &.active {
+            animation:none;
+        }
+
+        .content {
+            width:auto;
+            height:auto;
+            padding:0px;
+        }
+    }
+
+    .button {
+        display:none;
+    }
+
+    .actions {
+        display:block;
+    }
+
+    .action:first-child {
+        margin: 0 0 20px 0;
+    }
+}
