@@ -1,7 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { BlogPostsService } from "src/app/services/blogpostservice/blog-posts.service";
-import { BlogPost } from "src/app/services/blogpostservice/blog-post";
-import { ImagesService } from "src/app/services/imagesservice/images.service";
+import { Component, Input } from "@angular/core";
+import { BlogPost } from "../../services/blogpostservice/blog-post";
 
 @Component({
     selector: "home-blog-post-menu",
@@ -20,20 +18,7 @@ import { ImagesService } from "src/app/services/imagesservice/images.service";
                         <share [shareInfo]="shareInfo"></share>
                     </div>
                 </div>
-                <h1>{{blogPost.category}}</h1>
-                <ul>
-                    <li *ngFor="let blog of blogPosts$ | async">
-                        <div>
-                            <img src="{{imagesService.getUri(blog.image.uriPath)}}" />
-                        </div>
-                        <div>
-                            <a *ngIf="blog.id !== blogPost.id;else current" routerLink="/post/{{blog.id}}/{{blog.subjectUrl}}">{{blog.subject}}</a>
-                            <ng-template #current>
-                                <span>{{blog.subject}}</span>
-                            </ng-template>
-                        </div>
-                    </li>
-                </ul>
+                <home-blog-post-related [blogPost]="blogPost"></home-blog-post-related>
                 <div class="button hidden"><a mat-fab color="accent" (click)="toggle()"><mat-icon>close</mat-icon></a></div>        
             </div>
         </div>
@@ -41,7 +26,7 @@ import { ImagesService } from "src/app/services/imagesservice/images.service";
     `,
     styleUrls: ["./blog-post-menu.component.scss"]
 })
-export class BlogPostMenuComponent implements OnInit {
+export class BlogPostMenuComponent {
     @Input()
     shareInfo;
 
@@ -49,16 +34,7 @@ export class BlogPostMenuComponent implements OnInit {
     blogPost: BlogPost;
 
     menuClass = "menu";
-    blogPosts$;
-
-    constructor(private _blogPostService: BlogPostsService, public imagesService: ImagesService) {
-
-    }
-
-    ngOnInit(): void {
-        this.blogPosts$ = this._blogPostService.getByCategory(this.blogPost.categoryId);
-    }
-
+   
     toggle() {
         if (this.menuClass === "menu") {
             this.menuClass = "menu active";
