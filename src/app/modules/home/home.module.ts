@@ -18,6 +18,7 @@ import { CategoryComponent } from "./category.component";
 import { ContactComponent } from "./contact/contact.component";
 import { TagComponent } from "./tag.component";
 import { NotFoundComponent } from "../app/not-found.component";
+import { BlogPostMenuComponent } from "./blog-post-menu.component";
 
 export const routes: Routes = [
     {
@@ -86,7 +87,8 @@ export function checkRoute(segments, group, route) {
         AuthorComponent,
         ContactComponent,
         TagComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        BlogPostMenuComponent
     ]
 })
 export class HomeModule {

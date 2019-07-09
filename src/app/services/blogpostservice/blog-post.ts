@@ -9,11 +9,13 @@ export interface BlogPost {
     date: Date;
     updated: Date;
     subject: string;
+    subjectUrl: string;
     contentIntro: string;
     content: string;
     tags: BlogPostTag[];
     image: Image;
     author: Author;
-    links: BlogPostLink[];
     externalLinks: ExternalLink[];
+    category: string;
+    categoryId: number;
 }
