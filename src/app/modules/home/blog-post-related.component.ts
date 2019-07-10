@@ -9,7 +9,9 @@ import { BlogPost } from "../../services/blogpostservice/blog-post";
                <ul>
                     <li *ngFor="let blog of blogPosts$ | async">
                         <div>
-                            <img src="{{imagesService.getUri(blog.image.uriPath)}}" />
+                            <a routerLink="/post/{{blog.id}}/{{blog.subjectUrl}}">
+                                <img src="{{imagesService.getUri(blog.image.uriPath)}}" />
+                            </a>
                         </div>
                         <div>
                             <a *ngIf="blog.id !== blogPost.id;else current" routerLink="/post/{{blog.id}}/{{blog.subjectUrl}}">{{blog.subject}}</a>
