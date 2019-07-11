@@ -3,6 +3,7 @@ import { Component, OnChanges, Input } from "@angular/core";
 import * as marked from "marked";
 import * as prism from "../../../../external/prism";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "md",
@@ -15,7 +16,7 @@ export class MdComponent implements OnChanges {
 
     private _marked;
 
-    constructor(_imagesService: ImagesService, private _sanitizer: DomSanitizer) {
+    constructor(_imagesService: ImagesService, private _sanitizer: DomSanitizer, router: Router) {
         let renderer = new marked.Renderer();
         renderer.image = (href: string, title: string, text: string) => {
             if (href.startsWith("/")) {
@@ -26,11 +27,19 @@ export class MdComponent implements OnChanges {
             }
         };
         renderer.link = (href: string, title: string, text: string) => {
+            if (!text && href.startsWith("#")) {
+                return `<a name="${href.replace("#", "")}"></a>`;
+            }
+
             if (title == null && href === text) {
                 return href;
             }
 
-            return `<a class="md-link" href="${href}" title="${title}">${text}</a>`;
+            if (href.startsWith("#")) {
+                href = router.url + href;
+            }
+            
+            return `<a class="md-link" href="${href}">${text}</a>`;
         };
 
         marked.setOptions({
@@ -38,6 +47,7 @@ export class MdComponent implements OnChanges {
             breaks: true,
             renderer: renderer,
             sanitize: true,
+
             highlight: (c, lang) => {
                 let languages = {
                     jsx() {
