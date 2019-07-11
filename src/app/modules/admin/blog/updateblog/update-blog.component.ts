@@ -34,7 +34,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
 
     private _id: number;
     private _files: FileList;
-    @ViewChild(PreviewBlogComponent)
+    @ViewChild(PreviewBlogComponent, { static: true })
     private _previewBlogComponent: PreviewBlogComponent;
     private _previewObserver: Subscription;
 

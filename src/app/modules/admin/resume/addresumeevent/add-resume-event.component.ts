@@ -15,7 +15,7 @@ import { Subscription } from "rxjs";
 export class AddResumeEventComponent implements OnInit, OnDestroy {
     form: FormGroup;
 
-    @ViewChild(PreviewResumeEventComponent)
+    @ViewChild(PreviewResumeEventComponent, { static: true })
     private _previewResumeEvent: PreviewResumeEventComponent;
     private _previewObserver: Subscription;
 
