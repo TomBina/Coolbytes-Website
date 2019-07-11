@@ -27,7 +27,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
     categories: Category[];
     selectedFileName: string;
 
-    @ViewChild(PreviewBlogComponent)
+    @ViewChild(PreviewBlogComponent, { static: true })
     private _previewBlogComponent: PreviewBlogComponent;
     private _previewObserver: Subscription;
     private _files: FileList;

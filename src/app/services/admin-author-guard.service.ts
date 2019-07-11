@@ -15,7 +15,7 @@ export class AdminAuthorGuardService implements CanActivate {
       return true;
     }
 
-    return Observable.create(observer => {
+    return new Observable(observer => {
       this._authorsService.get().subscribe(
         a => { observer.next(true); this._hasAuthor = true; },
         e => { observer.next(false); this._router.navigateByUrl("admin/author"); },

@@ -15,7 +15,7 @@ import { PreviewResumeEventComponent } from "../previewresumeevent/preview-resum
 export class UpdateResumeEventComponent implements OnInit, OnDestroy {
     form: FormGroup;
 
-    @ViewChild(PreviewResumeEventComponent)
+    @ViewChild(PreviewResumeEventComponent, { static: true })
     private _previewResumeEvent: PreviewResumeEventComponent;
     private _previewObserver: Subscription;
     private _id: number;
