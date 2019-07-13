@@ -37,7 +37,7 @@ export class AddBlogComponent implements OnInit, OnDestroy {
             {
                 subject: ["", [Validators.required, Validators.maxLength(100)]],
                 contentIntro: ["", [Validators.required, Validators.maxLength(120)]],
-                content: ["", [Validators.required, Validators.maxLength(4000)]],
+                content: ["", [Validators.required, Validators.maxLength(8000)]],
                 tags: ["", [Validators.maxLength(500)]],
                 category: ["", [Validators.required]],
                 externalLinks: this._fb.array([this.createExternalLinkFormGroup()])
