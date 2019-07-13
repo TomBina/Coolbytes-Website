@@ -42,7 +42,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         this.form = this._formBuilder.group({
             subject: ["", [Validators.required, Validators.maxLength(100)]],
             contentIntro: ["", [Validators.required, Validators.maxLength(120)]],
-            content: ["", [Validators.required, Validators.maxLength(8000)]],
+            content: ["", [Validators.required, Validators.maxLength(50000)]],
             tags: ["", Validators.maxLength(500)],
             category: ["", Validators.required],
             externalLinks: this._formBuilder.array([])
