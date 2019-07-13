@@ -1,5 +1,5 @@
 import "zone.js/dist/zone-node";
-import { compression } from "compression";
+import * as compression from "compression";
 import { enableProdMode } from "@angular/core";
 // Express Engine
 import { ngExpressEngine } from "@nguniversal/express-engine";
