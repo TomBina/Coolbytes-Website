@@ -12,10 +12,6 @@
     margin-bottom: 30px;
 }
 
-.action {
-    margin-right:20px;
-}
-
 @keyframes slide-in {
     0% {
         opacity:0;
@@ -73,46 +69,11 @@ h2 {
 }
 
 @include tablet {
-    h1:first-child {
-        display:none;
-    }
-
-    h1, h2 {
-        display:block;
-        font-size:1rem;
-    }
-    
-    .post-info {
-        display:none;
-    }
-
     .menu {
-        position: static;
-        width:auto;
-        height:auto;
-        top:auto;
-        right:auto;
-
-        &.active {
-            animation:none;
-        }
-
-        .content {
-            width:auto;
-            height:auto;
-            padding:0px;
-        }
+        display:none;
     }
 
     .button {
         display:none;
-    }
-
-    .actions {
-        display:block;
-    }
-
-    .action:first-child {
-        margin: 0 0 20px 0;
     }
 }

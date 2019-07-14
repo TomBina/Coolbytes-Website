@@ -9,11 +9,9 @@ import { BlogPost } from "../../services/blogpostservice/blog-post";
                 <h1>{{blogPost.subject}}</h1>
                 <p class="post-info">{{blogPost.date | date}} by {{blogPost.author.firstName}}</p>
                 <div class="actions">
-                    <div class="action" *ngIf="gitHubLink">
-                        <h2>Code</h2>
-                        <a mat-raised-button [href]="gitHubLink" target="_blank">view code on github</a>
+                    <div class="action">
+                        <home-blog-post-view-code [externalLinks]="blogPost.externalLinks"></home-blog-post-view-code>
                     </div>
-                    <h2>Share post</h2>
                     <div class="action">
                         <share [shareInfo]="shareInfo"></share>
                     </div>
@@ -32,16 +30,6 @@ export class BlogPostMenuComponent {
 
     @Input()
     blogPost: BlogPost;
-
-    get gitHubLink() {
-        if (this.blogPost.externalLinks.length === 0) {
-            return null;
-        }
-
-        let link = this.blogPost.externalLinks.find(r => r.url.includes("github"));
-
-        return (link ? link.url : null);
-    }
 
     menuClass = "menu";
 

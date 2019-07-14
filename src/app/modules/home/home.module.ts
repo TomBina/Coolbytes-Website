@@ -20,6 +20,7 @@ import { TagComponent } from "./tag.component";
 import { NotFoundComponent } from "../app/not-found.component";
 import { BlogPostMenuComponent } from "./blog-post-menu.component";
 import { BlogPostRelatedComponent } from "./blog-post-related.component";
+import { BlogPostViewCodeComponent } from "./blog-post-view-code.component";
 
 export const routes: Routes = [
     {
@@ -90,7 +91,8 @@ export function checkRoute(segments, group, route) {
         TagComponent,
         NotFoundComponent,
         BlogPostMenuComponent,
-        BlogPostRelatedComponent
+        BlogPostRelatedComponent,
+        BlogPostViewCodeComponent
     ]
 })
 export class HomeModule {
