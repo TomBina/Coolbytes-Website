@@ -9,7 +9,7 @@ import { ExternalLink } from "src/app/services/blogpostservice/external-link";
             <a mat-raised-button [href]="gitHubLink" target="_blank">view code on github</a>
         </div>
     `,
-    styles: ["a { margin-right:10px }"]
+    styleUrls: ["./blog-post-view-code.component.scss"]
 })
 export class BlogPostViewCodeComponent {
     @Input()

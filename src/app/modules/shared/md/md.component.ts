@@ -38,8 +38,13 @@ export class MdComponent implements OnChanges {
             if (href.startsWith("#")) {
                 href = router.url + href;
             }
-            
-            return `<a class="md-link" href="${href}">${text}</a>`;
+
+            if (href.startsWith("#") || href.startsWith("/")) {
+                return `<a class="md-link" href="${href}">${text}</a>`;
+            }
+            else {
+                return `<a class="md-link" href="${href}" target="_blank">${text}</a>`;
+            }
         };
 
         marked.setOptions({
