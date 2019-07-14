@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ExternalLink } from "src/app/services/blogpostservice/external-link";
+import { ExternalLink } from "../../../app/services/blogpostservice/external-link";
 
 @Component({
     selector: "home-blog-post-view-code",
