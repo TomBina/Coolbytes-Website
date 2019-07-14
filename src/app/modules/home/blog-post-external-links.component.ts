@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { ExternalLink } from "src/app/services/blogpostservice/external-link";
 
 @Component({
@@ -20,7 +20,7 @@ export class BlogPostExternalLinksComponent {
     @Input()
     set externalLinks(value) {
         this._externalLinks = value;
-    };
+    }
 
     get externalLinks(): ExternalLink[] {
         if (!this._externalLinks || this._externalLinks.length === 0) {

@@ -10,7 +10,7 @@ import { BlogPost } from "../../services/blogpostservice/blog-post";
                     <li *ngFor="let blog of blogPosts$ | async">
                         <div>
                             <a routerLink="/post/{{blog.id}}/{{blog.subjectUrl}}">
-                                <img src="{{imagesService.getUri(blog.image.uriPath)}}" />
+                                <img [attr.data-src]="imagesService.getUri(blog.image.uriPath)" src="/assets/placeholder.svg" appLazyLoad />
                             </a>
                         </div>
                         <div>

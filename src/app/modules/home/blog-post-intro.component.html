@@ -5,7 +5,7 @@
     </div>
     <div class="image">
         <a routerLink="/post/{{blogPostSummary.id}}/{{blogPostSummary.subjectUrl}}" *ngIf="imageUrl">
-            <img [src]="imageUrl" />
+            <img [attr.data-src]="imageUrl" src="/assets/placeholder.svg" appLazyLoad />
         </a>
     </div>
     <div class="text">

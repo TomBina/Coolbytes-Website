@@ -1,28 +1,39 @@
-import { Directive, ElementRef } from "@angular/core";
+import { Directive, ElementRef, OnDestroy } from "@angular/core";
 
 @Directive({
   selector: "[appLazyLoad]"
 })
-export class LazyLoadDirective {
+export class LazyLoadDirective implements OnDestroy {
+  intersectionObserver: IntersectionObserver;
+  elem: any;
+
   constructor(elemRef: ElementRef) {
-    let elem = elemRef.nativeElement;
-    
+    this.elem = elemRef.nativeElement;
+
     if (!("IntersectionObserver" in window)) {
-      elem.src = elem.dataset.src;
+      this.elem.src = this.elem.dataset.src;
       return;
     }
 
-    let intersectionObserver = new IntersectionObserver(entries => {
-
+    this.intersectionObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           let lazyImage: any = entry.target;
           lazyImage.src = lazyImage.dataset.src;
-          intersectionObserver.unobserve(lazyImage);
+          observer.unobserve(lazyImage);
         }
       });
     });
 
-    intersectionObserver.observe(elem);
+    this.intersectionObserver.observe(this.elem);
+  }
+
+  ngOnDestroy(): void {
+    if (!this.intersectionObserver) {
+      return;
+    }
+
+    console.log(`destroy ${this.elem.innerHTML}`);
+    this.intersectionObserver.unobserve(this.elem);
   }
 }
