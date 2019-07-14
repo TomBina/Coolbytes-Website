@@ -1,4 +1,5 @@
-import { Directive, ElementRef, OnDestroy } from "@angular/core";
+import { Directive, ElementRef, OnDestroy, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 
 @Directive({
   selector: "[appLazyLoad]"
@@ -7,7 +8,11 @@ export class LazyLoadDirective implements OnDestroy {
   intersectionObserver: IntersectionObserver;
   elem: any;
 
-  constructor(elemRef: ElementRef) {
+  constructor(elemRef: ElementRef, @Inject(PLATFORM_ID) platformId) {
+    if (!isPlatformBrowser(platformId)) {
+      return;
+    }
+    
     this.elem = elemRef.nativeElement;
 
     if (!("IntersectionObserver" in window)) {
