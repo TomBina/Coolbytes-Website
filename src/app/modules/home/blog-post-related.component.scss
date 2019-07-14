@@ -26,6 +26,11 @@ img {
     img {
         width:70px;
     }
+
+    h2 {
+        margin-top:25px;
+        font-size:1rem;
+    }
 }
 
 @include desktop {
