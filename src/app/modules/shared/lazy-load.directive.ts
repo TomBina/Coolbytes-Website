@@ -38,7 +38,6 @@ export class LazyLoadDirective implements OnDestroy {
       return;
     }
 
-    console.log(`destroy ${this.elem.innerHTML}`);
     this.intersectionObserver.unobserve(this.elem);
   }
 }
