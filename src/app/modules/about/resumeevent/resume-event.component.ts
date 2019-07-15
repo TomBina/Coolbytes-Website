@@ -1,4 +1,4 @@
-import { ResumeEvent } from "../../../../services/resumeservice/resume-event";
+import { ResumeEvent } from "../../../services/resumeservice/resume-event";
 import { Component, Input } from "@angular/core";
 
 @Component({

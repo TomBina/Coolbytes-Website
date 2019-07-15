@@ -1,6 +1,6 @@
-import { environment } from "../../../../../environments/environment";
-import { ImagesService } from "../../../../services/imagesservice/images.service";
-import { Author } from "../../../../services/authorsservice/author";
+import { environment } from "../../../../environments/environment";
+import { ImagesService } from "../../../services/imagesservice/images.service";
+import { Author } from "../../../services/authorsservice/author";
 import { Component, Input } from "@angular/core";
 
 @Component({

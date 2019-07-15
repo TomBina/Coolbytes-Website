@@ -1,8 +1,8 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule, BrowserTransferStateModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { httpInterceptorProviders } from "../../services/httpinterceptors";
-import { HomeModule } from "../home/home.module";
 import { MaterialModule } from "../material/material.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -13,9 +13,9 @@ import { HeaderComponent } from "./header.component";
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),
     HttpClientModule,
-    HomeModule,
     AppRoutingModule,
     MaterialModule,
+    BrowserAnimationsModule,
     BrowserTransferStateModule
   ],
   declarations: [
