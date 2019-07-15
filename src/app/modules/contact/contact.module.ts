@@ -1,15 +1,15 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
-import { AboutComponent } from "../about/about.component";
+import { MaterialModule } from "../material/material.module";
 import { SharedModule } from "../shared/shared.module";
-import { AuthorComponent } from "./author/author.component";
-import { ResumeEventComponent } from "./resumeevent/resume-event.component";
+import { ContactComponent } from "./contact.component";
 
 export const routes: Routes = [
     {
         path: "",
-        component: AboutComponent
+        component: ContactComponent
     },
 ];
 
@@ -17,14 +17,14 @@ export const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        SharedModule
+        SharedModule,
+        ReactiveFormsModule, 
+        MaterialModule
     ],
     declarations: [
-        AboutComponent,
-        AuthorComponent,
-        ResumeEventComponent
+        ContactComponent,
     ]
 })
-export class AboutModule {
+export class ContactModule {
 
 }
