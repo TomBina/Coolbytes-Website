@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import { Author } from "../../../services/authorsservice/author";
-import { Resume } from "../../../services/resumeservice/resume";
-import { ResumeService } from "../../../services/resumeservice/resume.service";
+import { Author } from "../../services/authorsservice/author";
+import { Resume } from "../../services/resumeservice/resume";
+import { ResumeService } from "../../services/resumeservice/resume.service";
 import { Subscription } from "rxjs";
-import { SeoService } from "../../../services/seoservice/seo.service";
+import { SeoService } from "../../services/seoservice/seo.service";
 
 @Component({ templateUrl: "./about.component.html", styleUrls: ["./about.component.scss"] })
 export class AboutComponent implements OnInit, OnDestroy {

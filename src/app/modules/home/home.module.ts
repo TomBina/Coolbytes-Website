@@ -3,12 +3,10 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes, UrlSegment } from "@angular/router";
+import { AuthorComponent } from "../about/author/author.component";
 import { NotFoundComponent } from "../app/not-found.component";
 import { MaterialModule } from "../material/material.module";
 import { SharedModule } from "../shared/shared.module";
-import { AboutComponent } from "./about/about.component";
-import { AuthorComponent } from "./about/author/author.component";
-import { ResumeEventComponent } from "./about/resumeevent/resume-event.component";
 import { BlogCategoryComponent } from "./blog-category.component";
 import { BlogLoadingComponent } from "./blog-loading.component";
 import { BlogPostIntroComponent } from "./blog-post-intro.component";
@@ -31,10 +29,6 @@ export const routes: Routes = [
         component: BlogComponent
     },
     {
-        path: "about",
-        component: AboutComponent
-    },
-    {
         path: "contact",
         component: ContactComponent
     },
@@ -49,7 +43,7 @@ export const routes: Routes = [
 ];
 
 export function checkRoute(segments, group, route) {
-    let isAdmin = segments.some(s => s.path.includes("admin") || s.path.includes("post"));
+    let isAdmin = segments.some(s => s.path.includes("admin") || s.path.includes("post") || s.path.includes("about"));
     return isAdmin ? null : ({
         consumed: segments,
         posParams: {
@@ -73,9 +67,6 @@ export function checkRoute(segments, group, route) {
         BlogCategoryComponent,
         CategoryComponent,
         BlogPostIntroComponent,
-        AboutComponent,
-        ResumeEventComponent,
-        AuthorComponent,
         ContactComponent,
         TagComponent,
         NotFoundComponent
