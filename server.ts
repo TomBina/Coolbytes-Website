@@ -1,4 +1,3 @@
-// TEMP FIXES SEE: https://github.com/vikerman/v8-lazy/commit/515239be1b233946e4a1d15a8712a0bc9f5490cc
 import "zone.js/dist/zone-node";
 import * as compression from "compression";
 import {enableProdMode} from "@angular/core";
@@ -22,7 +21,6 @@ const DIST_FOLDER = join(process.cwd(), "browser");
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require("./dist/server/main");
 
-// Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
 app.engine("html", ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
   providers: [
