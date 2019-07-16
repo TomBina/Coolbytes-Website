@@ -30,6 +30,10 @@ export const routes: Routes = [
 ];
 
 export function checkRoute(segments, group, route) {
+    if (segments.some(s => s.path.startsWith("admin") || s.path.startsWith("post") || s.path.startsWith("about") || s.path.startsWith("contact"))) {
+        return null;
+    }
+
     return {
         consumed: segments,
         posParams: {

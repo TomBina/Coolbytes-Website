@@ -12,7 +12,7 @@ import { BlogPostComponent } from "./blog-post.component";
 
 export const routes: Routes = [
     {
-        path: ":id/:title",
+        path: "post/:id/:title",
         component: BlogPostComponent
     }
 ];

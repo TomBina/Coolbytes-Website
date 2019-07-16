@@ -8,6 +8,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { FooterComponent } from "./footer.component";
 import { HeaderComponent } from "./header.component";
+import { HomeModule } from "../home/home.module";
+import { BlogPostModule } from "../blogpost/blogpost.module";
+import { AboutModule } from "../about/about.module";
+import { ContactModule } from "../contact/contact.module";
 
 @NgModule({
   imports: [
@@ -16,7 +20,11 @@ import { HeaderComponent } from "./header.component";
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
-    BrowserTransferStateModule
+    BrowserTransferStateModule,
+    HomeModule,
+    BlogPostModule,
+    AboutModule,
+    ContactModule
   ],
   declarations: [
     AppComponent,
