@@ -10,9 +10,12 @@ import * as express from "express";
 import {join} from "path";
 
 // Faster server renders w/ Prod mode (dev mode never needed)
+enableProdMode();
 
 // Express server
 const app = express();
+
+// Enable compression
 app.use(compression());
 
 const PORT = process.env.PORT || 4000;
