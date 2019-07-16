@@ -8,7 +8,7 @@ import { ContactComponent } from "./contact.component";
 
 export const routes: Routes = [
     {
-        path: "",
+        path: "contact",
         component: ContactComponent
     },
 ];

@@ -8,7 +8,7 @@ import { ResumeEventComponent } from "./resumeevent/resume-event.component";
 
 export const routes: Routes = [
     {
-        path: "",
+        path: "about",
         component: AboutComponent
     },
 ];
