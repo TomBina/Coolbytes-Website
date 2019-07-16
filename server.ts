@@ -1,4 +1,5 @@
 import "zone.js/dist/zone-node";
+import * as compression from "compression";
 import {enableProdMode} from "@angular/core";
 // Express Engine
 import {ngExpressEngine} from "@nguniversal/express-engine";
@@ -13,6 +14,7 @@ enableProdMode();
 
 // Express server
 const app = express();
+app.use(compression());
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), "browser");
