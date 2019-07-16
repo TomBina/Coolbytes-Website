@@ -1,3 +1,4 @@
+// TEMP FIXES SEE: https://github.com/vikerman/v8-lazy/commit/515239be1b233946e4a1d15a8712a0bc9f5490cc
 import "zone.js/dist/zone-node";
 import * as compression from "compression";
 import {enableProdMode} from "@angular/core";
@@ -10,7 +11,6 @@ import * as express from "express";
 import {join} from "path";
 
 // Faster server renders w/ Prod mode (dev mode never needed)
-enableProdMode();
 
 // Express server
 const app = express();
