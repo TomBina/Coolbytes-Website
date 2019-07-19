@@ -2,6 +2,7 @@ import { ImagesService } from "../../../services/imagesservice/images.service";
 import { Component, OnChanges, Input } from "@angular/core";
 import * as marked from "marked";
 import * as prism from "../../../../external/prism";
+import { getLines, highlightLines } from "../../../../external/prism/highlightlines";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
@@ -52,22 +53,46 @@ export class MdComponent implements OnChanges {
             breaks: true,
             renderer: renderer,
             sanitize: true,
-
             highlight: (c, lang) => {
+                let { splitLanguage: language, lines } = getLines(lang);
                 let languages = {
+                    highlightLines(highlighted) {
+                        if (!lines || lines.length === 0) {
+                            return highlighted;
+                        }
+
+                        let parsedLines: any[] = highlightLines(highlighted, lines);
+                        let lastIndex = parsedLines.length - 1;
+                        let result = parsedLines.reduce(function (acc, current, index) {
+                            let part = current.highlight
+                                ? current.code
+                                : `${current.code}${index === lastIndex ? `` : `\n`}`;
+                            
+                                return `${acc}${part}`;
+                        }, "");
+
+                        return result;
+                    },
                     jsx() {
-                        return prism.highlight(c, prism.languages.jsx);
+                        let highlighted = prism.highlight(c, prism.languages.jsx);
+                        return this.highlightLines(highlighted);
                     },
                     js() {
-                        return prism.highlight(c, prism.languages.js);
+                        let highlighted = prism.highlight(c, prism.languages.js);
+                        return this.highlightLines(highlighted);
                     },
                     css() {
-                        return prism.highlight(c, prism.languages.css);
+                        let highlighted = prism.highlight(c, prism.languages.css);
+                        return this.highlightLines(highlighted);
+                    },
+                    csharp() {
+                        let highlighted = prism.highlight(c, prism.languages.csharp);
+                        return this.highlightLines(highlighted);
                     }
                 };
 
-                if (languages[lang]) {
-                    return languages[lang]();
+                if (languages[language]) {
+                    return languages[language]();
                 }
                 else {
                     return prism.highlight(c, prism.languages.csharp);

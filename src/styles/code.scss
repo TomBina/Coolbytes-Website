@@ -1,6 +1,37 @@
 @import "mixins.scss";
 @import "variables.scss";
 
+pre {
+    background-color:#1E1E1E;
+    color:#dcdcdc;
+    padding:10px;
+    margin:0 -20px 0 -20px;
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    code {
+        display:inline;
+        background-color: transparent;
+        color:#dcdcdc;
+        white-space: pre-wrap;
+        word-break: break-word;
+    
+        span {
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    }    
+}
+
+.gatsby-highlight-code-line {
+    background-color:#444;
+    display: block;
+    margin:0 -10px 0 -10px;
+    padding:4px 4px 4px 10px;
+    line-height:normal;
+    white-space: pre;
+  }
+
 code {
     font-family: 'Source Code Pro', monospace;
     font-size:0.8rem;
@@ -8,17 +39,6 @@ code {
     padding:2px;
 }
 
-pre {
-    background-color:#1E1E1E;
-    color:#dcdcdc;
-    padding:10px;
-    margin:0 -20px 0 -20px;
-}
-
-pre > code {
-    background-color: transparent;
-    color:#dcdcdc;
-}
 
 @include tablet {
     code {
