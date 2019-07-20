@@ -154,102 +154,6 @@ var _ = _self.Prism = {
 	},
 	plugins: {},
 
-	highlightAll: function(async, callback) {
-		var env = {
-			callback: callback,
-			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
-		};
-
-		_.hooks.run("before-highlightall", env);
-
-		var elements = env.elements || document.querySelectorAll(env.selector);
-
-		for (var i=0, element; element = elements[i++];) {
-			_.highlightElement(element, async === true, env.callback);
-		}
-	},
-
-	highlightElement: function(element, async, callback) {
-		// Find language
-		var language, grammar, parent = element;
-
-		while (parent && !lang.test(parent.className)) {
-			parent = parent.parentNode;
-		}
-
-		if (parent) {
-			language = (parent.className.match(lang) || [,''])[1].toLowerCase();
-			grammar = _.languages[language];
-		}
-
-		// Set language on the element, if not present
-		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-
-		// Set language on the parent, for styling
-		parent = element.parentNode;
-
-		if (/pre/i.test(parent.nodeName)) {
-			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-		}
-
-		var code = element.textContent;
-
-		var env = {
-			element: element,
-			language: language,
-			grammar: grammar,
-			code: code
-		};
-
-		_.hooks.run('before-sanity-check', env);
-
-		if (!env.code || !env.grammar) {
-			if (env.code) {
-				_.hooks.run('before-highlight', env);
-				env.element.textContent = env.code;
-				_.hooks.run('after-highlight', env);
-			}
-			_.hooks.run('complete', env);
-			return;
-		}
-
-		_.hooks.run('before-highlight', env);
-
-		if (async && _self.Worker) {
-			var worker = new Worker(_.filename);
-
-			worker.onmessage = function(evt) {
-				env.highlightedCode = evt.data;
-
-				_.hooks.run('before-insert', env);
-
-				env.element.innerHTML = env.highlightedCode;
-
-				callback && callback.call(env.element);
-				_.hooks.run('after-highlight', env);
-				_.hooks.run('complete', env);
-			};
-
-			worker.postMessage(JSON.stringify({
-				language: env.language,
-				code: env.code,
-				immediateClose: true
-			}));
-		}
-		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar, env.language);
-
-			_.hooks.run('before-insert', env);
-
-			env.element.innerHTML = env.highlightedCode;
-
-			callback && callback.call(element);
-
-			_.hooks.run('after-highlight', env);
-			_.hooks.run('complete', env);
-		}
-	},
-
 	highlight: function (text, grammar, language) {
 		var tokens = _.tokenize(text, grammar);
 		return Token.stringify(_.util.encode(tokens), language);
@@ -498,26 +402,6 @@ if (!_self.document) {
 	}, false);
 
 	return _self.Prism;
-}
-
-//Get current script and highlight
-var script = document.currentScript || [].slice.call(document.getElementsByTagName("script")).pop();
-
-if (script) {
-	_.filename = script.src;
-
-	if (!_.manual && !script.hasAttribute('data-manual')) {
-		if(document.readyState !== "loading") {
-			if (window.requestAnimationFrame) {
-				window.requestAnimationFrame(_.highlightAll);
-			} else {
-				window.setTimeout(_.highlightAll, 16);
-			}
-		}
-		else {
-			document.addEventListener('DOMContentLoaded', _.highlightAll);
-		}
-	}
 }
 
 return _self.Prism;
