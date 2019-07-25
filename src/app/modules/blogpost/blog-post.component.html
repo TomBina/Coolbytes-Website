@@ -8,6 +8,11 @@
             <p class="post-info">{{blogPost.date | date}} by {{blogPost.author.firstName}}</p>
             <md [value]="blogPost.contentIntro"></md>
             <md [value]="blogPost.content"></md>
+            <ng-container *ngIf="blogPost.codeLinks.length > 0">
+                <h2>Get the code</h2>
+                <home-blog-post-view-code [large]="true" [codeLinks]="blogPost.codeLinks">
+                </home-blog-post-view-code>
+            </ng-container>
         </article>
         <aside>
             <div *ngIf="authorImage">
@@ -32,7 +37,6 @@
                     </li>
                 </ul>
             </div>
-            <home-blog-post-view-code [buttons]="false" [externalLinks]="blogPost.externalLinks"></home-blog-post-view-code>
             <home-blog-post-related [blogPost]="blogPost"></home-blog-post-related>
             <home-blog-post-menu [shareInfo]="shareInfo" [blogPost]="blogPost"></home-blog-post-menu>
         </aside>
