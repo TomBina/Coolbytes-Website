@@ -6,12 +6,6 @@
     color: $color-grey;
 }
 
-.actions {
-    display:flex;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
 @keyframes slide-in {
     0% {
         opacity:0;
@@ -56,10 +50,6 @@
 h1:first-child {
     margin-top:0;
     margin-bottom:7px;
-}
-
-h2 {
-    display:none;
 }
 
 .button {
