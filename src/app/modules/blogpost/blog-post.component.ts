@@ -62,7 +62,16 @@ export class BlogPostComponent implements OnInit, OnDestroy {
             subject: blogPost.subject
         };
         this.authorImage = this._imagesService.getUri(blogPost.author.image.uriPath);
-        this.blogPost = blogPost;
+        this.blogPost = {
+            ...blogPost,
+            get codeLinks() {
+                if (!blogPost.externalLinks) {
+                    return [];
+                }
+
+                return blogPost.externalLinks.filter(r => r.url.includes("github.com") || r.url.includes("codesandbox.io"));
+            }
+        };
     }
 
     formatPath(category) {

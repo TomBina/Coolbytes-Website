@@ -4,17 +4,14 @@ import { ExternalLink } from "../../../app/services/blogpostservice/external-lin
 @Component({
     selector: "home-blog-post-view-code",
     template: `
-        <div *ngIf="gitHubLink || sandBoxLink">
-            <ng-container *ngIf="buttons">
+        <div>
+            <ng-container *ngIf="!large">
                 <a mat-raised-button [href]="gitHubLink" target="_blank" *ngIf="gitHubLink">view github</a>
                 <a mat-raised-button [href]="sandBoxLink" target="_blank" *ngIf="sandBoxLink">edit/run</a>
             </ng-container>
-            <ng-container *ngIf="!buttons">
-                <h2>Code</h2>
-                <ul>
-                    <li><a [href]="gitHubLink" target="_blank" *ngIf="gitHubLink">View source on github</a></li>
-                    <li><a [href]="sandBoxLink" target="_blank" *ngIf="sandBoxLink">Edit/run on codesandbox</a></li>
-                </ul>
+            <ng-container *ngIf="large">
+                <a mat-raised-button [href]="gitHubLink" target="_blank" *ngIf="gitHubLink">view on github</a>
+                <a mat-raised-button [href]="sandBoxLink" target="_blank" *ngIf="sandBoxLink">edit on codesandbox</a>
             </ng-container>
         </div>
     `,
@@ -22,17 +19,13 @@ import { ExternalLink } from "../../../app/services/blogpostservice/external-lin
 })
 export class BlogPostViewCodeComponent {
     @Input()
-    externalLinks: ExternalLink[];
+    codeLinks: ExternalLink[];
 
     @Input()
-    buttons = true;
+    large;
 
     findLink(query) {
-        if (this.externalLinks.length === 0) {
-            return null;
-        }
-
-        let link = this.externalLinks.find(r => r.url.includes(query));
+        let link = this.codeLinks.find(r => r.url.includes(query));
 
         return (link ? link.url : null);
     }
