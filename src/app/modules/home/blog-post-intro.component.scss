@@ -35,13 +35,14 @@
 }
 
 .text {
-    margin:10px 10px 0 10px;
+    margin:10px 10px 5px 10px;
     overflow:hidden;
+    font-size:0.95rem;
 
     a {
         color:$link;
         text-overflow: ellipsis;
-        font-size:1.1rem;
+        font-size:1rem;
         font-weight:700;
     }
 
@@ -60,12 +61,12 @@
         height:140px;
     }
 
-    .text > a {
-        font-size:0.95rem;
-    }
-
     .text {
         font-size:0.85rem;
+
+        a {
+            font-size:0.95rem;
+        }
     }
 }
 
