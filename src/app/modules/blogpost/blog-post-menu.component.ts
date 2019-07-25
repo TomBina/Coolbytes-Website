@@ -10,7 +10,7 @@ import { BlogPost } from "../../services/blogpostservice/blog-post";
                 <p class="post-info">{{blogPost.date | date}} by {{blogPost.author.firstName}}</p>
                 <div class="actions">
                     <div class="action">
-                        <home-blog-post-view-code [externalLinks]="blogPost.externalLinks"></home-blog-post-view-code>
+                        <home-blog-post-view-code buttons="true" [externalLinks]="blogPost.externalLinks"></home-blog-post-view-code>
                     </div>
                     <div class="action">
                         <share [shareInfo]="shareInfo"></share>
