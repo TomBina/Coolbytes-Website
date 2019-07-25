@@ -27,6 +27,6 @@ export class BlogPostExternalLinksComponent {
             return null;
         }
 
-        return this._externalLinks.filter(r => !r.url.includes("github.com"));
+        return this._externalLinks.filter(r => !r.url.includes("github.com") && !r.url.includes("codesandbox"));
     }
 }
