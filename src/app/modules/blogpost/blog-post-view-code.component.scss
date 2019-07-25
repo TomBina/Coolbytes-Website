@@ -9,4 +9,14 @@ a {
         margin-top:25px;
         font-size:1rem;
     }
+
+    ul {
+        padding-left:20px;
+    }
+}
+
+@include desktop {
+    ul {
+        padding-left:30px;
+    }
 }
