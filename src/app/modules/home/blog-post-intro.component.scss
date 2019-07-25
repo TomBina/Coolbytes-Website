@@ -35,19 +35,19 @@
 }
 
 .text {
-    margin:10px;
+    margin:10px 10px 0 10px;
     overflow:hidden;
-}
 
-.text > a {
-    color:$link;
-    text-overflow: ellipsis;
-    font-size:1rem;
-    font-weight:700;
-}
+    a {
+        color:$link;
+        text-overflow: ellipsis;
+        font-size:1.1rem;
+        font-weight:700;
+    }
 
-.text > p {
-    text-overflow: ellipsis;
+    .intro {
+        margin-top:-10px;
+    }
 }
 
 @include phone-large {
@@ -61,16 +61,16 @@
     }
 
     .text > a {
-        font-size:0.9rem;
+        font-size:0.95rem;
     }
 
-    .text > p {
+    .text {
         font-size:0.85rem;
     }
 }
 
 @include desktop { 
-    .text > p {
+    .text{
         font-size:0.95rem;
     }
 }

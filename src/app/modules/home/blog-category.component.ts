@@ -7,7 +7,7 @@ import { UrlFormatter } from "../../services/url-formatter";
     template: `
         <div class="category">
             <ng-container *ngIf="category">
-            <h1>{{category.category}}</h1> <a routerLink="/{{this.formatPath(category.category)}}">see all {{category.blogPosts.length}} posts</a>
+            <h1>{{category.category}}</h1>
             <p><md [value]="category.description"></md></p>
             <div class="posts">
                 <div class="post" *ngFor="let blog of category.blogPosts.slice(0,4)">
@@ -15,7 +15,7 @@ import { UrlFormatter } from "../../services/url-formatter";
                     </home-blog-post-intro>
                 </div>
             </div>
-            <a mat-raised-button routerLink="/{{this.formatPath(category.category)}}">see all {{category.blogPosts.length}} posts</a>
+            <a mat-raised-button routerLink="/{{this.formatPath(category.category)}}">show all {{category.blogPosts.length}} posts</a>
             </ng-container>
         </div>
     `
