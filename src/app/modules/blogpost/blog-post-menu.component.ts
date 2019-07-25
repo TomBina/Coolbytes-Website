@@ -8,14 +8,9 @@ import { BlogPost } from "../../services/blogpostservice/blog-post";
             <div class="content">
                 <h1>{{blogPost.subject}}</h1>
                 <p class="post-info">{{blogPost.date | date}} by {{blogPost.author.firstName}}</p>
-                <div class="actions">
-                    <div class="action">
-                        <home-blog-post-view-code [codeLinks]="blogPost.codeLinks"></home-blog-post-view-code>
-                    </div>
-                    <div class="action">
-                        <share [shareInfo]="shareInfo"></share>
-                    </div>
-                </div>
+                <home-blog-post-view-code [codeLinks]="blogPost.codeLinks"></home-blog-post-view-code>
+                <h2>Share this post</h2>
+                <share [shareInfo]="shareInfo"></share>
                 <home-blog-post-related [blogPost]="blogPost"></home-blog-post-related>
                 <div class="button hidden"><a mat-fab color="accent" (click)="toggle()"><mat-icon>close</mat-icon></a></div>        
             </div>

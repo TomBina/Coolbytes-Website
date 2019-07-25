@@ -10,7 +10,10 @@
             <md [value]="blogPost.content"></md>
             <ng-container *ngIf="blogPost.codeLinks.length > 0">
                 <h2>Get the code</h2>
-                <home-blog-post-view-code [large]="true" [codeLinks]="blogPost.codeLinks">
+                <p>
+                    View all code on GitHub, or use codesandbox to edit and run it.
+                </p>
+                <home-blog-post-view-code [codeLinks]="blogPost.codeLinks">
                 </home-blog-post-view-code>
             </ng-container>
         </article>
