@@ -12,7 +12,7 @@ import { ExternalLink } from "../../services/blogpostservice/external-link";
             </li>
         </ul>
     </div>`,
-    styles: ["h2 { font-size:1rem }"]
+    styleUrls: ["./blog-post-external-links.component.scss"]
 })
 export class BlogPostExternalLinksComponent {
     _externalLinks: ExternalLink[];

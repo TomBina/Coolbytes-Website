@@ -7,6 +7,7 @@ ul {
 
     li {
         display:flex;
+        margin-bottom:2px;
 
         div:first-child {
             margin-right:10px;
@@ -22,6 +23,10 @@ img {
     width:100px;
 }
 
+h2 {
+    font-size:1.2rem;
+}
+
 @include tablet {
     img {
         width:70px;
@@ -29,11 +34,14 @@ img {
 
     h2 {
         margin-top:25px;
-        font-size:1rem;
     }
 }
 
 @include desktop {
+    h2 {
+        font-size:1rem;
+    }
+    
     img {
         width:120px;
     }
