@@ -19,7 +19,7 @@
         </article>
         <aside>
             <div *ngIf="authorImage">
-                <h2 class="first">Author</h2>
+                <h2>Author</h2>
                 <div class="author">
                     <div>
                         <img [src]="authorImage" class="author-image" />
@@ -31,6 +31,8 @@
                     </div>
                 </div>
             </div>
+            <h2>Share this</h2>
+            <share [shareInfo]="shareInfo"></share>
             <home-blog-post-external-links [externalLinks]="blogPost.externalLinks"></home-blog-post-external-links>
             <div *ngIf="blogPost.tags">
                 <h2>Tags</h2>
