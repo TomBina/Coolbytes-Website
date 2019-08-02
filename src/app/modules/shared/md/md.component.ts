@@ -1,5 +1,5 @@
 import { ImagesService } from "../../../services/imagesservice/images.service";
-import { Component, OnChanges, Input } from "@angular/core";
+import { Component, OnChanges, Input, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import * as marked from "marked";
 import * as prism from "../../../../external/prism";
 import { getLines, highlightLines } from "../../../../external/prism/highlightlines";
@@ -8,9 +8,9 @@ import { Router } from "@angular/router";
 
 @Component({
     selector: "md",
-    template: `<div [innerHtml]="html"></div>`
+    template: `<div [innerHtml]="html" #mdref></div>`
 })
-export class MdComponent implements OnChanges {
+export class MdComponent implements OnChanges, AfterViewInit {
     @Input()
     value: string;
     html: SafeHtml;
@@ -21,11 +21,20 @@ export class MdComponent implements OnChanges {
         let renderer = new marked.Renderer();
         renderer.image = (href: string, title: string, text: string) => {
             if (href.startsWith("/")) {
-                return `<img class="md-image" src="${_imagesService.getUri(href)}" />`;
+                href = _imagesService.getUri(href);
             }
-            else {
+
+            if (!href.includes("|")) {
                 return `<img class="md-image" src="${href}" />`;
             }
+            else {
+                let [imagePreviewUrl, imageUrl] = href.split("|");
+                return `<div class="md-image-player">
+                            <img src="${imagePreviewUrl}" data-src="${imageUrl}" />
+                            <div class="md-play-button"><i class="material-icons">play_arrow</i></div>
+                        </div>`;
+            }
+
         };
         renderer.link = (href: string, title: string, text: string) => {
             if (!text && href.startsWith("#")) {
@@ -67,8 +76,8 @@ export class MdComponent implements OnChanges {
                             let part = current.highlight
                                 ? current.code
                                 : `${current.code}${index === lastIndex ? `` : `\n`}`;
-                            
-                                return `${acc}${part}`;
+
+                            return `${acc}${part}`;
                         }, "");
 
                         return result;
@@ -100,6 +109,30 @@ export class MdComponent implements OnChanges {
             }
         });
         this._marked = marked;
+    }
+
+    @ViewChild("mdref", { read: ElementRef, static: false })
+    mdref;
+
+    ngAfterViewInit(): void {
+        let players = Array.from(this.mdref.nativeElement.querySelectorAll(".md-image-player"));
+        players.forEach(p => {
+            let playButton = p.querySelector(".md-play-button");
+            playButton.addEventListener("click", function() {
+                let img =  p.querySelector("img");
+                let playUrl = img.dataset.src;
+                
+                img.dataset.src = img.src;
+                img.src = playUrl;
+                playButton.style.display = "none";
+                
+                img.addEventListener("click", function() {
+                    img.src = img.dataset.src;
+                    img.dataset.src = playUrl;
+                    playButton.style.display = "";
+                })
+            });
+        });
     }
 
     ngOnChanges(): void {
