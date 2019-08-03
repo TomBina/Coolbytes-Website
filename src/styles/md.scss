@@ -23,7 +23,8 @@ a.md-link {
     }
 
     .md-play-button {
-        width:200px;
+        cursor: pointer;
+        width:30%;
         height:50px;
         background-color:black;
         position: absolute;
@@ -33,6 +34,8 @@ a.md-link {
         box-sizing: border-box;
 
         i {
+            cursor: pointer;
+            font-size: 30px;
             color:#fff;
             position: relative;
             top:50%;
