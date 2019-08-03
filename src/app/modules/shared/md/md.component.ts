@@ -1,10 +1,11 @@
 import { ImagesService } from "../../../services/imagesservice/images.service";
-import { Component, OnChanges, Input, AfterViewInit, ViewChild, ElementRef, OnDestroy } from "@angular/core";
+import { Component, OnChanges, Input, AfterViewInit, ViewChild, ElementRef, OnDestroy, Inject, PLATFORM_ID } from "@angular/core";
 import * as marked from "marked";
 import * as prism from "../../../../external/prism";
 import { getLines, highlightLines } from "../../../../external/prism/highlightlines";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
     selector: "md",
@@ -14,10 +15,12 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
     @Input()
     value: string;
     html: SafeHtml;
-
+    _isBrowser: boolean;
     private _marked;
 
-    constructor(_imagesService: ImagesService, private _sanitizer: DomSanitizer, router: Router) {
+    constructor(_imagesService: ImagesService, private _sanitizer: DomSanitizer, router: Router, @Inject(PLATFORM_ID) platformId) {
+        this._isBrowser = isPlatformBrowser(platformId);
+
         let renderer = new marked.Renderer();
         renderer.image = (href: string, title: string, text: string) => {
             if (href.startsWith("/")) {
@@ -30,7 +33,7 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
             else {
                 let [imagePreviewUrl, imageUrl] = href.split("|");
                 return `<div class="md-image-player">
-                <img src="${imagePreviewUrl}" data-src="${imageUrl}" />
+                            <img src="${imagePreviewUrl}" data-src="${imageUrl}" />
                             <div class="md-play-button"><i class="material-icons">play_arrow</i></div>
                         </div>`;
             }
@@ -115,6 +118,10 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
     mdref;
 
     ngAfterViewInit(): void {
+        if (!this._isBrowser) {
+            return;
+        }
+
         let players: any = Array.from(this.mdref.nativeElement.querySelectorAll(".md-image-player"));
         players.forEach(p => {
             let playButton = p.querySelector(".md-play-button");
@@ -123,6 +130,10 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        if (!this._isBrowser) {
+            return;
+        }
+        
         let players: any = Array.from(this.mdref.nativeElement.querySelectorAll(".md-image-player"));
         players.forEach(p => {
             let playButton = p.querySelector(".md-play-button");
