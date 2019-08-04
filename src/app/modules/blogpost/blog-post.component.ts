@@ -49,16 +49,32 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     }
 
     proccesData(blogPost) {
-        this._seoService.setTitle(`${blogPost.subject} - Cool Bytes`);
+        let title = `${blogPost.subject} - Cool Bytes`;
+        let image = this._imagesService.getUri(blogPost.image.uriPath);
+        let url = `${environment.appUri}post/${blogPost.id}/${blogPost.subjectUrl}`;
+
+        this._seoService.setTitle(title);
         this._seoService.setAuthor(`${blogPost.author.firstName} ${blogPost.author.lastName}`);
         this._seoService.setDescription(blogPost.contentIntro);
+        this._seoService.setTwitter({
+            title,
+            description: blogPost.contentIntro,
+            image,
+            cardType: "summary_large_image"
+        });
+        this._seoService.setFacebook({
+            title,
+            description: blogPost.contentIntro,
+            image,
+            url
+        });
 
         if (this._isBrowser) {
             window.scrollTo(0, 0);
         }
 
         this.shareInfo = {
-            url: `${environment.appUri}post/${blogPost.id}/${blogPost.subjectUrl}`,
+            url,
             subject: blogPost.subject
         };
         this.authorImage = this._imagesService.getUri(blogPost.author.image.uriPath);
