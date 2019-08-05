@@ -109,7 +109,6 @@ export class BlogPostsService extends ApiService {
 
     update(updateBlogPostCommand: UpdateBlogPostCommand, files: FileList): Observable<BlogPostSummary> {
         let formData = this.createFormData(updateBlogPostCommand, files);
-        formData.append("id", updateBlogPostCommand.id.toString());
         return this.http.put<BlogPostSummary>(`${this._url}/update/`, formData);
     }
 
@@ -121,23 +120,7 @@ export class BlogPostsService extends ApiService {
         let formData = new FormData();
         let file = files && files.length > 0 ? files[0] : null;
 
-        formData.append("subject", model.subject);
-        formData.append("contentIntro", model.contentIntro);
-        formData.append("content", model.content);
-
-        if (model.tags) {
-            model.tags.forEach(t => formData.append("tags", t));
-        }
-
-        formData.append("categoryid", model.categoryId);
-
-        if (model.externalLinks) {
-            formData.append("externalLinks", JSON.stringify(model.externalLinks));
-        }
-
-        if (model.metaTags) {
-            formData.append("metaTags", JSON.stringify(model.metaTags));
-        }
+        formData.append("json", JSON.stringify(model));
 
         if (file) {
             formData.append("file", file, file.name);

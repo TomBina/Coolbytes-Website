@@ -1,7 +1,6 @@
 import { ImagesService } from "../../../../services/imagesservice/images.service";
 import { Image } from "../../../../services/imagesservice/image";
 import { AddBlogPostCommand } from "../../../../services/blogpostservice/add-blog-post-command";
-import { ExternalLink } from "../../../../services/blogpostservice/external-link";
 import { BlogPostsService } from "../../../../services/blogpostservice/blog-posts.service";
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
