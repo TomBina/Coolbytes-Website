@@ -135,6 +135,10 @@ export class BlogPostsService extends ApiService {
             formData.append("externalLinks", JSON.stringify(model.externalLinks));
         }
 
+        if (model.metaTags) {
+            formData.append("metaTags", JSON.stringify(model.metaTags));
+        }
+
         if (file) {
             formData.append("file", file, file.name);
         }

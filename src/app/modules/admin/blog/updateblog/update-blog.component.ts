@@ -138,7 +138,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         let externalLinks: ExternalLink[] = [];
         let controls = this.getExternalLinksControls();
         for (let control of controls.controls) {
-            let externalLink = new ExternalLink(control.get("name").value, control.get("url").value);
+            let externalLink = { name: control.get("name").value, url: control.get("url").value };
             if (externalLink.name.length > 0 && externalLink.url.length > 0) {
                 externalLinks.push(externalLink);
             }
