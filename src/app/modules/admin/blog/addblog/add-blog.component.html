@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <ng-container formArrayName="externalLinks"
-                    *ngFor="let item of form.get('externalLinks').controls; let i = index">
+                    *ngFor="let item of getFormArray('externalLinks').controls; let i = index">
                     <span [formGroupName]="i" class="flex">
                         <mat-form-field>
                             <input formControlName="name" placeholder="name" matInput />
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <ng-container formArrayName="metaTags"
-                    *ngFor="let item of form.get('metaTags').controls; let i = index">
+                    *ngFor="let item of getFormArray('metaTags').controls; let i = index">
                     <span [formGroupName]="i" class="flex">
                         <mat-form-field>
                             <input formControlName="name" placeholder="name" matInput />

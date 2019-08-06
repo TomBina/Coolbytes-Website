@@ -77,6 +77,10 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         return formGroup;
     }
 
+    getFormArray(name) {
+        return this.form.get(name) as FormArray;
+    }
+    
     createFormGroup(name): FormGroup {
         if (name === "externalLinks") {
             return new FormGroup({

@@ -63,6 +63,10 @@ export class AddBlogComponent implements OnInit, OnDestroy {
         links.push(this.createFormGroup(name));
     }
 
+    getFormArray(name) {
+        return this.form.get(name) as FormArray;
+    }
+
     createFormGroup(name): FormGroup {
         if (name === "externalLinks") {
             return new FormGroup({
