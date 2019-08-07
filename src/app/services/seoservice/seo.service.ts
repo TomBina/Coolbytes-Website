@@ -34,8 +34,8 @@ export class SeoService {
         this.setTag("twitter:title", title);
         this.setTag("twitter:description", description);
         this.setTag("twitter:image", image);
-        this.setTag("twitter:site", site ? site : "@coolbytesio");
-        this.setTag("twitter:creator", creator ? creator : "@coolbytesio");
+        this.setTag("twitter:site", site);
+        this.setTag("twitter:creator", creator);
     }
     
     setFacebook({title, description, image, url}: Facebook) {
@@ -66,8 +66,8 @@ interface Twitter {
     title: String;
     description: String;
     image: String;
-    creator?: String;
-    site?: String;
+    creator: String;
+    site: String;
     cardType: String;
 }
 

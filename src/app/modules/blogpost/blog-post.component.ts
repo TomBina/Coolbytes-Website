@@ -52,21 +52,27 @@ export class BlogPostComponent implements OnInit, OnDestroy {
         let title = `${blogPost.subject} - Cool Bytes`;
         let image = this._imagesService.getUri(blogPost.image.uriPath);
         let url = `${environment.appUri}post/${blogPost.id}/${blogPost.subjectUrl}`;
+        let metaTag = (name) => {
+            let tag = blogPost.metaTags.find(m => m.name === name);
+            return tag && tag.value || null;
+        }
 
         this._seoService.setTitle(title);
-        this._seoService.setAuthor(`${blogPost.author.firstName} ${blogPost.author.lastName}`);
-        this._seoService.setDescription(blogPost.contentIntro);
+        this._seoService.setAuthor(metaTag("author") || `${blogPost.author.firstName} ${blogPost.author.lastName}`);
+        this._seoService.setDescription(metaTag("description") || blogPost.contentIntro);
         this._seoService.setTwitter({
-            title,
-            description: blogPost.contentIntro,
-            image,
-            cardType: "summary_large_image"
+            title: metaTag("twitter:title") || title,
+            description: metaTag("twitter:description") || blogPost.contentIntro,
+            image: metaTag("twitter:image") || image,
+            cardType: metaTag("twitter:card") || "summary_large_image",
+            site: metaTag("twitter:site") || "@coolbytesio",
+            creator: metaTag("twitter:creator") || "@coolbytesio"
         });
         this._seoService.setFacebook({
-            title,
-            description: blogPost.contentIntro,
-            image,
-            url
+            title: metaTag("og:title") || title,
+            description: metaTag("og:description") || blogPost.contentIntro,
+            image: metaTag("og:image") || image,
+            url: metaTag("og:url") || url
         });
 
         if (this._isBrowser) {
