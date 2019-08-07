@@ -55,7 +55,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
         let metaTag = (name) => {
             let tag = blogPost.metaTags.find(m => m.name === name);
             return tag && tag.value || null;
-        }
+        };
 
         this._seoService.setTitle(title);
         this._seoService.setAuthor(metaTag("author") || `${blogPost.author.firstName} ${blogPost.author.lastName}`);
