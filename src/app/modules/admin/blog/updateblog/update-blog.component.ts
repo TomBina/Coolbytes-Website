@@ -45,7 +45,8 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
             content: ["", [Validators.required, Validators.maxLength(50000)]],
             tags: ["", Validators.maxLength(500)],
             category: ["", Validators.required],
-            externalLinks: this._formBuilder.array([])
+            externalLinks: this._formBuilder.array([]),
+            metaTags: this._formBuilder.array([])
         });
 
         this._previewObserver = this.form.valueChanges.subscribe(v => {
@@ -68,23 +69,33 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         }
     }
 
-    getExternalLinksControls(): FormArray {
-        return this.form.get("externalLinks") as FormArray;
+    addControl(name) {
+        let links = this.form.get(name) as FormArray;
+        let formGroup = this.createFormGroup(name);
+        links.push(formGroup);
+
+        return formGroup;
     }
 
-    addExternalLinkControl(): FormGroup {
-        let links = this.getExternalLinksControls();
-        let link = this.createExternalLinkFormGroup();
-        links.push(link);
-
-        return link;
+    getFormArray(name) {
+        return this.form.get(name) as FormArray;
     }
+    
+    createFormGroup(name): FormGroup {
+        if (name === "externalLinks") {
+            return new FormGroup({
+                name: new FormControl("", Validators.maxLength(50)),
+                url: new FormControl("", Validators.maxLength(255))
+            });
+        }
+        else if (name === "metaTags") {
+            return new FormGroup({
+                name: new FormControl("", Validators.maxLength(50)),
+                value: new FormControl("", Validators.maxLength(1000))
+            });
+        }
 
-    createExternalLinkFormGroup(): FormGroup {
-        return new FormGroup({
-            name: new FormControl("", Validators.maxLength(50)),
-            url: new FormControl("", Validators.maxLength(255))
-        });
+        throw new Error("name not found");
     }
 
     onImageSelectedHandler(image: Image) {
@@ -112,13 +123,25 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         if (blogPost.externalLinks && blogPost.externalLinks.length > 0) {
             let externalLinks = blogPost.externalLinks;
             externalLinks.forEach(e => {
-                let control = this.addExternalLinkControl();
+                let control = this.addControl("externalLinks");
                 control.get("name").setValue(e.name);
                 control.get("url").setValue(e.url);
             });
         }
         else {
-            this.addExternalLinkControl();
+            this.addControl("externalLinks");
+        }
+
+        if (blogPost.metaTags && blogPost.metaTags.length > 0) {
+            let metaTags = blogPost.metaTags;
+            metaTags.forEach(e => {
+                let control = this.addControl("metaTags");
+                control.get("name").setValue(e.name);
+                control.get("value").setValue(e.value);
+            });
+        }
+        else {
+            this.addControl("metaTags");
         }
     }
 
@@ -135,14 +158,10 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
             return;
         }
 
-        let externalLinks: ExternalLink[] = [];
-        let controls = this.getExternalLinksControls();
-        for (let control of controls.controls) {
-            let externalLink = new ExternalLink(control.get("name").value, control.get("url").value);
-            if (externalLink.name.length > 0 && externalLink.url.length > 0) {
-                externalLinks.push(externalLink);
-            }
-        }
+        let externalLinksControls = (<FormArray>this.form.get("externalLinks")).controls;
+        let externalLinks = externalLinksControls.filter(c => c.get("name").value && c.get("url").value).map(c => ({ name: c.get("name").value, url: c.get("url").value }));
+        let metaTagsControls = (<FormArray>this.form.get("metaTags")).controls;
+        let metaTags = metaTagsControls.filter(c => c.get("name").value && c.get("value").value).map(c => ({ name: c.get("name").value, value: c.get("value").value }));
 
         let command: UpdateBlogPostCommand = {
             id: this._id,
@@ -150,7 +169,8 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
             content: this.form.get("content").value,
             contentIntro: this.form.get("contentIntro").value,
             categoryId: this.form.get("category").value,
-            externalLinks: externalLinks
+            externalLinks,
+            metaTags
         };
 
         let tags: string = this.form.get("tags").value;

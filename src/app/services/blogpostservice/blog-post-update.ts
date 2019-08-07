@@ -13,4 +13,5 @@ export interface BlogPostUpdate {
     image: Image;
     categoryId: number;
     externalLinks: ExternalLink[];
+    metaTags: { name: string; value: string; }[];
 }

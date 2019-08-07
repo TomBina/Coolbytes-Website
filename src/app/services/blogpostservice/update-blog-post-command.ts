@@ -7,4 +7,5 @@ export interface UpdateBlogPostCommand {
     tags?: string[];
     categoryId: number;
     externalLinks: ExternalLink[];
+    metaTags: { name: string; value: string; }[];
 }

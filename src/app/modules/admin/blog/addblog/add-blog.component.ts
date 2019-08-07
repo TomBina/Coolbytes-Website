@@ -1,7 +1,6 @@
 import { ImagesService } from "../../../../services/imagesservice/images.service";
 import { Image } from "../../../../services/imagesservice/image";
 import { AddBlogPostCommand } from "../../../../services/blogpostservice/add-blog-post-command";
-import { ExternalLink } from "../../../../services/blogpostservice/external-link";
 import { BlogPostsService } from "../../../../services/blogpostservice/blog-posts.service";
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
@@ -40,7 +39,8 @@ export class AddBlogComponent implements OnInit, OnDestroy {
                 content: ["", [Validators.required, Validators.maxLength(50000)]],
                 tags: ["", [Validators.maxLength(500)]],
                 category: ["", [Validators.required]],
-                externalLinks: this._fb.array([this.createExternalLinkFormGroup()])
+                externalLinks: this._fb.array([this.createFormGroup("externalLinks")]),
+                metaTags: this._fb.array([this.createFormGroup("metaTags")])
             }
         );
         this.categories = await this._categoriesService.getAll();
@@ -58,20 +58,30 @@ export class AddBlogComponent implements OnInit, OnDestroy {
         }
     }
 
-    getExternalLinksControls(): FormArray {
-        return this.form.get("externalLinks") as FormArray;
+    addControl(name) {
+        let links = this.form.get(name) as FormArray;
+        links.push(this.createFormGroup(name));
     }
 
-    addExternalLinkControl() {
-        let links = this.getExternalLinksControls();
-        links.push(this.createExternalLinkFormGroup());
+    getFormArray(name) {
+        return this.form.get(name) as FormArray;
     }
 
-    createExternalLinkFormGroup(): FormGroup {
-        return new FormGroup({
-            name: new FormControl("", Validators.maxLength(50)),
-            url: new FormControl("", Validators.maxLength(255))
-        });
+    createFormGroup(name): FormGroup {
+        if (name === "externalLinks") {
+            return new FormGroup({
+                name: new FormControl("", Validators.maxLength(50)),
+                url: new FormControl("", Validators.maxLength(255))
+            });
+        }
+        else if (name === "metaTags") {
+            return new FormGroup({
+                name: new FormControl("", Validators.maxLength(50)),
+                value: new FormControl("", Validators.maxLength(1000))
+            });
+        }
+
+        throw new Error("name not found");
     }
 
     onImageSelectedHandler(image: Image) {
@@ -91,21 +101,18 @@ export class AddBlogComponent implements OnInit, OnDestroy {
             return;
         }
 
-        let externalLinks: ExternalLink[] = [];
-        let controls = this.getExternalLinksControls();
-        for (let control of controls.controls) {
-            let externalLink = new ExternalLink(control.get("name").value, control.get("url").value);
-            if (externalLink.name.length > 0 && externalLink.url.length > 0) {
-                externalLinks.push(externalLink);
-            }
-        }
+        let externalLinksControls = (<FormArray>this.form.get("externalLinks")).controls;
+        let externalLinks = externalLinksControls.filter(c => c.get("name").value && c.get("url").value).map(c => ({ name: c.get("name").value, url: c.get("url").value }));
+        let metaTagsControls = (<FormArray>this.form.get("metaTags")).controls;
+        let metaTags = metaTagsControls.filter(c => c.get("name").value && c.get("value").value).map(c => ({ name: c.get("name").value, value: c.get("value").value }));
 
         let command: AddBlogPostCommand = {
             subject: this.form.get("subject").value,
             content: this.form.get("content").value,
             contentIntro: this.form.get("contentIntro").value,
             categoryId: this.form.get("category").value,
-            externalLinks: externalLinks
+            externalLinks,
+            metaTags
         };
 
         let tags: string = this.form.get("tags").value;

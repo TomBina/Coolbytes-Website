@@ -33,14 +33,45 @@
                         <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <label>Links <a (click)="addExternalLinkControl()">add external link</a></label>
-                <ng-container formArrayName="externalLinks" *ngFor="let item of form.get('externalLinks')?.controls; let i = index">
+                <div class="table-row">
+                    <div class="table-col">
+                        <h2>Links</h2>
+                    </div>
+                    <div class="table-col right">
+                        <button type="button" mat-button color="accent" (click)="addControl('externalLinks')">
+                            <mat-icon>add_circle</mat-icon> add link
+                        </button>
+                    </div>
+                </div>
+                <ng-container formArrayName="externalLinks"
+                    *ngFor="let item of getFormArray('externalLinks').controls; let i = index">
                     <span [formGroupName]="i" class="flex">
                         <mat-form-field>
-                            <input formControlName="name" placeholder="external link name" matInput />
+                            <input formControlName="name" placeholder="name" matInput />
                         </mat-form-field>
                         <mat-form-field>
-                            <input formControlName="url" placeholder="external link url" matInput />
+                            <input formControlName="url" placeholder="url" matInput />
+                        </mat-form-field>
+                    </span>
+                </ng-container>
+                <div class="table-row">
+                    <div class="table-col">
+                        <h2>Metatags</h2>
+                    </div>
+                    <div class="table-col right">
+                        <button type="button" mat-button color="accent" (click)="addControl('metaTags')">
+                            <mat-icon>add_circle</mat-icon> add metatag
+                        </button>
+                    </div>
+                </div>
+                <ng-container formArrayName="metaTags"
+                    *ngFor="let item of getFormArray('metaTags').controls; let i = index">
+                    <span [formGroupName]="i" class="flex">
+                        <mat-form-field>
+                            <input formControlName="name" placeholder="name" matInput />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input formControlName="value" placeholder="value" matInput />
                         </mat-form-field>
                     </span>
                 </ng-container>
