@@ -2,100 +2,145 @@
 @import "../../../styles/variables.scss";
 
 .page {
-    margin:0;
-    width:100%;
-    display:block;
+    margin: 0;
+    width: 100%;
+    display: block;
 }
 
 article {
-    padding:20px 20px 0px 20px;
-    box-sizing:border-box;
+    padding: 0px 20px 0px 20px;
+    box-sizing: border-box;
 }
 
 aside {
-    width:100%;
-    padding-left:0px;
-    padding:0 20px 20px 20px;
-    border-left:none;
-    box-sizing:border-box;
+    width: 100%;
+    padding-left: 0px;
+    padding: 0 20px 20px 20px;
+    border-left: none;
+    box-sizing: border-box;
 
     h2 {
-        font-size:1.2rem;
-    };
+        font-size: 1.2rem;
+    }
 }
 
 aside a {
-    font-weight:normal;
+    font-weight: normal;
+}
+
+.post-image {
+    width: 100%;
+    margin-top: -1px;
+}
+
+.post-tablet-nav {
+    display: none;
 }
 
 .post-info {
-    margin:0;
-    color:#777;
+    margin-top:10px;
+
+    .breadcrumb {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+
+    p {
+        font-size: 0.8rem;
+        line-height: 0;
+    }
+
+    .mobile-nav {
+        margin-top: 20px;
+        border-top: 1px solid #dddddd;
+        padding-top: 5px;
+        font-size: 0.85rem;
+    }
 }
 
 .author {
-    display:flex;
+    display: flex;
     align-items: center;
-    margin-top:-20px;
+    margin-top: -20px;
 }
 
 .author-image {
-    width:50px;
-    border-radius:50%;
+    width: 50px;
+    border-radius: 50%;
 }
 
 .author .about {
-    margin-left:10px;
+    margin-left: 10px;
 }
 
 .author .about a {
-    font-weight:700;
+    font-weight: 700;
 }
 
 @include tablet {
+    .post-tablet-nav {
+        display: flex;
+        margin-bottom:15px;
+        padding-bottom:5px;
+        font-size:0.75rem;
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .post-image {
+        display: none;
+    }
+
+    .post-info {
+        padding: 0;
+
+        .mobile-nav {
+            display: none;
+        }
+    }
+
     .page {
-        margin:20px auto 20px auto;
-        display:flex;
+        margin: 20px auto 20px auto;
+        display: flex;
     }
-    
+
     article {
-        width:70%;
-        padding:0px 20px 0px 15px;
-        box-sizing:border-box;
+        width: 70%;
+        padding: 0px 20px 0px 15px;
+        box-sizing: border-box;
     }
-    
+
     aside {
-        width:30%;
-        padding:0px 15px 0px 15px;
-        border-left:1px solid #DDDDDD;
-        box-sizing:border-box;
-        font-size:0.8rem;
-    
+        width: 30%;
+        padding: 0px 15px 0px 15px;
+        border-left: 1px solid #dddddd;
+        box-sizing: border-box;
+        font-size: 0.8rem;
+
         h2 {
-            font-size:1rem;
+            font-size: 1rem;
         }
     }
 
     ul {
-        padding-left:20px;
+        padding-left: 20px;
     }
 }
 
 @include desktop {
     ul {
-        padding-left:30px;
+        padding-left: 30px;
     }
 
     .page {
-        width:90%;
+        width: 90%;
     }
 
     article {
-        padding-right:40px;
+        padding-right: 40px;
     }
 
     aside {
-        padding-left:20px;
-        font-size:0.9rem;
+        padding-left: 20px;
+        font-size: 0.9rem;
     }
 }

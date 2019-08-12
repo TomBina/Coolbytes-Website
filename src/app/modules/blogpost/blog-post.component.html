@@ -2,10 +2,36 @@
     <home-blog-post-loading></home-blog-post-loading>
 </ng-container>
 <ng-container *ngIf="blogPost">
+    <img class="post-image" [src]="blogPost.imageUrl" />
     <div class="page">
         <article>
-            <h1 class="first">{{blogPost.subject}}</h1>
-            <p class="post-info">{{blogPost.date | date}} by {{blogPost.author.firstName}}</p>
+            <div class="table-row post-tablet-nav">
+                <div class="table-col" *ngIf="blogPost.prev">
+                    <a [routerLink]="blogPost.prev">&laquo; prev lesson</a>
+                </div>
+                <div class="table-col right" *ngIf="blogPost.next">
+                    <a [routerLink]="blogPost.next">next lesson &raquo;</a>
+                </div>
+            </div>
+            <div class="post-info">
+                <div class="breadcrumb">
+                    <a href="/">home</a> /
+                    <a routerLink="/{{ formatPath(blogPost.category.toLowerCase()) }}">{{ blogPost.category.toLowerCase() }}</a>
+                </div>
+                <h1 class="first">{{ blogPost.subject }}</h1>
+                <p>
+                    {{ blogPost.date | date }} by
+                    {{ blogPost.author.firstName }}
+                </p>
+                <div class="table-row mobile-nav">
+                    <div class="table-col" *ngIf="blogPost.prev">
+                        <a [routerLink]="blogPost.prev">&laquo; prev lesson</a>
+                    </div>
+                    <div class="table-col right" *ngIf="blogPost.next">
+                        <a [routerLink]="blogPost.next">next lesson &raquo;</a>
+                    </div>
+                </div>
+            </div>
             <md [value]="blogPost.contentIntro"></md>
             <md [value]="blogPost.content"></md>
             <ng-container *ngIf="blogPost.codeLinks.length > 0">
@@ -13,21 +39,18 @@
                 <p>
                     View all code on GitHub, or use codesandbox to edit and run it.
                 </p>
-                <home-blog-post-view-code [codeLinks]="blogPost.codeLinks">
-                </home-blog-post-view-code>
+                <home-blog-post-view-code [codeLinks]="blogPost.codeLinks"> </home-blog-post-view-code>
             </ng-container>
         </article>
         <aside>
             <div *ngIf="authorImage">
-                <h2>Author</h2>
+                <h2 class="first">Author</h2>
                 <div class="author">
                     <div>
                         <img [src]="authorImage" class="author-image" />
                     </div>
                     <div class="about">
-                        <md
-                            [value]="(blogPost.author.firstName + ' ' + blogPost.author.lastName + '\n' + blogPost.author.about)">
-                        </md>
+                        <md [value]="blogPost.author.firstName + ' ' + blogPost.author.lastName + '\n' + blogPost.author.about"> </md>
                     </div>
                 </div>
             </div>
@@ -38,12 +61,12 @@
                 <h2>Tags</h2>
                 <ul>
                     <li *ngFor="let tag of blogPost.tags">
-                        <a routerLink="/tag/{{formatPath(tag.name)}}">{{tag.name}}</a>
+                        <a routerLink="/tag/{{ formatPath(tag.name) }}">{{ tag.name }}</a>
                     </li>
                 </ul>
             </div>
-            <home-blog-post-related [blogPost]="blogPost"></home-blog-post-related>
-            <home-blog-post-menu [shareInfo]="shareInfo" [blogPost]="blogPost"></home-blog-post-menu>
+            <home-blog-post-related [blogPost]="blogPost" [blogPosts]="blogPosts"></home-blog-post-related>
+            <home-blog-post-menu [shareInfo]="shareInfo" [blogPost]="blogPost" [blogPosts]="blogPosts"></home-blog-post-menu>
         </aside>
     </div>
 </ng-container>
