@@ -7,7 +7,7 @@ import { BlogPost } from "../../services/blogpostservice/blog-post";
     selector: "home-blog-post-related",
     template: `<h2>{{blogPost.category}}</h2>
                <ul>
-                    <li *ngFor="let blog of blogPosts$ | async">
+                    <li *ngFor="let blog of blogPosts">
                         <div>
                             <a routerLink="/post/{{blog.id}}/{{blog.subjectUrl}}">
                                 <img [attr.data-src]="imagesService.getUri(blog.image.uriPath)" src="/assets/placeholder.svg" appLazyLoad />
@@ -24,16 +24,13 @@ import { BlogPost } from "../../services/blogpostservice/blog-post";
                 `,
     styleUrls: ["./blog-post-related.component.scss"]
 })
-export class BlogPostRelatedComponent implements OnInit {
+export class BlogPostRelatedComponent {
     @Input()
     blogPost: BlogPost;
 
-    blogPosts$;
+    @Input()
+    blogPosts;
 
     constructor(private _blogPostService: BlogPostsService, public imagesService: ImagesService) {
-    }
-    
-    ngOnInit(): void {
-        this.blogPosts$ = this._blogPostService.getByCategory(this.blogPost.categoryId);
     }
 }
