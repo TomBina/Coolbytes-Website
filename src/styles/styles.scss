@@ -10,88 +10,105 @@
 @import "md.scss";
 
 html {
-    font-size:16px;
+    font-size: 16px;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-size:1rem;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
     margin: 0px;
     padding-top: 72px;
     color: $text;
 }
 
 h1 {
-    font-size:1.5rem;
+    font-size: 1.5rem;
 }
 
 h2 {
-    font-size:1.2rem;
+    font-size: 1.2rem;
 }
 
-h1,h2 {
+h1,
+h2 {
     &.first {
-        margin-top:0px;
+        margin-top: 0px;
     }
 }
 
 a {
     color: $link;
     text-decoration: none;
-    cursor:pointer;
+    cursor: pointer;
 
     &.small-link {
-        font-size:0.8rem;
+        font-size: 0.8rem;
     }
 }
 
 p {
-    line-height:1.6em;
+    line-height: 1.6em;
 }
 
 ul {
     li {
-        line-height:1.6em;
+        line-height: 1.6em;
     }
 }
 
 label {
     text-transform: uppercase;
-    font-size:14px;
-    color:$color-grey;
+    font-size: 14px;
+    color: $color-grey;
 }
 
 table {
-    width:100%;
+    width: 100%;
 }
 
 blockquote {
-    margin:0 -20px 0 -20px;
+    margin: 0 -20px 0 -20px;
     background-color: $color-tertiary;
     padding: 2px 5px 2px 20px;
-    border-left:3px solid $color-primary;
+    border-left: 3px solid $color-primary;
 }
 
 mat-form-field {
-    width:100%;
+    width: 100%;
 }
 
 @include tablet {
-    blockquote {
-        margin:0;
+    html {
+        font-size: 16px;
     }
 
-    html {
-        font-size:16px;
+    h1 {
+        font-size:1.3rem;
+    }
+    
+    h2 {
+        font-size:1.1rem;
+    }
+
+    blockquote {
+        margin: 0;
     }
 }
 
-@include desktop {
+@include desktop-small {
     html {
-        font-size:16px;
+        font-size: 16px;
+    }
+
+    body {
+        padding-top: 77px;
+    }
+
+    h1 {
+        font-size:1.5rem;
     }
     
-    body {
-        padding-top:77px;
+    h2 {
+        font-size:1.2rem;
     }
 }
