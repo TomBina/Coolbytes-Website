@@ -119,6 +119,8 @@ aside a {
         }
 
         .post-info {
+            margin-bottom: 25px;
+
             .mobile-nav {
                 display: none;
             }
@@ -143,12 +145,13 @@ aside a {
 
                 .right {
                     width: 75%;
-                    font-size: 0.8rem;
+                    font-size: 1rem;
                 }
             }
 
             .date {
-                padding: 0 0 10px 0;
+                font-size: 1rem;
+                padding: 0;
             }
         }
     }
@@ -172,24 +175,17 @@ aside a {
 
 @include desktop-small {
     article {
-        width:70%;
+        width: 70%;
 
         .post-info {
-            .intro {
-                .right {
-                    font-size: 1rem;
-                }
-            }
-
             .date {
                 padding: 10px 0;
-                font-size: 1rem;
             }
         }
     }
 
     aside {
-        width:30%;
+        width: 30%;
     }
 }
 
