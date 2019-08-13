@@ -7,10 +7,10 @@
         <article>
             <div class="table-row post-tablet-nav">
                 <div class="table-col" *ngIf="blogPost.prev">
-                    <a [routerLink]="blogPost.prev">&laquo; prev lesson</a>
+                    <a [routerLink]="blogPost.prev.url">&laquo; previous lesson</a>
                 </div>
                 <div class="table-col right" *ngIf="blogPost.next">
-                    <a [routerLink]="blogPost.next">next lesson &raquo;</a>
+                    <a [routerLink]="blogPost.next.url">next lesson &raquo;</a>
                 </div>
             </div>
             <div class="post-info">
@@ -18,21 +18,24 @@
                     <a href="/">home</a> /
                     <a routerLink="/{{ formatPath(blogPost.category.toLowerCase()) }}">{{ blogPost.category.toLowerCase() }}</a>
                 </div>
-                <h1 class="first">{{ blogPost.subject }}</h1>
-                <p>
+                <h1>{{ blogPost.subject }}</h1>
+                <div class="intro">
+                    <div class="left"><img [src]="blogPost.imageUrl" /></div>
+                    <div class="right"><md [value]="blogPost.contentIntro"></md></div>
+                </div>
+                <p class="date">
                     {{ blogPost.date | date }} by
                     {{ blogPost.author.firstName }}
                 </p>
                 <div class="table-row mobile-nav">
                     <div class="table-col" *ngIf="blogPost.prev">
-                        <a [routerLink]="blogPost.prev">&laquo; prev lesson</a>
+                        <a [routerLink]="blogPost.prev.url">&laquo; previous lesson</a>
                     </div>
                     <div class="table-col right" *ngIf="blogPost.next">
-                        <a [routerLink]="blogPost.next">next lesson &raquo;</a>
+                        <a [routerLink]="blogPost.next.url">next lesson &raquo;</a>
                     </div>
                 </div>
             </div>
-            <md [value]="blogPost.contentIntro"></md>
             <md [value]="blogPost.content"></md>
             <ng-container *ngIf="blogPost.codeLinks.length > 0">
                 <h2>Get the code</h2>
@@ -41,6 +44,14 @@
                 </p>
                 <home-blog-post-view-code [codeLinks]="blogPost.codeLinks"> </home-blog-post-view-code>
             </ng-container>
+            <div class="table-row bottom-nav">
+                <div class="table-col" *ngIf="blogPost.prev">
+                    <a [routerLink]="blogPost.prev.url">&laquo; previous lesson</a>
+                </div>
+                <div class="table-col right" *ngIf="blogPost.next">
+                    <a [routerLink]="blogPost.next.url">next lesson &raquo;</a>
+                </div>
+            </div>
         </article>
         <aside>
             <div *ngIf="authorImage">
