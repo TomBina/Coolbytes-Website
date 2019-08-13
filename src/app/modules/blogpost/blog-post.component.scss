@@ -178,9 +178,13 @@ aside a {
                     font-size: 1.1rem;
                 }
             }
+
+            .date {
+                padding: 10px 0;
+                font-size: 1rem;
+            }
         }
     }
-
 }
 
 @include desktop {
@@ -209,10 +213,6 @@ aside a {
                     width: 80%;
                     font-size: 1.2rem;
                 }
-            }
-
-            .date {
-                padding: 10px 0;
             }
         }
     }
