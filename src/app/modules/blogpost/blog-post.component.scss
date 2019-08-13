@@ -33,7 +33,7 @@ article {
 
         .mobile-nav {
             margin-top: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             border-top: 1px solid #dddddd;
             padding-top: 5px;
             font-size: 0.85rem;
@@ -106,7 +106,7 @@ aside a {
     }
 
     article {
-        width: 70%;
+        width: 65%;
         padding: 0px 20px 0px 15px;
         box-sizing: border-box;
 
@@ -143,7 +143,7 @@ aside a {
 
                 .right {
                     width: 75%;
-                    font-size: 0.95rem;
+                    font-size: 0.8rem;
                 }
             }
 
@@ -154,7 +154,7 @@ aside a {
     }
 
     aside {
-        width: 30%;
+        width: 35%;
         padding: 0px 15px 0px 15px;
         border-left: 1px solid #dddddd;
         box-sizing: border-box;
@@ -172,10 +172,12 @@ aside a {
 
 @include desktop-small {
     article {
+        width:70%;
+
         .post-info {
             .intro {
                 .right {
-                    font-size: 1.1rem;
+                    font-size: 1rem;
                 }
             }
 
@@ -184,6 +186,10 @@ aside a {
                 font-size: 1rem;
             }
         }
+    }
+
+    aside {
+        width:30%;
     }
 }
 
@@ -211,7 +217,6 @@ aside a {
 
                 .right {
                     width: 80%;
-                    font-size: 1.2rem;
                 }
             }
         }
