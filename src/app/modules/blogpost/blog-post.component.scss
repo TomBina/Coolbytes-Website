@@ -1,6 +1,11 @@
 @import "../../../styles/mixins.scss";
 @import "../../../styles/variables.scss";
 
+.post-image {
+    width: 100%;
+    margin-top: -1px;
+}
+
 .page {
     margin: 0;
     width: 100%;
@@ -10,12 +15,55 @@
 article {
     padding: 0px 20px 0px 20px;
     box-sizing: border-box;
+
+    .post-tablet-nav {
+        display: none;
+    }
+
+    .post-info {
+        margin-top: 10px;
+
+        h1 {
+            margin: 5px 0;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+        }
+
+        .mobile-nav {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-top: 1px solid #dddddd;
+            padding-top: 5px;
+            font-size: 0.85rem;
+        }
+
+        .intro {
+            display: block;
+
+            .left {
+                display: none;
+            }
+        }
+
+        .date {
+            font-size: 0.8rem;
+            line-height: 0;
+        }
+    }
+
+    .bottom-nav {
+        margin-top: 20px;
+        border-top: 1px solid #dddddd;
+        padding-top: 5px;
+        font-size: 0.85rem;
+    }
 }
 
 aside {
     width: 100%;
-    padding-left: 0px;
-    padding: 0 20px 20px 20px;
+    padding: 20px;
     border-left: none;
     box-sizing: border-box;
 
@@ -26,36 +74,6 @@ aside {
 
 aside a {
     font-weight: normal;
-}
-
-.post-image {
-    width: 100%;
-    margin-top: -1px;
-}
-
-.post-tablet-nav {
-    display: none;
-}
-
-.post-info {
-    margin-top:10px;
-
-    .breadcrumb {
-        font-size: 0.85rem;
-        margin-bottom: 8px;
-    }
-
-    p {
-        font-size: 0.8rem;
-        line-height: 0;
-    }
-
-    .mobile-nav {
-        margin-top: 20px;
-        border-top: 1px solid #dddddd;
-        padding-top: 5px;
-        font-size: 0.85rem;
-    }
 }
 
 .author {
@@ -78,24 +96,8 @@ aside a {
 }
 
 @include tablet {
-    .post-tablet-nav {
-        display: flex;
-        margin-bottom:15px;
-        padding-bottom:5px;
-        font-size:0.75rem;
-        border-bottom: 1px solid #dddddd;
-    }
-
     .post-image {
         display: none;
-    }
-
-    .post-info {
-        padding: 0;
-
-        .mobile-nav {
-            display: none;
-        }
     }
 
     .page {
@@ -107,6 +109,48 @@ aside a {
         width: 70%;
         padding: 0px 20px 0px 15px;
         box-sizing: border-box;
+
+        .post-tablet-nav {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            font-size: 0.75rem;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .post-info {
+            .mobile-nav {
+                display: none;
+            }
+
+            h1 {
+                margin: 10px 0;
+            }
+
+            .intro {
+                display: flex;
+                align-items: center;
+
+                .left {
+                    display: block;
+                    width: calc(25% - 20px);
+                    margin-right: 20px;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .right {
+                    width: 75%;
+                    font-size: 0.95rem;
+                }
+            }
+
+            .date {
+                padding: 0 0 10px 0;
+            }
+        }
     }
 
     aside {
@@ -126,6 +170,19 @@ aside a {
     }
 }
 
+@include desktop-small {
+    article {
+        .post-info {
+            .intro {
+                .right {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+
+}
+
 @include desktop {
     ul {
         padding-left: 30px;
@@ -137,6 +194,27 @@ aside a {
 
     article {
         padding-right: 40px;
+
+        .post-info {
+            h1 {
+                margin: 10px 0;
+            }
+
+            .intro {
+                .left {
+                    width: calc(20% - 20px);
+                }
+
+                .right {
+                    width: 80%;
+                    font-size: 1.2rem;
+                }
+            }
+
+            .date {
+                padding: 10px 0;
+            }
+        }
     }
 
     aside {

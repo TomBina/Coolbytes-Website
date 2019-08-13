@@ -1,10 +1,4 @@
-import {
-    Component,
-    OnDestroy,
-    OnInit,
-    Inject,
-    PLATFORM_ID
-} from "@angular/core";
+import { Component, OnDestroy, OnInit, Inject, PLATFORM_ID } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { UrlFormatter } from "../../../app/services/url-formatter";
@@ -47,15 +41,11 @@ export class BlogPostComponent implements OnInit, OnDestroy {
             }
 
             this.blogPost = null;
-            this._blogPostSubscription = this._blogPostsService
-                .getById(changes.id)
-                .subscribe(async b => {
-                    this.blogPosts = await this._blogPostsService.getByCategory(
-                        b.categoryId
-                    );
+            this._blogPostSubscription = this._blogPostsService.getById(changes.id).subscribe(async b => {
+                this.blogPosts = await this._blogPostsService.getByCategory(b.categoryId);
 
-                    this.proccesData(b);
-                });
+                this.proccesData(b);
+            });
         });
     }
 
@@ -70,26 +60,18 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     proccesData(blogPost) {
         let title = `${blogPost.subject} - Cool Bytes`;
         let image = this._imagesService.getUri(blogPost.image.uriPath);
-        let url = `${environment.appUri}post/${blogPost.id}/${
-            blogPost.subjectUrl
-        }`;
+        let url = `${environment.appUri}post/${blogPost.id}/${blogPost.subjectUrl}`;
         let metaTag = name => {
             let tag = blogPost.metaTags.find(m => m.name === name);
             return (tag && tag.value) || null;
         };
 
         this._seoService.setTitle(title);
-        this._seoService.setAuthor(
-            metaTag("author") ||
-                `${blogPost.author.firstName} ${blogPost.author.lastName}`
-        );
-        this._seoService.setDescription(
-            metaTag("description") || blogPost.contentIntro
-        );
+        this._seoService.setAuthor(metaTag("author") || `${blogPost.author.firstName} ${blogPost.author.lastName}`);
+        this._seoService.setDescription(metaTag("description") || blogPost.contentIntro);
         this._seoService.setTwitter({
             title: metaTag("twitter:title") || title,
-            description:
-                metaTag("twitter:description") || blogPost.contentIntro,
+            description: metaTag("twitter:description") || blogPost.contentIntro,
             image: metaTag("twitter:image") || image,
             cardType: metaTag("twitter:card") || "summary_large_image",
             site: metaTag("twitter:site") || "@coolbytesio",
@@ -110,9 +92,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
             url,
             subject: blogPost.subject
         };
-        this.authorImage = this._imagesService.getUri(
-            blogPost.author.image.uriPath
-        );
+        this.authorImage = this._imagesService.getUri(blogPost.author.image.uriPath);
 
         this.blogPost = {
             ...blogPost,
@@ -122,27 +102,25 @@ export class BlogPostComponent implements OnInit, OnDestroy {
                     return [];
                 }
 
-                return blogPost.externalLinks.filter(
-                    r =>
-                        r.url.includes("github.com") ||
-                        r.url.includes("codesandbox.io")
-                );
+                return blogPost.externalLinks.filter(r => r.url.includes("github.com") || r.url.includes("codesandbox.io"));
             }
         };
 
         let index = this.blogPosts.findIndex(b => b.id === blogPost.id);
         if (index > 0) {
             let prev = this.blogPosts[index - 1];
-            this.blogPost.prev = `/post/${prev.id}/${
-                prev.subjectUrl
-            }`;
+            this.blogPost.prev = {
+                subject: prev.subject,
+                url: `/post/${prev.id}/${prev.subjectUrl}`
+            };
         }
 
         if (index < this.blogPosts.length - 1) {
             let next = this.blogPosts[index + 1];
-            this.blogPost.next = `/post/${next.id}/${
-                next.subjectUrl
-            }`;
+            this.blogPost.next = {
+                subject: next.subject,
+                url: `/post/${next.id}/${next.subjectUrl}`
+            };
         }
     }
 
