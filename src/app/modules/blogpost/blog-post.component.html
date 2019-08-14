@@ -5,14 +5,7 @@
     <img class="post-image" [src]="blogPost.imageUrl" />
     <div class="page">
         <article>
-            <div class="table-row post-top-nav">
-                <div class="table-col" *ngIf="blogPost.prev">
-                    <a [routerLink]="blogPost.prev.url">&laquo; previous lesson</a>
-                </div>
-                <div class="table-col right" *ngIf="blogPost.next">
-                    <a [routerLink]="blogPost.next.url">next lesson &raquo;</a>
-                </div>
-            </div>
+            <home-blog-navigation [blogPost]="blogPost" className="nav-tablet"></home-blog-navigation>
             <div class="post-info">
                 <div class="breadcrumb">
                     <a href="/">home</a> /
@@ -27,14 +20,7 @@
                     {{ blogPost.date | date }} by
                     {{ blogPost.author.firstName }}
                 </p>
-                <div class="table-row phone-nav">
-                    <div class="table-col" *ngIf="blogPost.prev">
-                        <a [routerLink]="blogPost.prev.url">&laquo; previous lesson</a>
-                    </div>
-                    <div class="table-col right" *ngIf="blogPost.next">
-                        <a [routerLink]="blogPost.next.url">next lesson &raquo;</a>
-                    </div>
-                </div>
+                <home-blog-navigation [blogPost]="blogPost" className="nav-phone"></home-blog-navigation>
             </div>
             <md [value]="blogPost.content"></md>
             <ng-container *ngIf="blogPost.codeLinks.length > 0">
@@ -44,14 +30,7 @@
                 </p>
                 <home-blog-post-view-code [codeLinks]="blogPost.codeLinks"> </home-blog-post-view-code>
             </ng-container>
-            <div class="table-row bottom-nav">
-                <div class="table-col" *ngIf="blogPost.prev">
-                    <a [routerLink]="blogPost.prev.url">&laquo; previous lesson</a>
-                </div>
-                <div class="table-col right" *ngIf="blogPost.next">
-                    <a [routerLink]="blogPost.next.url">next lesson &raquo;</a>
-                </div>
-            </div>
+            <home-blog-navigation [blogPost]="blogPost" className="nav-bottom"></home-blog-navigation>
         </article>
         <aside>
             <div *ngIf="authorImage">

@@ -9,6 +9,7 @@ import { BlogPostMenuComponent } from "./blog-post-menu.component";
 import { BlogPostRelatedComponent } from "./blog-post-related.component";
 import { BlogPostViewCodeComponent } from "./blog-post-view-code.component";
 import { BlogPostComponent } from "./blog-post.component";
+import { BlogPostNavigationComponent } from "./blog-post-navigation.component";
 
 export const routes: Routes = [
     {
@@ -30,7 +31,8 @@ export const routes: Routes = [
         BlogPostMenuComponent,
         BlogPostRelatedComponent,
         BlogPostViewCodeComponent,
-        BlogPostExternalLinksComponent
+        BlogPostExternalLinksComponent,
+        BlogPostNavigationComponent
     ]
 })
 export class BlogPostModule {

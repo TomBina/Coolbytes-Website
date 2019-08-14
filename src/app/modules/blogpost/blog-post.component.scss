@@ -16,22 +16,10 @@ article {
     padding: 0px 20px 0px 20px;
     box-sizing: border-box;
 
-    .post-top-nav {
-        display: none;
-    }
-
     .post-info {
         margin-top: 10px;
 
         .breadcrumb {
-            font-size: 0.85rem;
-        }
-
-        .phone-nav {
-            margin-top: 20px;
-            margin-bottom: 30px;
-            border-top: 1px solid #dddddd;
-            padding-top: 5px;
             font-size: 0.85rem;
         }
 
@@ -46,13 +34,6 @@ article {
         .date {
             font-size: 0.8rem;
         }
-    }
-
-    .bottom-nav {
-        margin-top: 20px;
-        border-top: 1px solid #dddddd;
-        padding-top: 5px;
-        font-size: 0.85rem;
     }
 }
 
@@ -104,19 +85,7 @@ aside a {
         width: 65%;
         padding: 0px 20px 0px 15px;
 
-        .post-top-nav {
-            display: flex;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            font-size: 0.75rem;
-            border-bottom: 1px solid #dddddd;
-        }
-
         .post-info {
-            .phone-nav  {
-                display: none;
-            }
-
             .intro {
                 display: flex;
                 align-items: center;
