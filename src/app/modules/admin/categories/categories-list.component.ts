@@ -15,10 +15,7 @@ export class CategoriesListComponent implements OnInit {
     categories: Category[];
     columnsToDisplay = ["name", "options"];
 
-    constructor(private _categoriesService: CategoriesService, private _snackbar: MatSnackBar,
-        private _matDialog: MatDialog) {
-
-    }
+    constructor(private _categoriesService: CategoriesService, private _snackbar: MatSnackBar, private _matDialog: MatDialog) {}
 
     ngOnInit(): void {
         this.refresh();
@@ -37,7 +34,9 @@ export class CategoriesListComponent implements OnInit {
     }
 
     add() {
-        let dialog = this._matDialog.open(AddCategoryComponent);
+        let dialog = this._matDialog.open(AddCategoryComponent, {
+            width: "40vw"
+        });
         dialog.afterClosed().subscribe(added => {
             if (added) {
                 this.refresh();
@@ -56,7 +55,10 @@ export class CategoriesListComponent implements OnInit {
 
     delete(id: number): void {
         if (confirm("Are you sure?")) {
-            this._categoriesService.delete(id).pipe(catchError(this._onDeleteError.bind(this))).subscribe(() => this.refresh());
+            this._categoriesService
+                .delete(id)
+                .pipe(catchError(this._onDeleteError.bind(this)))
+                .subscribe(() => this.refresh());
         }
     }
 
