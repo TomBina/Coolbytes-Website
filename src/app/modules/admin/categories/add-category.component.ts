@@ -17,7 +17,9 @@ export class AddCategoryComponent implements OnInit {
     ngOnInit() {
         this.form = this._fb.group({
             name: ["", [Validators.required, Validators.maxLength(50)]],
-            description: ["", [Validators.required, Validators.maxLength(1000)]]
+            description: ["", [Validators.required, Validators.maxLength(1000)]],
+            isCourse: [""]
+        
         });
     }
 
@@ -31,8 +33,10 @@ export class AddCategoryComponent implements OnInit {
 
         let command = {
             name: this.form.get("name").value,
-            description: this.form.get("description").value
+            description: this.form.get("description").value,
+            isCourse: this.form.get("isCourse").value || false
         };
+
         await this._categoriesService.add(command);
         this._dialogRef.close(true);
     }

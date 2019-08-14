@@ -8,16 +8,17 @@ import { MatListModule } from "@angular/material/list";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTableModule } from "@angular/material/table";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { NgModule } from "@angular/core";
 
 @NgModule({
   imports: [MatButtonModule, MatCheckboxModule, MatInputModule,
     MatSelectModule, MatTableModule, MatListModule, DragDropModule, MatGridListModule, MatIconModule, MatSnackBarModule,
-    MatDialogModule],
+    MatDialogModule, MatSlideToggleModule],
   exports: [MatButtonModule, MatCheckboxModule, MatInputModule,
     MatSelectModule, MatTableModule, MatListModule, DragDropModule, MatGridListModule, MatIconModule, MatSnackBarModule,
-    MatDialogModule]
+    MatDialogModule, MatSlideToggleModule]
 })
 export class MaterialModule {
 

@@ -7,6 +7,11 @@
         <mat-form-field>
             <textarea formControlName="description" placeholder="description" matInput cdkTextareaAutosize cdkAutosizeMinRows="3"></textarea>
         </mat-form-field>
+        <p>
+            <mat-slide-toggle formControlName="isCourse">
+                course
+            </mat-slide-toggle>
+        </p>
     </mat-dialog-content>
     <mat-dialog-actions>
         <button type="submit" mat-raised-button color="primary">save</button>
