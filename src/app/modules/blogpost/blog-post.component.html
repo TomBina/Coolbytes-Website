@@ -5,7 +5,7 @@
     <img class="post-image" [src]="blogPost.imageUrl" />
     <div class="page">
         <article>
-            <div class="table-row post-tablet-nav">
+            <div class="table-row post-top-nav">
                 <div class="table-col" *ngIf="blogPost.prev">
                     <a [routerLink]="blogPost.prev.url">&laquo; previous lesson</a>
                 </div>
@@ -27,7 +27,7 @@
                     {{ blogPost.date | date }} by
                     {{ blogPost.author.firstName }}
                 </p>
-                <div class="table-row mobile-nav">
+                <div class="table-row phone-nav">
                     <div class="table-col" *ngIf="blogPost.prev">
                         <a [routerLink]="blogPost.prev.url">&laquo; previous lesson</a>
                     </div>
