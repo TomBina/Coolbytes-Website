@@ -9,7 +9,9 @@ import { isPlatformBrowser } from "@angular/common";
 
 @Component({
     selector: "md",
-    template: `<div [innerHtml]="html" #mdref></div>`
+    template: `
+        <div [innerHtml]="html" #mdref></div>
+    `
 })
 export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
     @Input()
@@ -22,6 +24,7 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
         this._isBrowser = isPlatformBrowser(platformId);
 
         let renderer = new marked.Renderer();
+
         renderer.image = (href: string, title: string, text: string) => {
             if (href.startsWith("/")) {
                 href = _imagesService.getUri(href);
@@ -29,15 +32,13 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
 
             if (!href.includes("|")) {
                 return `<img class="md-image" src="${href}" />`;
-            }
-            else {
+            } else {
                 let [imagePreviewUrl, imageUrl] = href.split("|");
                 return `<div class="md-image-player">
                             <img src="${imagePreviewUrl}" data-src="${imageUrl}" />
                             <div class="md-play-button"><i class="material-icons">play_arrow</i></div>
                         </div>`;
             }
-
         };
         renderer.link = (href: string, title: string, text: string) => {
             if (!text && href.startsWith("#")) {
@@ -54,19 +55,43 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
 
             if (href.startsWith("#") || href.startsWith("/")) {
                 return `<a class="md-link" href="${href}">${text}</a>`;
-            }
-            else {
+            } else {
                 return `<a class="md-link" href="${href}" target="_blank">${text}</a>`;
             }
         };
+
+        function parseTitle(header) {
+            if (!header.includes(":")) {
+                return {
+                    header
+                };
+            }
+
+            let [language, possibleLineNumbers] = header.split(":");
+            
+            if (possibleLineNumbers.includes("{")) {
+                let [title, highlights] = possibleLineNumbers.split("{");
+
+                return {
+                    title,
+                    header: `${language}{${highlights}`
+                };
+            } else {
+                return {
+                    title: possibleLineNumbers,
+                    header: language
+                };
+            }
+        }
 
         marked.setOptions({
             gfm: true,
             breaks: true,
             renderer: renderer,
             sanitize: true,
-            highlight: (c, lang) => {
-                let { splitLanguage: language, lines } = getLines(lang);
+            highlight: (c, h) => {
+                let { header, title } = parseTitle(h);
+                let { splitLanguage: language, lines } = getLines(header);
                 let languages = {
                     highlightLines(highlighted) {
                         if (!lines || lines.length === 0) {
@@ -75,10 +100,8 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
 
                         let parsedLines: any[] = highlightLines(highlighted, lines);
                         let lastIndex = parsedLines.length - 1;
-                        let result = parsedLines.reduce(function (acc, current, index) {
-                            let part = current.highlight
-                                ? current.code
-                                : `${current.code}${index === lastIndex ? `` : `\n`}`;
+                        let result = parsedLines.reduce(function(acc, current, index) {
+                            let part = current.highlight ? current.code : `${current.code}${index === lastIndex ? `` : `\n`}`;
 
                             return `${acc}${part}`;
                         }, "");
@@ -103,12 +126,13 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
                     }
                 };
 
-                if (languages[language]) {
-                    return languages[language]();
+                let formattedCode = languages[language] ? languages[language]() : prism.highlight(c, prism.languages.csharp);
+
+                if (title) {
+                    return `<div class="md-title">${title}</div>${formattedCode}`;
                 }
-                else {
-                    return prism.highlight(c, prism.languages.csharp);
-                }
+
+                return formattedCode;
             }
         });
         this._marked = marked;
@@ -133,7 +157,7 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
         if (!this._isBrowser) {
             return;
         }
-        
+
         let players: any = Array.from(this.mdref.nativeElement.querySelectorAll(".md-image-player"));
         players.forEach(p => {
             let playButton = p.querySelector(".md-play-button");
