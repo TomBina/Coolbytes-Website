@@ -55,7 +55,7 @@ const stripComment = line =>
   )
 
 const highlightWrap = line =>
-  [`<span class="gatsby-highlight-code-line">`, line, `</span>`].join(``)
+  [`<span class="md-code-line">`, line, `</span>`].join(``)
 // const wrapAndStripComment = line => wrap(stripComment(line))
 
 const parseLine = (line, code, index, actions) => {
