@@ -6,7 +6,6 @@ import { getLines, highlightLines } from "../../../../external/prism/highlightli
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { isPlatformBrowser } from "@angular/common";
-import { parse } from "query-string";
 
 @Component({
     selector: "md",
