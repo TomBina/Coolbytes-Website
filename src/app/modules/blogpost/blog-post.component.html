@@ -23,13 +23,11 @@
                 <home-blog-navigation [blogPost]="blogPost" className="nav-phone"></home-blog-navigation>
             </div>
             <md [value]="blogPost.content"></md>
-            <ng-container *ngIf="blogPost.codeLinks.length > 0">
-                <h2>Get the code</h2>
-                <p>
-                    View all code on GitHub, or use codesandbox to edit and run it.
-                </p>
-                <home-blog-post-view-code [codeLinks]="blogPost.codeLinks"> </home-blog-post-view-code>
-            </ng-container>
+            <home-blog-post-view-code
+                [codeLinks]="blogPost.codeLinks"
+                [message]="true"
+                *ngIf="blogPost.codeLinks.length > 0"
+            ></home-blog-post-view-code>
             <home-blog-navigation [blogPost]="blogPost" className="nav-bottom"></home-blog-navigation>
         </article>
         <aside>
