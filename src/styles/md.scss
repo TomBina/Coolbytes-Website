@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import "mixins.scss";
 
 a.md-link {
     font-weight: 700;
@@ -6,7 +7,15 @@ a.md-link {
     border-bottom: 1px solid $link;
 }
 
-.md-title {
+.md-code-wrapper {
+    overflow:auto;
+    margin:0 -20px 0 -20px;
+    padding:0px 10px;
+    background-color:#1E1E1E;
+    color:#dcdcdc;
+}
+
+.md-code-title {
     color:#fff;
     margin: -28px -10px 10px -10px;
     padding: 5px 10px;
@@ -15,13 +24,11 @@ a.md-link {
 }
 
 .md-code-line {
-    overflow: hidden;
     background-color:#444;
     display: block;
     margin:0 -10px 0 -10px;
     padding:4px 4px 4px 10px;
     line-height:normal;
-    white-space: pre;
 }
 
 .md-image {
@@ -60,5 +67,12 @@ a.md-link {
             left: 50%;
             transform: translate(-50%, -50%);
         }
+    }
+}
+
+
+@include tablet {
+    .md-code-wrapper {
+        margin:0;
     }
 }

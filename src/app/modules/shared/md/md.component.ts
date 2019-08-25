@@ -25,6 +25,52 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
 
         let renderer = new marked.Renderer();
 
+        renderer.code = (code, lang , escaped) => {
+            let { header, title } = parseTitle(lang);
+            let { splitLanguage: language, lines } = getLines(header);
+            let languages = {
+                highlightLines(highlighted) {
+                    if (!lines || lines.length === 0) {
+                        return highlighted;
+                    }
+
+                    let parsedLines: any[] = highlightLines(highlighted, lines);
+                    let lastIndex = parsedLines.length - 1;
+                    let result = parsedLines.reduce(function(acc, current, index) {
+                        let part = current.highlight ? current.code : `${current.code}${index === lastIndex ? `` : `\n`}`;
+
+                        return `${acc}${part}`;
+                    }, "");
+
+                    return result;
+                },
+                jsx() {
+                    let highlighted = prism.highlight(code, prism.languages.jsx);
+                    return this.highlightLines(highlighted);
+                },
+                js() {
+                    let highlighted = prism.highlight(code, prism.languages.js);
+                    return this.highlightLines(highlighted);
+                },
+                css() {
+                    let highlighted = prism.highlight(code, prism.languages.css);
+                    return this.highlightLines(highlighted);
+                },
+                csharp() {
+                    let highlighted = prism.highlight(code, prism.languages.csharp);
+                    return this.highlightLines(highlighted);
+                }
+            };
+
+            let formattedCode = languages[language] ? languages[language]() : prism.highlight(code, prism.languages.csharp);
+
+            if (title) {
+                return `<div class="md-code-wrapper"><pre><code><div class="md-code-title">${title}</div>${formattedCode}</code></pre></div>`;
+            }
+
+            return `<div class="md-code-wrapper"><pre><code>${formattedCode}</code></pre></div>`;
+        };
+        
         renderer.image = (href: string, title: string, text: string) => {
             if (href.startsWith("/")) {
                 href = _imagesService.getUri(href);
@@ -88,52 +134,7 @@ export class MdComponent implements OnChanges, AfterViewInit, OnDestroy {
             gfm: true,
             breaks: true,
             renderer: renderer,
-            sanitize: true,
-            highlight: (c, h) => {
-                let { header, title } = parseTitle(h);
-                let { splitLanguage: language, lines } = getLines(header);
-                let languages = {
-                    highlightLines(highlighted) {
-                        if (!lines || lines.length === 0) {
-                            return highlighted;
-                        }
-
-                        let parsedLines: any[] = highlightLines(highlighted, lines);
-                        let lastIndex = parsedLines.length - 1;
-                        let result = parsedLines.reduce(function(acc, current, index) {
-                            let part = current.highlight ? current.code : `${current.code}${index === lastIndex ? `` : `\n`}`;
-
-                            return `${acc}${part}`;
-                        }, "");
-
-                        return result;
-                    },
-                    jsx() {
-                        let highlighted = prism.highlight(c, prism.languages.jsx);
-                        return this.highlightLines(highlighted);
-                    },
-                    js() {
-                        let highlighted = prism.highlight(c, prism.languages.js);
-                        return this.highlightLines(highlighted);
-                    },
-                    css() {
-                        let highlighted = prism.highlight(c, prism.languages.css);
-                        return this.highlightLines(highlighted);
-                    },
-                    csharp() {
-                        let highlighted = prism.highlight(c, prism.languages.csharp);
-                        return this.highlightLines(highlighted);
-                    }
-                };
-
-                let formattedCode = languages[language] ? languages[language]() : prism.highlight(c, prism.languages.csharp);
-
-                if (title) {
-                    return `<div class="md-title">${title}</div>${formattedCode}`;
-                }
-
-                return formattedCode;
-            }
+            sanitize: true
         });
         this._marked = marked;
     }
