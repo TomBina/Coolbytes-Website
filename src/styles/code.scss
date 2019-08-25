@@ -1,42 +1,25 @@
 @import "mixins.scss";
 @import "variables.scss";
 
-pre {
-    background-color:#1E1E1E;
-    color:#dcdcdc;
-    padding:10px;
-    margin:0 -20px 0 -20px;
-    white-space: pre-wrap;
-    word-break: break-word;
-
-    code {
-        display:inline;
-        background-color: transparent;
-        color:#dcdcdc;
-        white-space: pre-wrap;
-        word-break: break-word;
-    
-        span {
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-    }    
+code {
+    font-family: "Source Code Pro", monospace;
+    font-size: 0.78rem;
+    background-color: $color-tertiary;
+    padding: 2px;
 }
 
-code {
-    font-family: 'Source Code Pro', monospace;
-    font-size:0.78rem;
-    background-color:$color-tertiary;
-    padding:2px;
+pre {
+    min-width: 100%;
+    float: left;
+
+    code {
+        background-color:transparent;
+    }
 }
 
 
 @include tablet {
     code {
-        font-size:0.8rem;
-    }
-    
-    pre {
-        margin:0;
+        font-size: 0.8rem;
     }
 }
