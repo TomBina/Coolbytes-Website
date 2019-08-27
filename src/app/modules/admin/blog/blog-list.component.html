@@ -1,0 +1,26 @@
+<app-admin-menu></app-admin-menu>
+<div class="admin-content">
+    <h1>Blogs</h1>
+    <mat-list cdkDropList (cdkDropListDropped)="onDrop($event)">
+        <ng-container *ngFor="let blogPost of blogPosts">
+            <mat-list-item cdkDrag>
+                <div class="table-row">
+                    <div class="table-col width-30">{{ blogPost.date | date }}</div>
+                    <div class="table-col width-60">{{ blogPost.subject }}</div>
+                    <div class="table-col width-30 right">
+                        <a routerLink="/admin/blogs/edit/{{ blogPost.id }}">
+                            <mat-icon matListIcon>edit</mat-icon>
+                        </a>
+                        <a>
+                            <mat-icon matListIcon (click)="delete(blogPost.id)">delete</mat-icon>
+                        </a>
+                    </div>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </ng-container>
+    </mat-list>
+    <p>
+        <a routerLink="/admin/blogs/add" mat-raised-button>add new blog</a>
+    </p>
+</div>
