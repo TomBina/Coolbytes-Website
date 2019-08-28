@@ -9,7 +9,7 @@ import { ResumeEventsService } from "../../services/resumeservice/resume-events.
 import { SharedModule } from "../shared/shared.module";
 import { AuthorComponent } from "./author/author.component";
 import { AddBlogComponent } from "./blog/addblog/add-blog.component";
-import { BlogManagerComponent } from "./blog/blog-manager.component";
+import { BlogListComponent } from "./blog/blog-list.component";
 import { PreviewBlogComponent } from "./blog/previewblog/preview-blog.component";
 import { UpdateBlogComponent } from "./blog/updateblog/update-blog.component";
 import { ImagesManagerComponent } from "./images/images-manager.component";
@@ -32,7 +32,7 @@ const routes = [
     },
     {
         path: "",
-        component: BlogManagerComponent,
+        component: BlogListComponent,
         canActivate: [AdminGuardService, AdminAuthorGuardService]
     },
     {
@@ -41,13 +41,18 @@ const routes = [
         canActivate: [AdminGuardService, AdminAuthorGuardService]
     },
     {
-        path: "blogs",
-        component: BlogManagerComponent,
+        path: "blogs/add",
+        component: AddBlogComponent,
         canActivate: [AdminGuardService, AdminAuthorGuardService]
     },
     {
-        path: "blogs/add",
-        component: AddBlogComponent,
+        path: "blogs/:id",
+        component: BlogListComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "blogs",
+        component: BlogListComponent,
         canActivate: [AdminGuardService, AdminAuthorGuardService]
     },
     {
@@ -96,7 +101,7 @@ const routes = [
         CategoriesListComponent,
         AddCategoryComponent,
         UpdateCategoryComponent,
-        BlogManagerComponent,
+        BlogListComponent,
         AddBlogComponent,
         UpdateBlogComponent,
         AuthorComponent,

@@ -1,14 +1,28 @@
 .table-row {
-    display:flex;
-    align-items:center;
-    width:100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
 }
 
 .table-col {
-    flex-shrink: 0;
-    flex-grow:1;
+    &.width-30 {
+        width: 30%;
+    }
+
+    &.width-40 {
+        width: 40%;
+    }
+    
+    &.width-50 {
+        width:50%;
+    }
+    
+    &.width-60 {
+        width: 60%;
+    }
 
     &.right {
-        text-align:right;
+        text-align: right;
     }
 }

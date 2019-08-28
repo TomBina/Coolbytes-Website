@@ -120,6 +120,6 @@ export class AddBlogComponent implements OnInit, OnDestroy {
             command.tags = tags.split(",");
         }
 
-        this._blogPostsService.add(command, this._files).subscribe(() => this._router.navigateByUrl("admin/blogs"));
+        this._blogPostsService.add(command, this._files).subscribe(() => this._router.navigateByUrl(`admin/blogs/${command.categoryId}`));
     }
 }

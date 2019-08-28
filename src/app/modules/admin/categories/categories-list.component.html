@@ -5,8 +5,8 @@
         <ng-container *ngFor="let category of categories">
             <mat-list-item cdkDrag>
                 <div class="table-row">
-                    <div class="table-col">{{category.name}}</div>
-                    <div class="table-col right">
+                    <div class="table-col width-40">{{category.name}}</div>
+                    <div class="table-col width-60 right">
                         <button mat-button>
                             <mat-icon matListIcon (click)="update(category)">edit</mat-icon>
                         </button>

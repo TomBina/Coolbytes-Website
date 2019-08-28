@@ -180,7 +180,7 @@ export class UpdateBlogComponent implements OnInit, OnDestroy {
         }
 
         this._blogPostsService.update(command, this._files).subscribe(() => {
-            this._router.navigateByUrl("admin/blogs");
+            this._router.navigateByUrl(`admin/blogs/${command.categoryId}`);
         });
     }
 }

@@ -47,13 +47,16 @@ export class BlogPostsService extends ApiService {
             }
         }
 
-        let blogPosts = await this.http.get<BlogPostSummary[]>(`${this._url}/category/${id}`).pipe(
-            tap(obj => {
-                if (!this.isBrowser) {
-                    this.transferState.set(key, obj);
-                }
-            })
-        ).toPromise();
+        let blogPosts = await this.http
+            .get<BlogPostSummary[]>(`${this._url}/category/${id}`)
+            .pipe(
+                tap(obj => {
+                    if (!this.isBrowser) {
+                        this.transferState.set(key, obj);
+                    }
+                })
+            )
+            .toPromise();
 
         return blogPosts;
     }
@@ -114,6 +117,10 @@ export class BlogPostsService extends ApiService {
 
     delete(id) {
         return this.http.delete(`${this._url}/${id}`).pipe(catchError(this.handleError));
+    }
+
+    sort(categoryId, ids: Number[]) {
+        return this.http.put(`${this._url}/sort/`, { categoryId, newSortOrder: ids }, { observe: "response" });
     }
 
     private createFormData(model, files: FileList): FormData {
