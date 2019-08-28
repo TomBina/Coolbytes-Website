@@ -4,10 +4,10 @@ import { Component, Input, OnChanges } from "@angular/core";
     selector: "home-blog-navigation",
     template: `
         <div class="table-row {{className}}">
-            <div class="table-col" *ngIf="blogPost.prev">
+            <div class="table-col width-50" *ngIf="blogPost.prev">
                 <a [routerLink]="blogPost.prev.url">&laquo; previous {{catType}}</a>
             </div>
-            <div class="table-col right" *ngIf="blogPost.next">
+            <div class="table-col width-50 right" *ngIf="blogPost.next">
                 <a [routerLink]="blogPost.next.url">next {{catType}} &raquo;</a>
             </div>
         </div>
