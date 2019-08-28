@@ -1,8 +1,16 @@
 <app-admin-menu></app-admin-menu>
 <div class="admin-content">
     <h1>Blogs</h1>
+    <ul>
+        <li *ngFor="let category of categories">
+            <a (click)="setActiveCategory(category.id)" *ngIf="category.id === activeCategory.id; else inactive" class="active">{{ category.name }}</a>
+            <ng-template #inactive>
+                <a (click)="setActiveCategory(category.id)" class="inactive">{{ category.name }}</a>
+            </ng-template>
+        </li>
+    </ul>
     <mat-list cdkDropList (cdkDropListDropped)="onDrop($event)">
-        <ng-container *ngFor="let blogPost of blogPosts">
+        <ng-container *ngFor="let blogPost of activeBlogPosts">
             <mat-list-item cdkDrag>
                 <div class="table-row">
                     <div class="table-col width-30">{{ blogPost.date | date }}</div>

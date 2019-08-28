@@ -41,13 +41,18 @@ const routes = [
         canActivate: [AdminGuardService, AdminAuthorGuardService]
     },
     {
-        path: "blogs",
+        path: "blogs/add",
+        component: AddBlogComponent,
+        canActivate: [AdminGuardService, AdminAuthorGuardService]
+    },
+    {
+        path: "blogs/:id",
         component: BlogListComponent,
         canActivate: [AdminGuardService, AdminAuthorGuardService]
     },
     {
-        path: "blogs/add",
-        component: AddBlogComponent,
+        path: "blogs",
+        component: BlogListComponent,
         canActivate: [AdminGuardService, AdminAuthorGuardService]
     },
     {

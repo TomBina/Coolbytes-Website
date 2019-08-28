@@ -8,4 +8,6 @@ export interface BlogPostSummary {
     contentIntro: string;
     image: Image;
     authorName: string;
+    category: string;
+    categoryId: string;
 }

@@ -119,8 +119,8 @@ export class BlogPostsService extends ApiService {
         return this.http.delete(`${this._url}/${id}`).pipe(catchError(this.handleError));
     }
 
-    sort(ids: Number[]) {
-        return this.http.put(`${this._url}/sort/`, { newSortOrder: ids }, { observe: "response" });
+    sort(categoryId, ids: Number[]) {
+        return this.http.put(`${this._url}/sort/`, { categoryId, newSortOrder: ids }, { observe: "response" });
     }
 
     private createFormData(model, files: FileList): FormData {
