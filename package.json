@@ -29,7 +29,7 @@
     "auth0-js": "9.9.0",
     "compression": "^1.7.4",
     "core-js": "^2.6.2",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "marked": "^0.6.2",
     "parse-numeric-range": "0.0.2",
     "rxjs": "~6.5.2",
